@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style>
+    /* setting start */
     * {
         margin: 0;
         padding: 0;
@@ -15,7 +17,11 @@
         list-style: none;
         box-sizing: border-box;
     }
-    a{
+    /* setting end */
+
+    /* menu start */
+
+    a {
         color: black;
     }
 
@@ -23,44 +29,76 @@
         height: 160px;
         background-color: gray;
     }
-    .menu > .menu-top{
+
+    .menu>.menu-top {
         width: 1200px;
         margin: 0 auto;
-        height: 40px;        
+        height: 40px;
     }
-    .menu > .menu-top > ul{
+
+    .menu>.menu-top>ul {
         display: flex;
         justify-content: end;
         line-height: 40px;
     }
-    .menu > .menu-top > ul > li{
+
+    .menu>.menu-top>ul>li {
         margin-left: 1rem;
     }
-    .menu > .menu-bottom{
+
+    .menu>.menu-bottom {
         display: flex;
         width: 1200px;
         margin: 0 auto;
         justify-content: space-between;
     }
-    .menu > .menu-bottom > div > ul{
+
+    .menu>.menu-bottom>div>ul {
         display: flex;
-        line-height: 120px;
+        line-height: 100px;
     }
-    .menu > .menu-bottom > div > ul > li{
-        margin-left: 100px;
+
+    .menu>.menu-bottom>div>ul>li {
+        position: relative;
+        margin-left: 20px;
+        padding: 10px 20px;
         font-size: 22px;
         font-weight: 700;
     }
-    .menu > .menu-bottom > div > ul > li > ul{
+
+    .menu>.menu-bottom>div>ul>li>ul {
         display: none;
+        top: 120px;
+        left: 0px;
+        text-align: center;
+        font-size: 14px;
+        position: absolute;
+        background-color: red;
+        width: 100px;
     }
-    .menu > .menu-bottom > div > ul > li:hover > ul{
+
+    .menu>.menu-bottom>div>ul>li:hover>ul {
         display: block;
     }
 
+    .menu>.menu-bottom>div>ul>li>ul>li>a {
+        display: block;
+        width: 100%;
+    }
+    .title{
+        margin-left: 20px;
+    }
+    /* menu end */
+
+    /* ticket_detail start */
+
+
+
+    /* ticket_detail end */
 </style>
 
 <body>
+    <!--  menu start -->
     <nav class="menu">
         <div class="menu-top">
             <ul>
@@ -106,6 +144,13 @@
             </div>
         </div>
     </nav>
+    <!--  menu start -->
+
+    <!-- ticket_detail start -->
+
+
+    
+    <!-- ticket_detail end -->
 </body>
 
 </html>

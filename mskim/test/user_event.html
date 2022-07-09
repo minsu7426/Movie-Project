@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<style>
+    /* menu start */
+    * {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        list-style: none;
+        box-sizing: border-box;
+    }
+
+    a {
+        color: black;
+    }
+
+    .menu {
+        height: 160px;
+        background-color: gray;
+    }
+
+    .menu>.menu-top {
+        width: 1200px;
+        margin: 0 auto;
+        height: 40px;
+    }
+
+    .menu>.menu-top>ul {
+        display: flex;
+        justify-content: end;
+        line-height: 40px;
+    }
+
+    .menu>.menu-top>ul>li {
+        margin-left: 1rem;
+    }
+
+    .menu>.menu-bottom {
+        display: flex;
+        width: 1200px;
+        margin: 0 auto;
+        justify-content: space-between;
+    }
+
+    .menu>.menu-bottom>div>ul {
+        display: flex;
+        line-height: 100px;
+    }
+
+    .menu>.menu-bottom>div>ul>li {
+        position: relative;
+        margin-left: 20px;
+        padding: 10px 20px;
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    .menu>.menu-bottom>div>ul>li>ul {
+        display: none;
+        top: 120px;
+        left: 0px;
+        text-align: center;
+        font-size: 14px;
+        position: absolute;
+        background-color: red;
+        width: 100px;
+    }
+
+    .menu>.menu-bottom>div>ul>li:hover>ul {
+        display: block;
+    }
+
+    .menu>.menu-bottom>div>ul>li>ul>li>a {
+        display: block;
+        width: 100%;
+    }
+
+    /* main end */
+
+    /* user_event start */
+    .user_event .title>h1 {
+        margin-left: 20px;
+    }
+
+    .user_event>.event_ing_items,
+    .user_event>.event_end_items {
+        display: none;
+    }
+
+    .user_event>#ing:checked~.event_ing_items,
+    .user_event>#end:checked~.event_end_items {
+        display: block;
+    }
+
+    .user_event>#ing:checked~.user_event_nav label:first-child,
+    .user_event>#end:checked~.user_event_nav label:last-child {
+        background-color: whitesmoke;
+        border: 1px solid black;
+    }
+
+    .user_event>input {
+        display: none;
+    }
+
+    .user_event .user_event_nav {
+        display: flex;
+        justify-content: center;
+        margin: 50px 0;
+    }
+
+    .user_event .user_event_nav label {
+        background-color: white;
+        padding: 20px;
+        width: 500px;
+        cursor: pointer;
+        margin: 0;
+    }
+
+    .user_event .event_ing_items,
+    .user_event .event_end_items {
+        width: 1000px;
+    }
+
+    /* user_event end */
+
+    .user_event .event_item {
+        padding: 10px 100px;
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+    <!--  menu start -->
+    <nav class="menu">
+        <div class="menu-top">
+            <ul>
+                <li><a href="">로그인</a></li>
+                <li><a href="">회원가입</a></li>
+            </ul>
+        </div>
+        <div class="menu-bottom">
+            <div>
+                <img src="/resources/images/logo_transparent.png" alt="로고" width="100px">
+            </div>
+            <div>
+                <ul>
+                    <li><a href="">예매</a>
+                        <ul>
+                            <li><a href="">예매</a></li>
+                            <li><a href="">예매 내역</a></li>
+                            <li><a href="">상영 시간표</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">영화</a>
+                        <ul>
+                            <li><a href="">현재 상영작</a></li>
+                            <li><a href="">상영 예정작</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">이벤트</a></li>
+                    <li><a href="">마이페이지</a>
+                        <ul>
+                            <li><a href="">회원 정보</a></li>
+                            <li><a href="">관람 내역</a></li>
+                            <li><a href="">쿠폰 관리</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">고객센터</a>
+                        <ul>
+                            <li><a href="">공지 사항</a></li>
+                            <li><a href="">1:1 문의</a></li>
+                            <li><a href="">혜택 안내</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--  menu start -->
+    <div class="user_event container">
+        <div class="title">
+            <h1>이벤트</h1>
+            <hr>
+        </div>
+
+        <input type="radio" name="check" id="ing" checked>
+        <input type="radio" name="check" id="end">
+
+        <nav class="user_event_nav">
+            <label for="ing" align="center">진행중인 이벤트</label>
+            <label for="end" align="center">종료된 이벤트</label>
+        </nav>
+
+        <div class="event_ing_items" align="center">
+            <a class="event_item" href="" align="left">
+                <span>ㅎㅎㅎ</span>
+            </a>
+        </div>
+        <div class="event_end_items" align="center">
+            <a class="event_item" href="">
+                <span>ㅎㅎㅎ111</span>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
