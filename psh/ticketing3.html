@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+</head>
+<style>
+    /* menu start */
+    * {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        list-style: none;
+        box-sizing: border-box;
+    }
+
+    a {
+        color: black;
+    }
+
+    .menu {
+        height: 160px;
+        background-color: gray;
+    }
+
+    .menu>.menu-top {
+        width: 1200px;
+        margin: 0 auto;
+        height: 40px;
+    }
+
+    .menu>.menu-top>ul {
+        display: flex;
+        justify-content: end;
+        line-height: 40px;
+    }
+
+    .menu>.menu-top>ul>li {
+        margin-left: 1rem;
+    }
+
+    .menu>.menu-bottom {
+        display: flex;
+        width: 1200px;
+        margin: 0 auto;
+        justify-content: space-between;
+    }
+
+    .menu>.menu-bottom>div>ul {
+        display: flex;
+        line-height: 100px;
+    }
+
+    .menu>.menu-bottom>div>ul>li {
+        position: relative;
+        margin-left: 20px;
+        padding: 10px 20px;
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    .menu>.menu-bottom>div>ul>li>ul {
+        display: none;
+        top: 120px;
+        left: 0px;
+        text-align: center;
+        font-size: 14px;
+        position: absolute;
+        background-color: red;
+        width: 100px;
+    }
+
+    .menu>.menu-bottom>div>ul>li:hover>ul {
+        display: block;
+    }
+
+    .menu>.menu-bottom>div>ul>li>ul>li>a {
+        display: block;
+        width: 100%;
+    }
+
+    /* menu end */
+
+    .ticketing>.ticketing_title>h1 {
+        margin-left: 20px;
+    }
+
+    .ticketing>.ticketing_movie {
+        position: relative;
+        margin-top: 50px;
+        background-color: white;
+        display: flex;
+    }
+
+    .ticketing>.ticketing_movie>.ticketing_menu {
+        background-color: white;
+        min-width: 14%;
+        text-align: center;
+        border-right: 1px solid rgb(233, 224, 224);
+    }
+
+    .ticketing>.ticketing_movie>.ticketing_menu>p {
+        font-size: 18px;
+        font-weight: 700;
+        padding: 30px 0;
+        height: 160px;
+        line-height: 100px;
+        margin: 0;
+    }
+
+    .ticketing>.ticketing_movie>.ticketing_menu>p:not(:first-child) {
+        border-top: 1px solid rgb(233, 224, 224);
+    }
+
+    .ticketing>.ticketing_movie>.ticketing_menu>p:nth-child(3) {
+        background-color: skyblue;
+        color: darkslategrey;
+    }
+
+    .ticketing>.ticketing_movie>button {
+        position: absolute;
+        display: inline-block;
+        right: 100px;
+        font-weight: 700;
+        bottom: 60px;
+        color: white;
+        padding: 10px 25px;
+        border-radius: 20px;
+        background-color: #393b39;
+        border: 3px solid transparent;
+        text-decoration: none;
+        opacity: 0.9;
+        transition: all 0.3s;
+    }
+
+    .ticketing>.ticketing_movie>button:hover {
+        background-color: white;
+        border: 3px solid #393b39;
+        color: black;
+    }
+    .ticketing > .ticketing_movie > .ticketing_select > div{
+        display: flex;
+        width: 100%;
+        margin : 20px 50px 20px;
+    }
+
+    .ticketing > .ticketing_movie > .ticketing_select >div > .selecter{
+        display: flex;
+        height: 50px;
+        align-items: center;
+        margin-right: 40px;
+        margin-left: 100px;
+    }
+    .ticketing > .ticketing_movie > .ticketing_select > div > .selecter > h3{
+        margin: 0 10px 0 0;
+    }
+    .ticketing > .ticketing_movie > .ticketing_select > div > .selecter > .radio-group {
+        display: flex;
+    }
+    .ticketing > .ticketing_movie > .ticketing_select > div > .selecter > .radio-group > div > label{
+        width: 40px;
+        border: 1px solid hsla(0, 0%, 67.8%, .5);
+        padding: 8px 0 8px;
+        border-radius: 4px;
+        text-align: center;
+        cursor: pointer;
+        margin: 0;
+    }
+    .ticketing > .ticketing_movie > .ticketing_select > div > .selecter > .radio-group > div > input{
+        display: none;
+    }
+
+    .ticketing > .ticketing_movie > .ticketing_select > div > .selecter > .radio-group > div > input:checked ~ label{
+        background-color: #393b39;
+        color: white;
+        font-weight: 700;
+        transition: all 0.3s;
+    }
+    .ticketing > .ticketing_movie > .ticketing_select > .seat{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .ticketing > .ticketing_movie > .ticketing_select > .seat > h4{
+        font-size: 24px;
+        width: 430px;
+        line-height: 28px;
+        text-align: center;
+        height: 40px;
+        border: solid 5px black;
+    }
+    .ticketing > .ticketing_movie > .ticketing_select > .seat > .seat_container{
+        display: flex;
+        flex-direction: column;
+    }
+    .ticketing > .ticketing_movie > .ticketing_select > .seat > .seat_container > div{
+        display: flex;
+    }
+    .ticketing > .ticketing_movie > .ticketing_select > .seat > .seat_container > .seat_row > div > input{
+        display: none;
+    }
+
+    .ticketing > .ticketing_movie > .ticketing_select > .seat > .seat_container > .seat_row > div > label{
+        width: 60px;
+        height: 60px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border: 3px solid black;
+        margin: 7px;
+        text-align: center;
+        font-size: 20px;
+        line-height: 60px;
+        transition: all 0.3s;
+        cursor: pointer;
+    }
+    .ticketing > .ticketing_movie > .ticketing_select > .seat > .seat_container > .seat_row > div > label:hover{
+        background-color: #aaaaaa;
+        transition: all 0.3s;
+    }
+    .ticketing > .ticketing_movie > .ticketing_select > .seat > .seat_container > .seat_row > div > input:checked~label{
+        background-color: #444451;
+        color: white;
+    }
+</style>
+
+<body>
+    <!--  menu start -->
+    <nav class="menu">
+        <div class="menu-top">
+            <ul>
+                <li><a href="">로그인</a></li>
+                <li><a href="">회원가입</a></li>
+            </ul>
+        </div>
+        <div class="menu-bottom">
+            <div>
+                <img src="/resources/images/logo_transparent.png" alt="로고" width="100px" />
+            </div>
+            <div>
+                <ul>
+                    <li>
+                        <a href="">예매</a>
+                        <ul>
+                            <li><a href="">예매</a></li>
+                            <li><a href="">예매 내역</a></li>
+                            <li><a href="">상영 시간표</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">영화</a>
+                        <ul>
+                            <li><a href="">현재 상영작</a></li>
+                            <li><a href="">상영 예정작</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">이벤트</a></li>
+                    <li>
+                        <a href="">마이페이지</a>
+                        <ul>
+                            <li><a href="">회원 정보</a></li>
+                            <li><a href="">관람 내역</a></li>
+                            <li><a href="">쿠폰 관리</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">고객센터</a>
+                        <ul>
+                            <li><a href="">공지 사항</a></li>
+                            <li><a href="">1:1 문의</a></li>
+                            <li><a href="">혜택 안내</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--  menu start -->
+    <!--  -->
+    <div class="ticketing container">
+        <div class="ticketing_title">
+            <h1>예매</h1>
+            <hr />
+        </div>
+        <form class="ticketing_movie">
+            <div class="ticketing_menu">
+                <p>영화선택</p>
+                <p>상영시간</p>
+                <p>좌석</p>
+                <p>결제</p>
+            </div>
+            <div class="ticketing_select">
+                <div>
+                    <div class="selecter">
+                        <h3>성인</h3>
+                        <div class="radio-group">
+                            <div>
+                                <input type="radio" name="adult" id="adult0" value="0">
+                                <label for="adult0">0</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="adult" id="adult1" value="1">
+                                <label for="adult1">1</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="adult" id="adult2" value="2">
+                                <label for="adult2">2</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="adult" id="adult3" value="3">
+                                <label for="adult3">3</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="adult" id="adult4" value="4">
+                                <label for="adult4">4</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="adult" id="adult5" value="5">
+                                <label for="adult5">5</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="selecter">
+                        <h3>청소년</h3>
+                        <div class="radio-group">
+                            <div>
+                                <input type="radio" name="teen" id="teen0" value="0">
+                                <label for="teen0">0</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="teen" id="teen1" value="1">
+                                <label for="teen1">1</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="teen" id="teen2" value="2">
+                                <label for="teen2">2</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="teen" id="teen3" value="3">
+                                <label for="teen3">3</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="teen" id="teen4" value="4">
+                                <label for="teen4">4</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="teen" id="teen5" value="5">
+                                <label for="teen5">5</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="seat">
+                    <h4>screen</h4>
+                    <div class="seat_container">
+                        <div class="seat_row">
+                            <div>
+                                <input type="checkbox" name="seat" id="seat1">
+                                <label for="seat1">A1</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat2">
+                                <label for="seat2">A2</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat3">
+                                <label for="seat3">A3</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat4">
+                                <label for="seat4">A4</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat5">
+                                <label for="seat5">A5</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat6">
+                                <label for="seat6">A6</label>
+                            </div>
+                        </div>
+                        <div class="seat_row">
+                            <div>
+                                <input type="checkbox" name="seat" id="seat7">
+                                <label for="seat7">B1</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat8">
+                                <label for="seat8">B2</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat9">
+                                <label for="seat9">B3</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat10">
+                                <label for="seat10">B4</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat11">
+                                <label for="seat11">B5</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat12">
+                                <label for="seat12">B6</label>
+                            </div>
+                        </div>
+                        <div class="seat_row">
+                            <div>
+                                <input type="checkbox" name="seat" id="seat13">
+                                <label for="seat13">C1</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat14">
+                                <label for="seat14">C2</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat15">
+                                <label for="seat15">C3</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat16">
+                                <label for="seat16">C4</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat17">
+                                <label for="seat17">C5</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat18">
+                                <label for="seat18">C6</label>
+                            </div>
+                        </div>
+                        <div class="seat_row">
+                            <div>
+                                <input type="checkbox" name="seat" id="seat19">
+                                <label for="seat19">D1</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat20">
+                                <label for="seat20">D2</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat21">
+                                <label for="seat21">D3</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat22">
+                                <label for="seat22">D4</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat23">
+                                <label for="seat23">D5</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat24">
+                                <label for="seat24">D6</label>
+                            </div>
+                        </div>
+                        <div class="seat_row">
+                            <div>
+                                <input type="checkbox" name="seat" id="seat25">
+                                <label for="seat25">E1</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat26">
+                                <label for="seat26">E2</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat27">
+                                <label for="seat27">E3</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat28">
+                                <label for="seat28">E4</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat29">
+                                <label for="seat29">E5</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="seat" id="seat30">
+                                <label for="seat30">E6</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <button type="submit">결제하기 >></button>
+        </form>
+    </div>
+    </div>
+</body>
+
+</html>
