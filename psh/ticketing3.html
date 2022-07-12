@@ -149,15 +149,16 @@
         margin : 20px 50px 20px;
     }
 
-    .ticketing > .ticketing_movie > .ticketing_select >div > .selecter{
+    .ticketing > .ticketing_movie > .ticketing_select > div > .selecter{
         display: flex;
         height: 50px;
         align-items: center;
         margin-right: 40px;
-        margin-left: 100px;
     }
     .ticketing > .ticketing_movie > .ticketing_select > div > .selecter > h3{
         margin: 0 10px 0 0;
+        font-size: 18px;
+        font-weight: 700;
     }
     .ticketing > .ticketing_movie > .ticketing_select > div > .selecter > .radio-group {
         display: flex;
@@ -181,6 +182,29 @@
         font-weight: 700;
         transition: all 0.3s;
     }
+    .ticketing > .ticketing_movie > .ticketing_select > div > .price{
+        display: flex;
+        align-items: center;
+    }
+
+    .ticketing > .ticketing_movie > .ticketing_select > div > .price > h3{
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0;
+    }
+    .ticketing > .ticketing_movie > .ticketing_select > div > .price > div{
+        font-size: 18px;
+        font-weight: 700;
+    }
+    .ticketing > .ticketing_movie > .ticketing_select > div > .price > div > input{
+        border: 0;
+        width: 150px;
+        height: 50px;
+        color: red;
+        padding-left: 50px;
+    }
+
+
     .ticketing > .ticketing_movie > .ticketing_select > .seat{
         display: flex;
         flex-direction: column;
@@ -351,6 +375,12 @@
                                 <input type="radio" name="teen" id="teen5" value="5">
                                 <label for="teen5">5</label>
                             </div>
+                        </div>
+                    </div>
+                    <div class="price">
+                        <h3>결제 금액</h3>
+                        <div>
+                            <input type="text" value="30000" readonly>원
                         </div>
                     </div>
                 </div>
