@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<style>
+    /* setting */
+    * {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        list-style: none;
+        box-sizing: border-box;
+    }
+    /* setting */
+
+    /* ticket_manage start */
+    .ticket_manage>.container>.table {
+        border-collapse: collapse;
+        text-align: center;
+        border-top: 3px solid #22499d;
+    }
+
+    .ticket_manage>.container>.table th {
+        font-size: 16px;
+        text-align: center;
+        color: #555555;
+        font-weight: bold;
+        background-color: #f8fafc;
+        color: #091f46;
+    }
+
+    .ticket_manage>.container>.table td {
+        font-size: 16px;
+        text-align: center;
+        color: #555555;
+    }
+
+    .ticket_manage>.container>.table tr:hover {
+        background-color: #f7f7f7;
+    }
+
+    .ticket_manage>.search_container {
+        margin-top: 10px;
+        height: 30px;
+        margin-bottom: 50px;
+    }
+
+    .ticket_manage>.search_container .search_content {
+        width: 300px;
+        height: 40px;
+    }
+
+    .ticket_manage>.search_container .search_select {
+        height: 40px;
+    }
+
+    .ticket_manage>.search_container .search .search_btn {
+        height: 40px;
+        width: 60px;
+        background-color: #394b61 !important;
+        color: white;
+    }
+
+    .ticket_manage .search_container td {
+        border: 1px solid #c8d1db
+    }
+    .ticket_manage .title {
+        margin-left: 20px;
+    }
+</style>
+
+<body>
+    <!-- ticket_manage start -->
+    <div class="ticket_manage container">
+
+        <div class="title">
+            <h1>예매 내역 관리</h1>
+        </div>
+        <hr>
+
+        <div align="center" class="search_container">
+            <form method="post" action="#">
+                <table>
+                    <tr>
+                        <td><select class="search_select" name="search_item">
+                                <option value="title">제목</option>
+                                <option value="content">본문 내용</option>
+                                <option value="name">글쓴이</option>
+                            </select></td>
+                        <td class="search"><input class="search_content" type="text" name="text" /> <input type="submit"
+                                class="search_btn" value="검색" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+        <div class="container">
+            <table class="table">
+                <tr class="table_header">
+                    <th>번호</th>
+                    <th>티켓 번호</th>
+                    <th>영화 이름</th>
+                    <th>아이디</th>
+                    <th>결제 일자</th>
+                    <th>좌석</th>
+                    <th>금액</th>
+                    <th>비고</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>FADFN21A34B</td>
+                    <td>헤어질 결심</td>
+                    <td>abc1234</td>
+                    <td>2021.01.02</td>
+                    <td>A1, A3</td>
+                    <td>30000</td>
+                    <td><a href="">삭제</a></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>FADFN21A34B</td>
+                    <td>헤어질 결심</td>
+                    <td>abc1234</td>
+                    <td>2021.01.02</td>
+                    <td>A1, A3</td>
+                    <td>30000</td>
+                    <td><a href="">삭제</a></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>FADFN21A34B</td>
+                    <td>헤어질 결심</td>
+                    <td>abc1234</td>
+                    <td>2021.01.02</td>
+                    <td>A1, A3</td>
+                    <td>30000</td>
+                    <td><a href="">삭제</a></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>FADFN21A34B</td>
+                    <td>헤어질 결심</td>
+                    <td>abc1234</td>
+                    <td>2021.01.02</td>
+                    <td>A1, A3</td>
+                    <td>30000</td>
+                    <td><a href="">삭제</a></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>FADFN21A34B</td>
+                    <td>헤어질 결심</td>
+                    <td>abc1234</td>
+                    <td>2021.01.02</td>
+                    <td>A1, A3</td>
+                    <td>30000</td>
+                    <td><a href="">삭제</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="page" align="center">
+            <b>[1]</b> [2] [3] [4] [5]
+        </div>
+    </div>
+</body>
+
+</html>
