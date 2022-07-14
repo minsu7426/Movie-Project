@@ -19,14 +19,14 @@
     }
     /* setting */
 
-    /* board start */
-    .board>.container>.table {
+    /* review_manage start */
+    .review_manage>.container>.table {
         border-collapse: collapse;
         text-align: center;
         border-top: 3px solid #22499d;
     }
 
-    .board>.container>.table th {
+    .review_manage>.container>.table th {
         font-size: 16px;
         text-align: center;
         color: #555555;
@@ -35,54 +35,55 @@
         color: #091f46;
     }
 
-    .board>.container>.table td {
+    .review_manage>.container>.table td {
         font-size: 16px;
         text-align: center;
         color: #555555;
     }
 
-    .board>.container>.table tr:hover {
+    .review_manage>.container>.table tr:hover {
         background-color: #f7f7f7;
     }
 
-    .board>.search_container {
+    .review_manage>.search_container {
         margin-top: 10px;
         height: 30px;
+        margin-bottom: 50px;
     }
 
-    .board>.search_container .search_content {
+    .review_manage>.search_container .search_content {
         width: 300px;
         height: 40px;
     }
 
-    .board>.search_container .search_select {
+    .review_manage>.search_container .search_select {
         height: 40px;
     }
 
-    .board>.search_container .search .search_btn {
+    .review_manage>.search_container .search .search_btn {
         height: 40px;
         width: 60px;
         background-color: #394b61 !important;
         color: white;
     }
 
-    .board .search_container td {
+    .review_manage .search_container td {
         border: 1px solid #c8d1db
     }
-    .board .add_btn{
-        margin: 20px;
-    }
-    .board .title {
+    .review_manage .title {
         margin-left: 20px;
+    }
+    .review_manage .container .table .content{
+        width: 400px;
     }
 </style>
 
 <body>
-    <!-- board start -->
-    <div class="board container">
+    <!-- review_manage start -->
+    <div class="review_manage container">
 
         <div class="title">
-            <h1>공지사항</h1>
+            <h1>리뷰 관리</h1>
         </div>
         <hr>
 
@@ -103,89 +104,70 @@
             </form>
         </div>
 
-		<div class="add_btn" align="right">
-			<a href="/board_add.do?number=<%=sessionNumber%>"
-				class="btn btn-primary">글쓰기</a>
-		</div>
-
         <div class="container">
             <table class="table">
                 <tr class="table_header">
-                    <th>번호</th>
-                    <th>제목</th>
-                    <th>작성자</th>
-                    <th>작성일</th>
-                    <th>조회수</th>
+                    <th>순서</th>
+                    <th>아이디</th>
+                    <th>이름</th>
+                    <th>평점</th>
+                    <th>리뷰 내용</th>
+                    <th>등록 일자</th>
+                    <th>비고</th>
                 </tr>
                 <tr>
                     <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td>헤어질 결심</td>
+                    <td>abc1234</td>
+                    <td>4.5</td>
+                    <td class="content">너무 재밌었고 두번다신 보지말자</td>
+                    <td>2022-07-08 02:18</td>
+                    <td><a href="">삭제</a></td>
                 </tr>
                 <tr>
                     <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td>헤어질 결심</td>
+                    <td>abc1234</td>
+                    <td>4.5</td>
+                    <td class="content">너무 재밌었고 두번다신 보지말자</td>
+                    <td>2022-07-08 02:18</td>
+                    <td><a href="">삭제</a></td>
                 </tr>
                 <tr>
                     <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td>헤어질 결심</td>
+                    <td>abc1234</td>
+                    <td>4.5</td>
+                    <td class="content">너무 재밌었고 두번다신 보지말자</td>
+                    <td>2022-07-08 02:18</td>
+                    <td><a href="">삭제</a></td>
                 </tr>
                 <tr>
                     <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td>헤어질 결심</td>
+                    <td>abc1234</td>
+                    <td>4.5</td>
+                    <td class="content">너무 재밌었고 두번다신 보지말자</td>
+                    <td>2022-07-08 02:18</td>
+                    <td><a href="">삭제</a></td>
                 </tr>
                 <tr>
                     <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td>헤어질 결심</td>
+                    <td>abc1234</td>
+                    <td>4.5</td>
+                    <td class="content">너무 재밌었고 두번다신 보지말자</td>
+                    <td>2022-07-08 02:18</td>
+                    <td><a href="">삭제</a></td>
                 </tr>
                 <tr>
                     <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td>헤어질 결심</td>
+                    <td>abc1234</td>
+                    <td>4.5</td>
+                    <td class="content">너무 재밌었고 두번다신 보지말자</td>
+                    <td>2022-07-08 02:18</td>
+                    <td><a href="">삭제</a></td>
                 </tr>
             </table>
         </div>
