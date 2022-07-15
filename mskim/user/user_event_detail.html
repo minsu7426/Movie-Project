@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<style>
+    /* setting start */
+    * {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        list-style: none;
+        box-sizing: border-box;
+    }
+
+    /* setting end */
+
+    /* user_event_detail start */
+    .user_event .content_title {
+        width: 800px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        border-bottom: 1px solid grey;
+        padding: 0 20px;
+    }
+
+    .user_event .content_text {
+        width: 400px;
+        margin: 40px auto;
+    }
+    .user_event .content_text .table th{
+        background-color: lightslategrey;
+    }
+    .user_event .content_button .btn-jelly{
+        width: 150px;
+    }
+
+    .user_event .content_button .btn-jelly:hover {
+        animation: jelly 0.5s;
+    }
+
+    @keyframes jelly {
+        25% {
+            transform: scale(0.9, 1.1);
+        }
+
+        50% {
+            transform: scale(1.1, 0.9);
+        }
+
+        75% {
+            transform: scale(0.95, 1.05);
+        }
+    }
+    .user_event .btn{
+        margin-top: 50px;
+    }
+    .user_event .title_items {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+    }
+
+    .user_event .title_item {
+        font-size: 18px;
+    }
+    .user_event .title_item .title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .user_event .title_item span {
+        margin-right: 10px;
+        padding-right: 10px;
+    }
+    .user_event .title{
+        margin-bottom: 50px;
+    }
+    /* user_event_detail end */
+</style>
+
+<body>
+    <!-- user_event_detail start -->
+    <div class="user_event container">
+        <div class="title">
+            <h1>이벤트</h1>
+            <hr>
+        </div>
+
+        <!-- <div class="content_title">
+            <h2>상시 이벤트</h2>
+            <div class="between">
+                <h4 class="count"><b>조회수 : </b><span>10</span></h4>
+            </div>
+        </div> -->
+        <div class="title_container">
+            <h1>상시 이벤트</h1>
+            <div class="title_items">
+                <div class="title_item">
+                    <span class="title">작성일자</span> <span>2022-07-07</span>
+                </div>
+                <div class="title_item">
+                    <span class="title">조회수</span> <span>5</span>
+                </div>
+            </div>
+            <hr>
+
+        <div class="content_text" align="center">
+            <table class="table">
+                <tr>
+                    <th>잔여 쿠폰 수</th>
+                    <th>당첨자 수</th>
+                    <th>확률</th>
+                </tr>
+                <tr>
+                    <td>198</td>
+                    <td>2</td>
+                    <td>0.05%</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="content_button" align="center">
+            <button class="btn btn-primary btn-jelly">
+                뽑기
+            </button>
+        </div>
+        <div class="button" align="end">
+            <a href="" class="btn btn-primary">되돌아가기</a>
+        </div>
+    </div>
+
+    <!-- user_event_detail end -->
+</body>
+
+</html>
