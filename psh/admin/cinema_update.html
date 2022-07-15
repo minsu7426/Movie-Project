@@ -84,16 +84,16 @@
     }
     /* menu start */
 
-    .event_add > .title > h1{
+    .cinema_update > .title > h1{
         margin-left: 20px;
     }
 
         /* notice_add start */
-    .event_add .title {
+    .cinema_update .title {
     margin-bottom: 50px;
     }
 
-    .event_add .add_form > div:not(:first-child) input {
+    .cinema_update .add_form > div input {
         width: 600px;
         height: 44px;
         border-radius: 5px;
@@ -104,8 +104,28 @@
         color: #2b2929;
     }
 
-    .event_add .add_form textarea {
+    .cinema_update .add_form > div select{
         width: 600px;
+        height: 44px;
+        border-radius: 5px;
+        border: solid 1px #dadada;
+        background-color: #f5f6f7;
+        font-size: 15px;
+        padding: 10px 14px;
+        color: #2b2929;
+    }
+    .cinema_update .add_form > div .cinema_date{
+        width: 292px;
+    }
+
+    .cinema_update .add_form > div .cinema_checkbox{
+        width: auto;
+        height: auto;
+    }
+
+    .cinema_update .add_form textarea {
+        width: 600px;
+        height: 100px;
         border-radius: 5px;
         border: solid 1px #dadada;
         background-color: #f5f6f7;
@@ -115,61 +135,21 @@
         resize: none;
     }
 
-    .event_add .add_form .submit button {
-        margin-right: 40px;
+    .cinema_update .add_form .submit button {
         font-size: 16px;
         font-weight: 500;
     }
-    .event_add .add_form .submit a{
+    .cinema_update .add_form .submit a{
         font-size: 16px;
         font-weight: 500;
     }
 
-    .event_add > .add_form > div > label{
+    .cinema_update > .add_form > div > label{
         font-size: 16px;
     }
-    .event_add > .add_form > div > div > div > .radio {
-        margin: 0 10px 0 0;
 
-    }
-
-    .event_add > .add_form > div > div > div > .radio2:checked ~ .kind{
-        display: block;
-    }
-
-    .event_add > .add_form > div > div{
-        display: flex;
-        align-items: center;
-        align-content: center;
-        width: 500px;
-    }
-    .event_add > .add_form > div > div > div > .kind{
-        display: none;
-        position: absolute;
-        top: -30px;
-        left: 200px;
-    }
-
-    .event_add > .add_form > div > div > .kind > p {
-        margin-right: 20px;
-    }
-
-    .event_add > .add_form > div > div > div > .kind > p > input{
-        width: 50px;
-    }
-
-    .event_add > .add_form > div > div > div{
-        display: flex;
-        align-items: center;
-        align-content: center;
-        margin-right: 30px;
-
-    }
-    .event_add > .add_form > div > div > div > label{
-        margin: 0;
-    }
-    .event_add > .add_form > div > div > div > .kind{
-        margin-right: 30px;
+    .cinema_update .add_form .submit a{
+        margin-left: 20px;
     }
 </style>
 
@@ -215,39 +195,47 @@
         </div>
     </nav>
     <!--  menu start -->
-    <div class="event_add container">
+    <div class="cinema_update container">
         <div class="title">
-            <h1>이벤트 등록</h1>
+            <h1>영화 수정</h1>
             <hr>
         </div>
         <form class="add_form" action="" method="post">
             <div class="form-group row">
-                <label class="col-sm-2 input-name">이벤트 결과</label>
-                <div class="col-sm-2">
-                    <div>
-                        <input type="radio" name="check" class="radio radio1"><label>종료시</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="check" class="radio radio2"><label>뽑기시</label>
-                        <div class="kind">
-                            <p>당첨자 수 <input type="text"></p>
-                            <p>응모권 수 <input type="text"></p>
-                        </div>
-                    </div>
-                </div>
+                <label class="col-sm-2 input-name">영화제목</label>
+                <select class="form-input" name="" id="">
+                    <option value="">전체관람가</option>
+                    <option value="">12세</option>
+                    <option value="">15세</option>
+                    <option value="">청소년관람불가</option>
+                </select>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 input-name">제목</label>
-                <input class="form-input" name="title" type="text" required placeholder="제목을 입력하세요.">
+                <label class="col-sm-2 input-name">영화코드</label>
+                <input class="form-input" name="title" type="text" required>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 input-name">내용</label>
-                <textarea name="content" cols="50" rows="8" placeholder="내용을 입력하세요." required></textarea>
+                <label class="col-sm-2 input-name">상영기간</label>
+                <input class="cinema_date" name="title" type="date" required> ~ 
+                <input class="cinema_date" name="title" type="date" required>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 input-name">상영관</label>
+                <select class="form-input" name="" id="">
+                    <option value="">1관</option>
+                    <option value="">2관</option>
+                    <option value="">3관</option>
+                </select>
+            </div>
+            <div class="form-group row div4">
+                <label class="col-sm-2 input-name">상영시간</label>
+                <input class="form-input" name="title" type="text" required>
             </div>
             <hr>
             <div class="submit" align="end">
-                <button class="btn btn-primary" type="submit">작성하기</button>
+                <button class="btn btn-primary" type="submit">수정하기</button>
                 <a href="" class="btn btn-primary">되돌아가기</a>
+                <a href="" class="btn btn-danger">삭제</a>
             </div>
         </form>
 

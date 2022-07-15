@@ -84,92 +84,79 @@
     }
     /* menu start */
 
-    .event_add > .title > h1{
-        margin-left: 20px;
+    .movie_list>.container>.table {
+        border-collapse: collapse;
+        text-align: center;
+        border-top: 3px solid #22499d;
+        margin-top: 50px;
     }
 
-        /* notice_add start */
-    .event_add .title {
-    margin-bottom: 50px;
+    .movie_list>.container>.table th:nth-child(2){
+        width: 30%;
     }
 
-    .event_add .add_form > div:not(:first-child) input {
-        width: 600px;
-        height: 44px;
-        border-radius: 5px;
-        border: solid 1px #dadada;
-        background-color: #f5f6f7;
-        font-size: 15px;
-        padding: 10px 14px;
-        color: #2b2929;
-    }
-
-    .event_add .add_form textarea {
-        width: 600px;
-        border-radius: 5px;
-        border: solid 1px #dadada;
-        background-color: #f5f6f7;
-        font-size: 15px;
-        padding: 10px 14px;
-        color: #2b2929;
-        resize: none;
-    }
-
-    .event_add .add_form .submit button {
-        margin-right: 40px;
+    .movie_list>.container>.table th {
         font-size: 16px;
-        font-weight: 500;
+        text-align: center;
+        color: #555555;
+        font-weight: bold;
+        background-color: #f8fafc;
+        color: #091f46;
     }
-    .event_add .add_form .submit a{
+
+    .movie_list>.container>.table td {
         font-size: 16px;
-        font-weight: 500;
+        text-align: center;
+        color: #555555;
+        border-right: none;
+        border-left: none;
+        padding: 20px 0;
     }
 
-    .event_add > .add_form > div > label{
-        font-size: 16px;
-    }
-    .event_add > .add_form > div > div > div > .radio {
-        margin: 0 10px 0 0;
-
+    .movie_list>.container>.table tr:hover {
+        background-color: #f7f7f7;
     }
 
-    .event_add > .add_form > div > div > div > .radio2:checked ~ .kind{
-        display: block;
+    .movie_list>.search_container {
+        margin-top: 10px;
+        height: 30px;
     }
 
-    .event_add > .add_form > div > div{
-        display: flex;
-        align-items: center;
-        align-content: center;
-        width: 500px;
+    .movie_list>.search_container .search_content {
+        width: 300px;
+        height: 40px;
     }
-    .event_add > .add_form > div > div > div > .kind{
-        display: none;
+
+    .movie_list>.search_container .search_select {
+        height: 40px;
+    }
+
+    .movie_list>.search_container .search .search_btn {
+        height: 40px;
+        width: 60px;
+        background-color: #394b61;
+        color: white;
+    }
+
+    .movie_list td {
+        border: 1px solid #c8d1db
+    }
+
+    .movie_list>.search_container{
+        position: relative;
+    }
+
+    .movie_list>.search_container > a{
         position: absolute;
-        top: -30px;
-        left: 200px;
+        top: 0;
+        right: 0;
+        width: 60px;
+        height: 40px;
+        font-size: 16px;
+        line-height: 28px;
     }
-
-    .event_add > .add_form > div > div > .kind > p {
-        margin-right: 20px;
-    }
-
-    .event_add > .add_form > div > div > div > .kind > p > input{
-        width: 50px;
-    }
-
-    .event_add > .add_form > div > div > div{
-        display: flex;
-        align-items: center;
-        align-content: center;
-        margin-right: 30px;
-
-    }
-    .event_add > .add_form > div > div > div > label{
-        margin: 0;
-    }
-    .event_add > .add_form > div > div > div > .kind{
-        margin-right: 30px;
+    .movie_list h1{
+        margin-left: 20px;
     }
 </style>
 
@@ -215,43 +202,58 @@
         </div>
     </nav>
     <!--  menu start -->
-    <div class="event_add container">
+    <div class="movie_list container">
         <div class="title">
-            <h1>이벤트 등록</h1>
-            <hr>
+            <h1>영화 목록</h1>
         </div>
-        <form class="add_form" action="" method="post">
-            <div class="form-group row">
-                <label class="col-sm-2 input-name">이벤트 결과</label>
-                <div class="col-sm-2">
-                    <div>
-                        <input type="radio" name="check" class="radio radio1"><label>종료시</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="check" class="radio radio2"><label>뽑기시</label>
-                        <div class="kind">
-                            <p>당첨자 수 <input type="text"></p>
-                            <p>응모권 수 <input type="text"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 input-name">제목</label>
-                <input class="form-input" name="title" type="text" required placeholder="제목을 입력하세요.">
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 input-name">내용</label>
-                <textarea name="content" cols="50" rows="8" placeholder="내용을 입력하세요." required></textarea>
-            </div>
-            <hr>
-            <div class="submit" align="end">
-                <button class="btn btn-primary" type="submit">작성하기</button>
-                <a href="" class="btn btn-primary">되돌아가기</a>
-            </div>
-        </form>
+        <hr>
 
-    </div>
+        <div align="center" class="search_container">
+            <form method="post" action="#">
+                <table>
+                    <tr>
+                        <td><select class="search_select" name="search_item">
+                                <option value="title">제목</option>
+                                <option value="content">본문 내용</option>
+                                <option value="name">글쓴이</option>
+                            </select></td>
+                        <td class="search"><input class="search_content" type="text" name="text" /> <input type="submit"
+                                class="search_btn" value="검색" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <a href="" class="btn btn-primary">등록</a>
+        </div>
+
+        <div class="container">
+            <table class="table">
+                <tr class="table_header">
+                    <th>순서</th>
+                    <th>영화 제목</th>
+                    <th>개봉일</th>
+                    <th>장르</th>
+                    <th>감독</th>
+                    <th>러닝타임</th>
+                    <th>등급</th>
+                    <th>상영여부</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>토르 : 러브 앤 썬더</td>
+                    <td>2022-06-01</td>
+                    <td>액션</td>
+                    <td>박승현</td>
+                    <td>200분</td>
+                    <td>청소년 관람불가</td>
+                    <td>상영중</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="page" align="center">
+            <b>[1]</b> [2] [3] [4] [5]
+        </div>
 </body>
 
 </html>
