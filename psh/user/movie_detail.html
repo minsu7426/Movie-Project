@@ -83,64 +83,71 @@
         display: block;
         width: 100%;
     }
-    .movie_detail > .movie_detail_title > h1{
+
+    .movie_detail>.movie_detail_title>h1 {
         margin-left: 20px;
     }
+
     /* menu end */
 
-    .movie_detail > .movie_detail_inner > .movie_content{
+    .movie_detail>.movie_detail_inner>.movie_content {
         display: flex;
         padding-bottom: 30px;
     }
-    .movie_detail > .movie_detail_inner > .movie_content > div > h1{
+
+    .movie_detail>.movie_detail_inner>.movie_content>div>h1 {
         display: inline-block;
         margin: 0;
     }
-    .movie_detail > .movie_detail_inner > .movie_content > .movie_poster > div{
+
+    .movie_detail>.movie_detail_inner>.movie_content>.movie_poster>div {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-top: 10px;
     }
-    .movie_detail > .movie_detail_inner > .movie_content > div > div > input {
+
+    .movie_detail>.movie_detail_inner>.movie_content>div>div>input {
         display: none;
     }
-    .movie_detail > .movie_detail_inner > .movie_content > div > div > input:checked ~ label > i{
+
+    .movie_detail>.movie_detail_inner>.movie_content>div>div>input:checked~label>i {
         color: red;
     }
 
-    .movie_detail > .movie_detail_inner > .movie_content > div > div > label{
+    .movie_detail>.movie_detail_inner>.movie_content>div>div>label {
         margin: 0;
     }
 
-    .movie_detail > .movie_detail_inner > .movie_content > div > div > label > i{
+    .movie_detail>.movie_detail_inner>.movie_content>div>div>label>i {
         font-size: 28px;
         color: gray;
         transition: all 0.3s;
         cursor: pointer;
     }
 
-    .movie_detail > .movie_detail_inner > .movie_content > div > div > label > i:hover{
+    .movie_detail>.movie_detail_inner>.movie_content>div>div>label>i:hover {
         transform: scale(1.2);
     }
 
-    .movie_detail > .movie_detail_inner > .movie_content > .movie_detail_content > .movie_subject{
+    .movie_detail>.movie_detail_inner>.movie_content>.movie_detail_content>.movie_subject {
         display: flex;
         align-items: center;
         margin-left: 30px;
-    }   
-    .movie_detail > .movie_detail_inner > .movie_content > .movie_detail_content > .movie_subject > h1{
+    }
+
+    .movie_detail>.movie_detail_inner>.movie_content>.movie_detail_content>.movie_subject>h1 {
         margin: 0;
         margin-left: 15px;
         font-weight: 700;
     }
 
-    .movie_detail > .movie_detail_inner > .movie_content > .movie_detail_content > .movie_desc > table{
+    .movie_detail>.movie_detail_inner>.movie_content>.movie_detail_content>.movie_desc>table {
         margin: 30px 0 0 30px;
     }
 
 
-    .movie_detail > .movie_detail_inner > .movie_content > .movie_detail_content > .movie_desc > table th{
+    .movie_detail>.movie_detail_inner>.movie_content>.movie_detail_content>.movie_desc>table th {
         width: 100px;
         text-align: left;
         vertical-align: top;
@@ -149,23 +156,25 @@
         color: gray;
     }
 
-    .movie_detail > .movie_detail_inner > .movie_content > .movie_detail_content > .movie_desc > table td{
+    .movie_detail>.movie_detail_inner>.movie_content>.movie_detail_content>.movie_desc>table td {
         text-align: left;
         vertical-align: top;
         font-size: 18px;
         padding-bottom: 10px;
     }
 
-    .movie_detail > .movie_detail_inner > .movie_review{
+    .movie_detail>.movie_detail_inner>.movie_review {
         padding-top: 30px;
     }
 
-    .movie_detail > .movie_detail_inner > .movie_review > form {
+    .movie_detail>.movie_detail_inner>.movie_review>form {
         display: flex;
+        flex-direction: column;
+        width: 100%;
     }
 
-    .movie_detail > .movie_detail_inner > .movie_review > form > .review{
-        width: 90%;
+    .movie_detail>.movie_detail_inner>.movie_review> form > div > .review {
+        width: 100%;
         height: 100px;
         padding: 20px;
         margin-right: 20px;
@@ -173,30 +182,80 @@
         border: 2px solid rgb(212, 210, 210);
     }
 
-    .movie_detail > .movie_detail_inner > .movie_review > .review_detail{
+    .movie_detail>.movie_detail_inner>.movie_review > form > .review_content{
+        display: flex;
+    }
+
+    .movie_detail>.movie_detail_inner>.movie_review>.review_detail {
         margin: 20px 0;
     }
 
-    .movie_detail > .movie_detail_inner > .movie_review > .review_detail > div{
+    .movie_detail>.movie_detail_inner>.movie_review>.review_detail>div {
         position: relative;
     }
-    .movie_detail > .movie_detail_inner > .movie_review > .review_detail > div > a{
+
+    .movie_detail>.movie_detail_inner>.movie_review>.review_detail>div>a {
         position: absolute;
         right: 0;
         bottom: 0;
     }
-    .movie_detail > .movie_detail_inner > .movie_review > .review_detail > div > .review_date{
+
+    .movie_detail>.movie_detail_inner>.movie_review>.review_detail>div>.review_date {
         font-size: 12px;
         color: gray;
     }
-    .movie_detail > .movie_detail_inner > .movie_review > .review_detail > div > .review_id{
+
+    .movie_detail>.movie_detail_inner>.movie_review>.review_detail>div>.review_id {
         font-size: 16px;
         font-weight: 700;
     }
 
-    .movie_detail > .movie_detail_inner > .movie_review > .review_detail > div > p:nth-child(3){
+    .movie_detail>.movie_detail_inner>.movie_review>.review_detail>div>p:nth-child(3) {
         padding: 20px 0 30px;
         width: 80%;
+    }
+
+    #myform fieldset {
+        display: inline-block;
+        direction: rtl;
+        border: 0;
+    }
+
+    #myform fieldset legend {
+        text-align: right;
+    }
+
+    #myform input[type=radio] {
+        display: none;
+    }
+
+    #myform label {
+        font-size: 3em;
+        color: transparent;
+        text-shadow: 0 0 0 #f0f0f0;
+    }
+
+    #myform label:hover {
+        text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+    }
+
+    #myform label:hover~label {
+        text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+    }
+
+    #myform input[type=radio]:checked~label {
+        text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+    }
+
+    #reviewContents {
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+        box-sizing: border-box;
+        border: solid 1.5px #D3D3D3;
+        border-radius: 5px;
+        font-size: 16px;
+        resize: none;
     }
 </style>
 
@@ -293,7 +352,10 @@
                             </tr>
                             <tr>
                                 <th>소개 </th>
-                                <td>슈퍼 히어로 시절이여, 안녕! 이너피스를 위해 자아 찾기 여정을 떠난 천둥의 신 ‘토르’ 그러나, 우주의 모든 신들을 몰살하려는 신 도살자 ‘고르’의 등장으로 ‘토르’의 안식년 계획은 산산조각 나버린다. ‘토르’는 새로운 위협에 맞서기 위해, ‘킹 발키리’, ‘코르그’, 그리고 전 여자친구 ‘제인’과 재회하게 되는데, 그녀가 묠니르를 휘두르는 ‘마이티 토르’가 되어 나타나 모두를 놀라게 한다. 이제, 팀 토르는 ‘고르’의 복수에 얽힌 미스터리를 밝히고 더 큰 전쟁을 막기 위한 전 우주적 스케일의 모험을 시작하는데... 우주 최고의 ‘갓’ 매치가 시작된다!</td>
+                                <td>슈퍼 히어로 시절이여, 안녕! 이너피스를 위해 자아 찾기 여정을 떠난 천둥의 신 ‘토르’ 그러나, 우주의 모든 신들을 몰살하려는 신 도살자 ‘고르’의
+                                    등장으로 ‘토르’의 안식년 계획은 산산조각 나버린다. ‘토르’는 새로운 위협에 맞서기 위해, ‘킹 발키리’, ‘코르그’, 그리고 전 여자친구 ‘제인’과
+                                    재회하게 되는데, 그녀가 묠니르를 휘두르는 ‘마이티 토르’가 되어 나타나 모두를 놀라게 한다. 이제, 팀 토르는 ‘고르’의 복수에 얽힌 미스터리를
+                                    밝히고 더 큰 전쟁을 막기 위한 전 우주적 스케일의 모험을 시작하는데... 우주 최고의 ‘갓’ 매치가 시작된다!</td>
                             </tr>
                         </table>
                     </div>
@@ -303,9 +365,21 @@
             <div class="movie_review">
                 <h3>리뷰 0</h3>
                 <form>
-                    <div class="review_star">
-                        
-                    </div>
+                    <div class="mb-3" name="myform" id="myform" method="post">
+                        <fieldset>
+                            <span class="text-bold">별점을 선택해주세요</span>
+                            <input type="radio" name="reviewStar" value="5" id="rate1"><label
+                                for="rate1">★</label>
+                            <input type="radio" name="reviewStar" value="4" id="rate2"><label
+                                for="rate2">★</label>
+                            <input type="radio" name="reviewStar" value="3" id="rate3"><label
+                                for="rate3">★</label>
+                            <input type="radio" name="reviewStar" value="2" id="rate4"><label
+                                for="rate4">★</label>
+                            <input type="radio" name="reviewStar" value="1" id="rate5"><label
+                                for="rate5">★</label>
+                        </fieldset>                        
+                    </div>   
                     <div class="review_content">
                         <input type="textarea" class="review" placeholder="리뷰를 입력해 주세요.">
                         <input type="submit" class="btn btn-success" value="추가">
@@ -343,7 +417,9 @@
                     <div>
                         <span class="review_date">2022-07-14 16:00:00</span>
                         <p class="review_id">krtmdgus2님</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur eos quia sit praesentium totam quo, autem dolores quae dignissimos vero excepturi corporis qui incidunt dolorem vel doloremque obcaecati deserunt architecto!Lorem</p>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur eos quia sit praesentium
+                            totam quo, autem dolores quae dignissimos vero excepturi corporis qui incidunt dolorem vel
+                            doloremque obcaecati deserunt architecto!Lorem</p>
                         <a href="" class="btn btn-danger">삭제</a>
                     </div>
                 </div>
