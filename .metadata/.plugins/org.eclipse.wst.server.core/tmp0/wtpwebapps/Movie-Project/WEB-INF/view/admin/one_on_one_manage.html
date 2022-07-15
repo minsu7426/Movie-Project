@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<style>
+    /* setting */
+    * {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        list-style: none;
+        box-sizing: border-box;
+    }
+    /* setting */
+
+    /* one_on_one_manage start */
+    .one_on_one_manage>.container>.table {
+        border-collapse: collapse;
+        text-align: center;
+        border-top: 3px solid #22499d;
+    }
+
+    .one_on_one_manage>.container>.table th {
+        font-size: 16px;
+        text-align: center;
+        color: #555555;
+        font-weight: bold;
+        background-color: #f8fafc;
+        color: #091f46;
+    }
+
+    .one_on_one_manage>.container>.table td {
+        font-size: 16px;
+        text-align: center;
+        color: #555555;
+    }
+
+    .one_on_one_manage>.container>.table tr:hover {
+        background-color: #f7f7f7;
+    }
+
+    .one_on_one_manage .title {
+        margin-left: 20px;
+    }
+    .one_on_one_manage>.search_container {
+        margin-top: 10px;
+        height: 30px;
+        margin-bottom: 50px;
+    }
+
+    .one_on_one_manage>.search_container .search_content {
+        width: 300px;
+        height: 40px;
+    }
+
+    .one_on_one_manage>.search_container .search_select {
+        height: 40px;
+    }
+
+    .one_on_one_manage>.search_container .search .search_btn {
+        height: 40px;
+        width: 60px;
+        background-color: #394b61 !important;
+        color: white;
+    }
+
+    .one_on_one_manage .search_container td {
+        border: 1px solid #c8d1db
+    }
+    .one_on_one_manage .container .table .content{
+        width: 500px;
+    }
+</style>
+
+<body>
+    <!-- one_on_one_manage start -->
+    <div class="one_on_one_manage container">
+
+        <div class="title">
+            <h1>1:1 문의내역</h1>
+        </div>
+        <hr>
+        <div align="center" class="search_container">
+            <form method="post" action="#">
+                <table>
+                    <tr>
+                        <td><select class="search_select" name="search_item">
+                                <option value="title">제목</option>
+                                <option value="content">본문 내용</option>
+                                <option value="name">글쓴이</option>
+                            </select></td>
+                        <td class="search"><input class="search_content" type="text" name="text" /> <input type="submit"
+                                class="search_btn" value="검색" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="container">
+            <table class="table">
+                <tr class="table_header">
+                    <th>번호</th>
+                    <th>회원 아이디</th>
+                    <th class="content">문의 내용</th>
+                    <th>등록일</th>
+                    <th>답변 여부</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>abc1234</td>
+                    <td class="content">이런 저런 문의로 인해 이런 저런 내용을 이런 저런하게 문의하였다.</td>
+                    <td>2022-08-01 15:11</td>
+                    <td>미완료</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>abc1234</td>
+                    <td class="content">이런 저런 문의로 인해 이런 저런 내용을 이런 저런하게 문의하였다.</td>
+                    <td>2022-08-01 15:11</td>
+                    <td>미완료</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>abc1234</td>
+                    <td class="content">이런 저런 문의로 인해 이런 저런 내용을 이런 저런하게 문의하였다.</td>
+                    <td>2022-08-01 15:11</td>
+                    <td>미완료</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>abc1234</td>
+                    <td class="content">이런 저런 문의로 인해 이런 저런 내용을 이런 저런하게 문의하였다.</td>
+                    <td>2022-08-01 15:11</td>
+                    <td>미완료</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>abc1234</td>
+                    <td class="content">이런 저런 문의로 인해 이런 저런 내용을 이런 저런하게 문의하였다.</td>
+                    <td>2022-08-01 15:11</td>
+                    <td>미완료</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>abc1234</td>
+                    <td class="content">이런 저런 문의로 인해 이런 저런 내용을 이런 저런하게 문의하였다.</td>
+                    <td>2022-08-01 15:11</td>
+                    <td>미완료</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="page" align="center">
+            <b>[1]</b> [2] [3] [4] [5]
+        </div>
+    </div>
+</body>
+
+</html>
