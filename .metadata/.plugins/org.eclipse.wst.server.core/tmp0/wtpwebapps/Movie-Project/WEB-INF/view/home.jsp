@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="include/menu.jsp"/>
 	홈화면
 </body>
 </html>

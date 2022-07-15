@@ -4,3 +4,7 @@
 1657856180958	Rename type 'NoticeDaoImpl'
 1657856277900	Delete element
 1657856299829	Delete element
+1657874649821	Rename resource 'resources'
+1657874665774	Rename resource 'resourcesa'
+1657874908814	Move 'shown_screen.html' to 'movie'
+1657874916900	Move 'current_screen .html' to 'movie'
