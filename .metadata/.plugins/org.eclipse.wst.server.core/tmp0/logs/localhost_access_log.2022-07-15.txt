@@ -83,3 +83,14 @@
 0:0:0:0:0:0:0:1 - - [15/Jul/2022:17:44:13 +0900] "GET /Movie-Project/ HTTP/1.1" 404 825
 0:0:0:0:0:0:0:1 - - [15/Jul/2022:17:44:16 +0900] "GET /Movie-Project/home HTTP/1.1" 404 829
 0:0:0:0:0:0:0:1 - - [15/Jul/2022:17:44:22 +0900] "GET /Movie-Project/notice/list HTTP/1.1" 404 840
+127.0.0.1 - - [15/Jul/2022:17:45:22 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [15/Jul/2022:17:45:23 +0900] "GET /Movie-Project/ HTTP/1.1" 200 141
+0:0:0:0:0:0:0:1 - - [15/Jul/2022:17:45:37 +0900] "GET /Movie-Project/ HTTP/1.1" 200 2774
+0:0:0:0:0:0:0:1 - - [15/Jul/2022:17:45:37 +0900] "GET /resources/images/logo_transparent.png HTTP/1.1" 404 852
+0:0:0:0:0:0:0:1 - - [15/Jul/2022:17:45:37 +0900] "GET /Movie-Project/ HTTP/1.1" 200 2774
+0:0:0:0:0:0:0:1 - - [15/Jul/2022:17:45:37 +0900] "GET /resources/images/logo_transparent.png HTTP/1.1" 404 852
+0:0:0:0:0:0:0:1 - - [15/Jul/2022:17:45:42 +0900] "GET /resources/images/logo_transparent.png HTTP/1.1" 404 852
+0:0:0:0:0:0:0:1 - - [15/Jul/2022:17:45:44 +0900] "GET /Movie-Project/ HTTP/1.1" 200 2774
+0:0:0:0:0:0:0:1 - - [15/Jul/2022:17:45:44 +0900] "GET /resources/images/logo_transparent.png HTTP/1.1" 404 852
+0:0:0:0:0:0:0:1 - - [15/Jul/2022:17:45:44 +0900] "GET /Movie-Project/ HTTP/1.1" 200 2774
+0:0:0:0:0:0:0:1 - - [15/Jul/2022:17:45:44 +0900] "GET /resources/images/logo_transparent.png HTTP/1.1" 404 852

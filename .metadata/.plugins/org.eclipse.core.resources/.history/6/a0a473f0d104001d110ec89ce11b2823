@@ -1,0 +1,47 @@
+package controller;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.tomcat.jdbc.pool.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import dto.CouponDto;
+import service.NoticeService;
+
+@Controller
+@RequestMapping("/notice/*")
+public class NoticeController {
+
+	private JdbcTemplate jdbcTemplate;
+	
+
+	public void setDataSource(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+	
+//	@Autowired
+//	private NoticeService noticeService;
+	
+	@RequestMapping("list")
+	public void list(Model model) {
+		System.out.println("notice > list");
+		
+		List<CouponDto> count = jdbcTemplate.query(
+				"select coupon_code from coupon", new RowMapper<CouponDto>() {
+					@Override
+					public CouponDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+						CouponDto dto = new CouponDto();
+						dto.setCoupon_code(rs.getString("coupon_code"));
+						return dto;
+					}
+				});
+		model.addAttribute("count",count);
+	}
+}

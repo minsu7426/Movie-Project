@@ -1,4 +1,4 @@
-create database movie_project;
+create database movie_project character set = utf8;
 use movie_project;
 
 create table coupon(
