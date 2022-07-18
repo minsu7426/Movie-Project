@@ -101,8 +101,10 @@ a {
 		</div>
 		<div class="menu-bottom">
 			<div>
-				<img src="/resources/images/logo_transparent.png" alt="로고"
+			<a href="/home">
+				<img src="../resources/images/logo_transparent.png" alt="로고"
 					width="100px">
+			</a>
 			</div>
 			<div>
 				<ul>
@@ -114,14 +116,14 @@ a {
 						</ul></li>
 					<li><a href="">영화</a>
 						<ul>
-							<li><a href="">현재 상영작</a></li>
-							<li><a href="">상영 예정작</a></li>
+							<li><a href="/movie/current_screen">현재 상영작</a></li>
+							<li><a href="/movie/shown_screen">상영 예정작</a></li>
 						</ul></li>
 					<li><a href="">이벤트</a></li>
 					<li><a href="">마이페이지</a>
 						<ul>
-							<li><a href="">회원 정보</a></li>
-							<li><a href="">관람 내역</a></li>
+							<li><a href="/user/mypage">회원 정보</a></li>
+							<li><a href="/user/viewing_detail">관람 내역</a></li>
 							<li><a href="">쿠폰 관리</a></li>
 						</ul></li>
 					<li><a href="">고객센터</a>

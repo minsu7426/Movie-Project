@@ -20,6 +20,7 @@ public class NoticeDaoImpl implements NoticeDao {
 		
 		return null;
 	}
+	
 	public int count() {
 		int count = jdbcTemplate.queryForObject("select count(*) from coupon", Integer.class);
 		return count;

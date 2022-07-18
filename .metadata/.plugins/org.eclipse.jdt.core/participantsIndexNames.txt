@@ -27,5 +27,7 @@ D:\mskim\movie\movie-1\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\752
 \controller\src\main\java
 D:\mskim\movie\movie-1\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\409773649.index
 \Movie-Project\src\main\java
+D:\mskim\movie\movie-1\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\336514580.index
+\Movie-Project\src\main\java
 D:\mskim\movie\movie-1\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3759326983.index
 \controller\src\main\java

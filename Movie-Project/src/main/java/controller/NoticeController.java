@@ -9,7 +9,7 @@ import dao.NoticeDaoImpl;
 import service.NoticeService;
 
 @Controller
-@RequestMapping("/notice/*")
+@RequestMapping("/notice/")
 public class NoticeController {
 
 	@Autowired
