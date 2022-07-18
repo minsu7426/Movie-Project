@@ -1,0 +1,13 @@
+package dao;
+
+import java.util.List;
+
+import dto.UserDto;
+
+public interface UserDao {
+	
+	public void insertUser(UserDto userDto);
+	public List<UserDto> selectAll();
+	public UserDto selectById(String user_Id);
+	public void updateUser(UserDto userDto);
+}

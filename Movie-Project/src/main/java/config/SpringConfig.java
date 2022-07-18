@@ -22,7 +22,7 @@ public class SpringConfig {
 	public DataSource dataSource() {
 		DataSource ds = new DataSource();
 		ds.setDriverClassName("com.mysql.jdbc.Driver");
-		ds.setUrl("jdbc:mysql://localhost/movie_project?characterEncoding=utf8&useSSL=false");
+		ds.setUrl("jdbc:mysql://localhost/movie_project?characterEncoding=UTF-8&amp&useSSL=false");
 		ds.setUsername("root");
 		ds.setPassword("1234");
 		return ds;
