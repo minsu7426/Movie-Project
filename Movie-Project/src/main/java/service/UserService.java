@@ -13,4 +13,6 @@ public interface UserService {
 	public UserDto getSelectById(String user_Id);
 	public void setUpdateUser(UserDto userDto);
 	public UserDto getSelectByIdPw(String user_Id, String user_Pw);
+	
+
 }

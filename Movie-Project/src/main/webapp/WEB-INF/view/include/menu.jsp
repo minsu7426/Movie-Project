@@ -28,6 +28,7 @@ a {
 .menu {
 	height: 160px;
 	background-color: gray;
+	z-index: 100;
 }
 
 .menu>.menu-top {
@@ -103,7 +104,7 @@ a {
 			</c:if>
 			
 			<c:if test="${!empty user}">
-				<li>${user.user_Id }님 </li>
+				<li>${user.user_id }님 </li>
 				<li><a href="/login/logout">로그아웃</a></li>
 			
 			</c:if>
@@ -111,15 +112,8 @@ a {
 		</div>
 		<div class="menu-bottom">
 			<div>
-<<<<<<< HEAD
-			<a href="/home">
-				<img src="../resources/images/logo_transparent.png" alt="로고"
-					width="100px">
-			</a>
-=======
 				<a href="/home"><img src="../resources/images/logo_transparent.png" alt="로고"
 					width="100px"></a>
->>>>>>> master
 			</div>
 			<div>
 				<ul>

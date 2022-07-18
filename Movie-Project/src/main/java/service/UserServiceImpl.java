@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 		String user_date = formatter.format(new Date());
 		userDto.setUser_phone(phone);
 		userDto.setUser_jumin(jumin);
-		userDto.setUser_Date(user_date);
+		userDto.setUser_date(user_date);
 		userDao.setInsertUser(userDto);
 	}
 
@@ -54,7 +54,6 @@ public class UserServiceImpl implements UserService {
 		UserDto userDto = userDao.getSelectByIdPw(user_Id, user_Pw);
 		return userDto;
 	}
-	
 
 
 }

@@ -20,4 +20,5 @@ public interface UserDao {
 	
 	// 아이디, 패스워드 검색해서 회원정보 가져오기(로그인)
 	public UserDto getSelectByIdPw(String user_Id, String user_Pw);
+	
 }

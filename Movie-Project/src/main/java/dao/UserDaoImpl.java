@@ -21,13 +21,13 @@ public class UserDaoImpl implements UserDao {
 	public void setInsertUser(UserDto userDto) {
 		String sql = "insert into user(user_id, user_pw, user_name, user_jumin, user_phone, user_email, user_date) value (?, ?, ?, ?, ?, ?, ?)";
 		jdbcTemplate.update(sql, 
-				userDto.getUser_Id(), 
-				userDto.getUser_Pw(), 
-				userDto.getUser_Name(), 
+				userDto.getUser_id(), 
+				userDto.getUser_pw(), 
+				userDto.getUser_name(), 
 				userDto.getUser_jumin(), 
 				userDto.getUser_phone(), 
-				userDto.getUser_Email(), 
-				userDto.getUser_Date()
+				userDto.getUser_email(), 
+				userDto.getUser_date()
 				);
 	}
 
@@ -45,12 +45,12 @@ public class UserDaoImpl implements UserDao {
 					@Override
 					public UserDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 						UserDto user = new UserDto();
-						user.setUser_Id(rs.getString("user_id"));
-						user.setUser_Pw(rs.getString("user_pw"));
-						user.setUser_Name(rs.getString("user_name"));
+						user.setUser_id(rs.getString("user_id"));
+						user.setUser_pw(rs.getString("user_pw"));
+						user.setUser_name(rs.getString("user_name"));
 						user.setUser_phone(rs.getString("user_phone"));
 						user.setUser_jumin(rs.getString("user_jumin"));
-						user.setUser_Email(rs.getString("user_email"));
+						user.setUser_email(rs.getString("user_email"));
 						return user;
 					}
 				}, user_Id);
@@ -72,18 +72,20 @@ public class UserDaoImpl implements UserDao {
 					@Override
 					public UserDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 						UserDto user = new UserDto();
-						user.setUser_Id(rs.getString("user_id"));
-						user.setUser_Pw(rs.getString("user_pw"));
-						user.setUser_Name(rs.getString("user_name"));
+						user.setUser_id(rs.getString("user_id"));
+						user.setUser_pw(rs.getString("user_pw"));
+						user.setUser_name(rs.getString("user_name"));
 						user.setUser_phone(rs.getString("user_phone"));
 						user.setUser_jumin(rs.getString("user_jumin"));
-						user.setUser_Email(rs.getString("user_email"));
+						user.setUser_email(rs.getString("user_email"));
 						return user;
 					}
 				}, user_Id, user_Pw);
 
 		return results.isEmpty() ? null : results.get(0);
 	}
+
+
 	
 
 }
