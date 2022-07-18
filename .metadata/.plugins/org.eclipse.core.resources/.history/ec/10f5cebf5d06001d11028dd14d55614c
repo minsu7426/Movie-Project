@@ -1,0 +1,13 @@
+package service;
+
+import java.util.List;
+
+import dto.UserDto;
+
+public interface UserService {
+
+	public void setInsertUser(UserDto userDto, String phone, String jumin);
+	public List<UserDto> getSelectAll();
+	public UserDto getSelectById(String user_Id);
+	public void setUpdateUser(UserDto userDto);
+}

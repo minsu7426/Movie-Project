@@ -2,28 +2,28 @@ create database movie_project character set = utf8;
 use movie_project;
 
 create table coupon(
-	coupon_code varchar(50) not null,
-	coupon_form varchar(20) not null,
-	coupon_give datetime not null,
-	coupon_end datetime not null,
-	primary key(coupon_code)
+        coupon_code varchar(50) not null,
+        coupon_form varchar(20) not null,
+        coupon_give datetime not null,
+        coupon_end datetime not null,
+        coupon_id varchar(20) null,
+        primary key(coupon_code)
 );
 
 create table user(
-	user_id varchar(20) not null,
+        user_id varchar(20) not null,
     user_pw varchar(30) not null,
     user_name varchar(10) not null,
+    user_jumin varchar(15) not null,
     user_phone varchar(15) not null,
     user_email varchar(50) not null,
-    user_coupon varchar(50) null,
     user_date datetime,
     user_class varchar(10) default 'bronze',
-    primary key(user_id),
-	foreign key (user_coupon) references coupon (coupon_code)
+    primary key(user_id)
 );
 
 create table movie(
-	movie_code int auto_increment,
+        movie_code int auto_increment,
     movie_title varchar(50) not null,
     movie_date datetime,
     movie_genre varchar(50) not null,
@@ -34,11 +34,12 @@ create table movie(
     movie_board varchar(200) null,
     movie_img varchar(100),
     movie_like int default 0,
+    movie_flag boolean default false,
     primary key (movie_code)
 );
 
 create table notice(
-	notice_code int auto_increment,
+        notice_code int auto_increment,
     notice_title varchar(50) ,
     notice_content varchar(300) ,
     notice_date datetime,
@@ -66,7 +67,7 @@ create table screen(
    scr_screen varchar(10) not null,
    scr_time time not null,
    scr_date date not null, 
-   scr_flag int,
+   scr_flag boolean default false,
    primary key(scr_code),
    foreign key(scr_movie) references movie(movie_code)
 );
@@ -98,7 +99,7 @@ create table review(
 );
 
 create table event(
-	event_code int auto_increment,
+        event_code int auto_increment,
     event_title varchar(50) not null,
     event_content varchar(300) not null,
     event_date datetime not null,
