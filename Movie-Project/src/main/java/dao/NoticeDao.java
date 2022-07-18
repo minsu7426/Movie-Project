@@ -9,5 +9,8 @@ import dto.NoticeDto;
 public interface NoticeDao {
 	
 	//조회
-	public List<NoticeDto> list();
+	public List<NoticeDto> getList();
+	
+	//조회수 증가
+	public void setHit();
 }

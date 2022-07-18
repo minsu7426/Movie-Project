@@ -44,9 +44,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void setUpdateUser(UserDto userDto) {
-		// TODO Auto-generated method stub
-		
+	public UserDto setUpdateUser(UserDto userDto, HttpServletRequest request) {
+		String phone = request.getParameter("phone1") + "-" + request.getParameter("phone2") + "-"
+				+ request.getParameter("phone3");
+		userDto.setUser_phone(phone);
+		userDao.setUpdateUser(userDto);
+		return userDto;
 	}
 
 	@Override

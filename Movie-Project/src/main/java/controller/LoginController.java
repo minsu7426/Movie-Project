@@ -37,11 +37,14 @@ public class LoginController {
 	@PostMapping("/login")
 	public String postLogin(String user_Id, String user_Pw, HttpSession session) {
 		UserDto userDto = userService.getSelectByIdPw(user_Id, user_Pw);
+		String[] userChk = new String[2];
 		if(userDto.getUser_Id().equals("admin")) {
-			session.setAttribute("user", userDto);
+			userChk[0] = userDto.getUser_Id();
+			session.setAttribute("user", userChk);
 			return "admin/admin_main";
 		}
-		session.setAttribute("user", userDto);
+		userChk[0] = userDto.getUser_Id();
+		session.setAttribute("user", userChk);
 		return "/home";
 	}
 	

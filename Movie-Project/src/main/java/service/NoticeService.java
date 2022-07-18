@@ -7,5 +7,5 @@ import dto.NoticeDto;
 public interface NoticeService {
 	
 	//조회
-	public List<NoticeDto> list();
+	public List<NoticeDto> getList();
 }

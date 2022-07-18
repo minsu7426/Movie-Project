@@ -26,6 +26,7 @@
 	height: 200px;
 	display: flex;
 	position: relative;
+	z-index: -1;
 }
 
 .viewing_detail .movie_list .movie_title {
@@ -34,6 +35,7 @@
 
 .viewing_detail .movie_list .movie_title .movie_text .movie_flex {
 	display: flex;
+	align-items: center;
 }
 
 .viewing_detail .movie_list .poster {
@@ -58,12 +60,12 @@
 		<hr>
 		<div class="movie_lists" style="overflow: scroll; height: 700px;">
 			<div class="movie_list">
-				<img class="poster" src="/resources/images/1.jpg" width="150px"
+				<img class="poster" src="/resources/images/movie/The_Witch_Part2_The_Other_One.jpg" width="150px"
 					alt="">
 				<div class="movie_title">
 					<div class="movie_text">
 						<div class="movie_flex">
-							<img class="age" src="/resources/images/1.jpg" width="40px"
+							<img class="age" src="/resources/images/m15.png" width="40px" height="40px"
 								alt="">
 							<h3>헤어질 결심</h3>
 						</div>

@@ -10,6 +10,7 @@ public class UserDto {
 	private String user_jumin;
 	private String user_Date;
 	private String user_Class;
+	
 	public String getUser_Id() {
 		return user_Id;
 	}
