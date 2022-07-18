@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,16 +96,30 @@ a {
 	<nav class="menu">
 		<div class="menu-top">
 			<ul>
-				<li><a href="">로그인</a></li>
-				<li><a href="">회원가입</a></li>
+			<c:if test="${empty user}">
+				<li><a href="/login/login">로그인</a></li>
+				<li><a href="/login/signup">회원가입</a></li>
+			
+			</c:if>
+			
+			<c:if test="${!empty user}">
+				<li>${user.user_Id }님 </li>
+				<li><a href="/login/logout">로그아웃</a></li>
+			
+			</c:if>
 			</ul>
 		</div>
 		<div class="menu-bottom">
 			<div>
+<<<<<<< HEAD
 			<a href="/home">
 				<img src="../resources/images/logo_transparent.png" alt="로고"
 					width="100px">
 			</a>
+=======
+				<a href="/home"><img src="../resources/images/logo_transparent.png" alt="로고"
+					width="100px"></a>
+>>>>>>> master
 			</div>
 			<div>
 				<ul>

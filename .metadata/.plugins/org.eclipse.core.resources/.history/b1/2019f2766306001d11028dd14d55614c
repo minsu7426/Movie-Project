@@ -1,0 +1,36 @@
+package controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import dto.UserDto;
+import service.UserService;
+
+@Controller
+@RequestMapping("/login/*")
+public class LoginController {
+	
+	@Autowired
+	private UserService userService;
+	
+	@RequestMapping("/signup")
+	public String signUp(UserDto userDto) {
+		return "signup";
+	}
+	
+	@PostMapping("/signup")
+	public String insertSignup(UserDto userDto, HttpServletRequest request) {
+		userService.setInsertUser(userDto, request);
+		return "login";
+	}
+	
+	@RequestMapping("/login")
+	public String login(String user_Id, String user_Pw) {
+		
+		return "login";
+	}
+}
