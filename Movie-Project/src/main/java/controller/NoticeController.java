@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import dao.NoticeDaoImpl;
 import dto.Criteria;
 import dto.NoticeDto;
 import dto.PageDto;
@@ -24,21 +24,29 @@ public class NoticeController {
 	
 	@RequestMapping("list")
 	public String list(Criteria cri, Model model) {
-		List<NoticeDto> list = noticeService.getList(cri);
-		
+		List<NoticeDto> list;
 		PageDto pageDto = new PageDto();
 		pageDto.setCri(cri);
-		pageDto.setTotalCount(noticeService.getListCount());
 		
+		if(cri.getSearch_item() != null && cri.getText() != null) {
+			list = noticeService.getSearchList(cri);
+			pageDto.setTotalCount(noticeService.getSearchListCount(cri));
+		} else {
+			list = noticeService.getList(cri);
+			pageDto.setTotalCount(noticeService.getListCount());
+		}
+		System.out.println(list.get(0).getNotice_title());
 		model.addAttribute("list", list);
 		model.addAttribute("pageDto", pageDto);
 		return "notice/notice";
 	}
 	
 	@RequestMapping("detail")
-	public void detail(@RequestParam("notice_code") int notice_code, Model model) {
-		
+	public String detail(@RequestParam("notice_code") int notice_code,@ModelAttribute("cri") Criteria cri, Model model) {
 		NoticeDto dto = noticeService.getRead(notice_code);
+		
 		model.addAttribute("dto",dto);
+		return "notice/notice_detail";
 	}
+	
 }

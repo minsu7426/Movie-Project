@@ -21,13 +21,25 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
+	public List<NoticeDto> getSearchList(Criteria cri) {
+		return noticeDao.getSearchList(cri);
+	}
+
+	@Override
 	public int getListCount() {
 		return noticeDao.getListCount();
 	}
 
 	@Override
 	public NoticeDto getRead(int notice_code) {
+		noticeDao.setHit(notice_code);
 		return noticeDao.getRead(notice_code);
 	}
+
+	@Override
+	public int getSearchListCount(Criteria cri) {
+		return noticeDao.getSearchListCount(cri);
+	}
+	
 	
 }

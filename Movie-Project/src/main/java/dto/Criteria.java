@@ -4,7 +4,9 @@ public class Criteria {
 
 	private int page;
 	private int perPageNum;
-
+	private String search_item;
+	private String text;
+	
 	//int page : 현재 페이지 번호
 	//int perPageNum : 한 페이지당 보여줄 게시글의 갯수
 	//int getPageStart() : 특정 페이지의 게시글 시작 번호, 게시글 시작 행 번호
@@ -41,6 +43,24 @@ public class Criteria {
 	public int getPerPageNum() {
 		return perPageNum;
 	}
+
+	public String getSearch_item() {
+		return search_item;
+	}
+
+	public void setSearch_item(String search_item) {
+		this.search_item = search_item;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	
 	
 	
 }
