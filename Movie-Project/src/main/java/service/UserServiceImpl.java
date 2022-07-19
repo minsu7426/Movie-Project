@@ -33,8 +33,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserDto> getSelectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<UserDto> userList = userDao.getSelectAll();
+		return userList;
 	}
 
 	@Override
@@ -54,6 +54,19 @@ public class UserServiceImpl implements UserService {
 		UserDto userDto = userDao.getSelectByIdPw(user_Id, user_Pw);
 		return userDto;
 	}
-
-
+	
+	@Override
+	public Integer getIdCount(String user_id) {
+		return userDao.getIdCount(user_id);
+	}
+	
+	@Override
+	public void setDeleteUser(String user_id) {
+		userDao.setDeleteUser(user_id);
+	}
+	
+	@Override
+	public void setClassUpdate(UserDto userdto) {
+		userDao.setClassUpdate(userdto);
+	}
 }

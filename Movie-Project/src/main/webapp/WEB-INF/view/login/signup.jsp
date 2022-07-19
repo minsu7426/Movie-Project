@@ -80,10 +80,28 @@
 }
 
 #id_check{
-	
+	cursor: pointer;
+	color: #fff;
+	background-color: #393b39;
+	font-size: 12px;
+	font-weight: 400;
+	border: solid 3px transparent;
+	width: 20%;
+	text-align: center;
 }
 
-</style>
+#id_check:hover{
+	color: black;
+	background-color: white;
+	border: solid 3px black;
+	transition: all 0.3s;
+}
+
+
+.idchkchk{
+	display: flex;
+}
+
 </style>
 <script type="text/javascript">
 	function check_pw() {
@@ -116,10 +134,10 @@
 		<form class="signup_inner" action="signup" method="post">
 			<div class="signup_id">
 				<label>아이디</label>
-				<div>
-					<input type="text" id="id" name="user_id"
-						placeholder="아이디를 입력해주세요." required="required">
-						<input type="button" id="id_check" onclick="idCheck();" value="ID 중복확인">
+				<div class="idchkchk">
+					<input type="text" id="userId" name="user_id"
+						placeholder="아이디를 입력해주세요." class="idchk" required="required">
+						<input type="button" id="id_check" onclick="idCheck();" value="ID 중복확인" class="btn btn-success">
 				</div>
 			</div>
 			<div class="signup_pw">

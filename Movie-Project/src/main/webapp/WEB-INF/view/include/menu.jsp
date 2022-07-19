@@ -138,7 +138,7 @@ a {
 					<li><a href="">고객센터</a>
 						<ul>
 							<li><a href="">공지 사항</a></li>
-							<li><a href="">1:1 문의</a></li>
+							<li><a href="/ask/one-on-one">1:1 문의</a></li>
 							<li><a href="">혜택 안내</a></li>
 						</ul></li>
 				</ul>

@@ -1,13 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<meta charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<title>Insert title here</title>
+</head>
 <style>
     /* setting */
     * {
@@ -74,9 +75,9 @@
         margin-left: 20px;
     }
 </style>
-
 <body>
-    <!-- member_manager start -->
+	<%@include file="/WEB-INF/view/include/admin_menu.jsp" %>
+	 <!-- member_manager start -->
     <div class="member_manager container">
 
         <div class="title">
@@ -89,9 +90,8 @@
                 <table>
                     <tr>
                         <td><select class="search_select" name="search_item">
-                                <option value="title">제목</option>
-                                <option value="content">본문 내용</option>
-                                <option value="name">글쓴이</option>
+                                <option value="title">ID</option>
+                                <option value="content">등급</option>
                             </select></td>
                         <td class="search"><input class="search_content" type="text" name="text" /> <input type="submit"
                                 class="search_btn" value="검색" />
@@ -100,7 +100,7 @@
                 </table>
             </form>
         </div>
-
+		
         <div class="container">
             <table class="table">
                 <tr class="table_header">
@@ -111,54 +111,17 @@
                     <th>회원 등급</th>
                     <th>회원 정보</th>
                 </tr>
+                <c:forEach var="member" items="${userList}" varStatus="status">
                 <tr>
-                    <td>1</td>
-                    <td>abcd1234</td>
-                    <td>abcd@naver.com</td>
-                    <td>1996.01.01</td>
-                    <td>Silver</td>
-                    <td><a href="">수정</a></td>
+                    <td>${fn:length(userList) - status.index}</td>
+                    <td>${member.user_id }</td>
+                    <td>${member.user_email }</td>
+                    <td>${member.user_jumin }</td>
+                    <td>${member.user_class }</td>
+                    <td><a href="/adminmember/memberdetail?memberId=${member.user_id}">수정</a></td>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>abcd1234</td>
-                    <td>abcd@naver.com</td>
-                    <td>1996.01.01</td>
-                    <td>Silver</td>
-                    <td><a href="">수정</a></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>abcd1234</td>
-                    <td>abcd@naver.com</td>
-                    <td>1996.01.01</td>
-                    <td>Silver</td>
-                    <td><a href="">수정</a></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>abcd1234</td>
-                    <td>abcd@naver.com</td>
-                    <td>1996.01.01</td>
-                    <td>Silver</td>
-                    <td><a href="">수정</a></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>abcd1234</td>
-                    <td>abcd@naver.com</td>
-                    <td>1996.01.01</td>
-                    <td>Silver</td>
-                    <td><a href="">수정</a></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>abcd1234</td>
-                    <td>abcd@naver.com</td>
-                    <td>1996.01.01</td>
-                    <td>Silver</td>
-                    <td><a href="">수정</a></td>
-                </tr>
+                
+				</c:forEach>
             </table>
         </div>
 
@@ -167,5 +130,4 @@
         </div>
     </div>
 </body>
-
 </html>

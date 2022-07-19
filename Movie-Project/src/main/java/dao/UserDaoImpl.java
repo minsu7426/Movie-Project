@@ -33,8 +33,25 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public List<UserDto> getSelectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<UserDto> results = jdbcTemplate.query("select * from user order by user_date desc",
+				new RowMapper<UserDto>() {
+
+					@Override
+					public UserDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+						UserDto user = new UserDto();
+						user.setUser_id(rs.getString("user_id"));
+						user.setUser_pw(rs.getString("user_pw"));
+						user.setUser_name(rs.getString("user_name"));
+						user.setUser_email(rs.getString("user_email"));
+						user.setUser_jumin(rs.getString("user_jumin").substring(0, 6));
+						user.setUser_phone(rs.getString("user_phone"));
+						user.setUser_date(rs.getString("user_date"));
+						user.setUser_class(rs.getString("user_class"));
+						return user;
+					}
+			
+		});
+		return results;
 	}
 
 	@Override
@@ -49,8 +66,10 @@ public class UserDaoImpl implements UserDao {
 						user.setUser_pw(rs.getString("user_pw"));
 						user.setUser_name(rs.getString("user_name"));
 						user.setUser_phone(rs.getString("user_phone"));
-						user.setUser_jumin(rs.getString("user_jumin"));
+						user.setUser_jumin(rs.getString("user_jumin").substring(0, 6));
 						user.setUser_email(rs.getString("user_email"));
+						user.setUser_class(rs.getString("user_class"));
+						user.setUser_date(rs.getString("user_date"));
 						return user;
 					}
 				}, user_Id);
@@ -85,7 +104,22 @@ public class UserDaoImpl implements UserDao {
 		return results.isEmpty() ? null : results.get(0);
 	}
 
-
+	@Override
+	public Integer getIdCount(String user_id) {
+		Integer count = jdbcTemplate.queryForObject("select count(*) from user where user_id = ?", Integer.class, user_id);
+		return count;
+	}
 	
+	@Override
+	public void setDeleteUser(String user_id) {
+		String sql="delete from user where user_id = ?";
+		jdbcTemplate.update(sql, user_id);
+	}
+	
+	@Override
+	public void setClassUpdate(UserDto userdto) {
+		String sql="update user set user_class = ? where user_id = ?";
+		jdbcTemplate.update(sql, userdto.getUser_class(), userdto.getUser_id());
+	}
 
 }

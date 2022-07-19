@@ -39,8 +39,14 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login")
-	public String postLogin(String user_Id, String user_Pw, HttpSession session) {
+	public String postLogin(String user_Id, String user_Pw, HttpSession session, Model model) {
 		UserDto userDto = userService.getSelectByIdPw(user_Id, user_Pw);
+		String error = "1";
+		if(userDto == null) {
+			model.addAttribute("error", error);
+			return "/login/login";
+		}
+		
 		if(userDto.getUser_id().equals("admin")) {
 			session.setAttribute("user", userDto);
 			return "admin/admin_main";
@@ -58,8 +64,17 @@ public class LoginController {
 	 // 아이디 체크
     @RequestMapping("/idCheck")
     public String idCheck(){
-
-        return "login/idCheck";
+        return "/login/idCheck";
     }
+    
+    @RequestMapping("/idCheckdo")
+    public String idCheckDo(@RequestParam("userId") String id, Model model) {
+    	Integer count = userService.getIdCount(id);
+    	model.addAttribute("cnt", count);
+    	model.addAttribute("id", id);
+    	return "/login/idCheck";
+    }
+    
+    
 }
 

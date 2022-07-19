@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,12 +92,19 @@
         border: 3px solid black;
         transition: all 0.3s;
     }
+    .error{
+    	text-align: center;
+    	color: red;
+    }
 </style>
 <body>
     <div class="login">
         <div class="login_inner">
             <img src="../resources/images/logo_transparent.png" alt="" width="200px">
             <h1>LOGIN</h1>
+            <c:if test="${!empty error}">
+            <h4 class="error">아이디와 비밀번호를 확인해주세요.</h4>
+            </c:if>
             <form class="login_form" action="/login/login" method="post">
                 <div class="login_idpw">
                     <div class="login_id">

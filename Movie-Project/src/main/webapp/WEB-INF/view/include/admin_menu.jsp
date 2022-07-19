@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <style>
     /* menu start */
@@ -94,7 +96,7 @@
 			</c:if>
 			
 			<c:if test="${!empty user}">
-				<li>${user.user_Id }님 </li>
+				<li>${user.user_id }님 </li>
 				<li><a href="/login/logout">로그아웃</a></li>
 			
 			</c:if>
@@ -106,7 +108,7 @@
             </div>
             <div>
                 <ul>
-                    <li><a href="">회원 관리</a></li>
+                    <li><a href="/adminmember/membermanage">회원 관리</a></li>
                     <li><a href="">영화 관리</a></li>
                     <li><a href="">예매 내역 관리</a></li>
                     <li><a href="">리뷰 관리</a></li>

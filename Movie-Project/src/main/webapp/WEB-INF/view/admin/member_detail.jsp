@@ -1,14 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<meta charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<title>Insert title here</title>
+</head>
 <style>
+
     /* setting start */
     * {
         margin: 0;
@@ -36,63 +36,59 @@
         color: #2b2929;
     }
     .member_detail .info .info_form .submit button{
-        margin-right: 40px;
+        font-size: 16px;
+        font-weight: 500;
+    }
+    
+    .member_detail .info .submit a{
+        font-size: 16px;
+        font-weight: 500;
+        margin-left: 20px;
     }
     /* member_detail end */
 </style>
-
 <body>
-    <!-- member_detail start -->
-    <div class="member_detail container">
+	<%@include file="/WEB-INF/view/include/admin_menu.jsp" %>
+	<div class="member_detail container">
         <div class="title">
             <h1>회원 정보</h1>
             <hr>
         </div>
         <div class="info">
-            <form class="info_form" action="" method="post">
+            <form class="info_form" action="/adminmember/updatemember" method="post">
                 <div class="form-group row">
                     <label class="col-sm-2 input-name">이름</label>
-                    <input class="form-input" name="name" type="text" required placeholder="아이디 입력하세요.">
+                    <input class="form-input" type="text" value="${member.user_name }" readonly="readonly">
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 input-name">아이디</label>
-                    <input class="form-input" name="id" type="text" required placeholder="이메일을 입력하세요.">
+                    <input class="form-input" name="user_id" type="text" value="${member.user_id }" readonly="readonly">
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 input-name">연락처</label>
-                    <input class="form-input" name="phone" type="text" required placeholder="이메일을 입력하세요.">
+                    <input class="form-input" type="text" value="${member.user_phone }" readonly="readonly">
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 input-name">이메일</label>
-                    <input class="form-input" name="email" type="email" required placeholder="이메일을 입력하세요.">
+                    <input class="form-input" type="email" value="${member.user_email }" readonly="readonly">
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 input-name">생년월일</label>
-                    <input class="form-input" name="birthday" type="text" required placeholder="이메일을 입력하세요.">
+                    <input class="form-input" type="text" value="${member.user_jumin }" readonly="readonly">
                 </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 input-name">비밀번호</label>
-                    <input class="form-input" name="passwd" type="password" required placeholder="비밀번호를 입력하세요.">
-                </div>
+
                 <div class="form-group row">
                     <label class="col-sm-2 input-name">등급</label>
-                    <select name="class" id="class">
-                        <option value="bronze">일반</option>
-                        <option value="silver">실버</option>
-                        <option value="gold">골드</option>
-                    </select>
+                    <input class="form_input" name="user_class" type="text" value="${member.user_class }" placeholder="bronze, silver, gold">
                 </div>
                 <hr>
-                <div class="submit" align="end">
-                    <button class="btn btn-primary" type="submit"><b>작성하기</b></button>
-                    <a href="" class="btn btn-primary">되돌아가기</a>
+                <div class="submit" align="right">
+                    <button class="btn btn-primary" type="submit">등록하기</button>
+                    <a href="/adminmember/membermanage" class="btn btn-primary">되돌아가기</a>
+                     <a href="/adminmember/deletemember?memberId=${member.user_id }" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
                 </div>
             </form>
         </div>
     </div>
-
-
-    <!-- notice_detail end -->
 </body>
-
 </html>
