@@ -2,6 +2,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,10 +82,7 @@
 }
 </style>
 <body>
-<%
-	List<NoticeDto> list = (List<NoticeDto>)request.getAttribute("list");
-%>
-<jsp:include page="../include/menu.jsp"/>
+	<jsp:include page="../include/menu.jsp" />
 	<div class="notice_user container">
 
 		<div class="title">
@@ -117,26 +116,44 @@
 					<th>작성자</th>
 					<th>조회수</th>
 				</tr>
-				<%
-					for(int i = 0; i < list.size(); i++){
-						NoticeDto dto = list.get(i);
-				%>
-				
-				<tr>
-					<td><%=dto.getNotice_code() %></td>
-					<td><a href=""><%=dto.getNotice_title() %></a></td>
-					<td><%=dto.getNotice_date().substring(0, 10) %></td>
-					<td>admin</td>
-					<td><%=dto.getNotice_hit() %></td>
-				</tr>
-				<%
-					}
-				%>
+				<c:forEach var="dto" items="${list}">
+					<tr>
+						<td>${dto.notice_code}</td>
+						<td><a href="/notice/detail?notice_code=${dto.notice_code}&page=${cri.page}">${dto.notice_title }</a></td>
+						<fmt:parseDate value="${dto.notice_date }" pattern="yyyy-MM-dd"
+							var="date" />
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${date}" /></td>
+						<td>admin</td>
+						<td>${dto.notice_hit}</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 
-		<div class="page" align="center">
-			<b>[1]</b> [2] [3] [4] [5]
+		<div aria-label="Contacts Page Navigation" align="center">
+			<ul class="page pagination justify-content-center m-0">
+				<c:if test="${pageDto.prev}">
+					<li class="page-item"><a class="page-link"
+						href="/notice/list?page=${pageDto.startPage - 1}">이전</a></li>
+				</c:if>
+				<c:forEach begin="${pageDto.startPage}" end="${pageDto.endPage}"
+					var="index">
+					<li class="page-item">
+						<c:choose>
+							<c:when test="${pageDto.cri.page == index}">
+								<a class="page-link" style="background-color: #ddd" href="/notice/list?page=${index}">${index}</a>
+							</c:when>
+							<c:otherwise>
+								<a class="page-link" href="/notice/list?page=${index}">${index}</a>
+							</c:otherwise>
+						</c:choose>
+					</li>
+				</c:forEach>
+				<c:if test="${pageDto.next && pageDto.endPage > 0}">
+					<li class="page-item"><a class="page-link"
+						href="/notice/list?page=${pageDto.endPage + 1}">다음</a></li>
+				</c:if>
+			</ul>
 		</div>
 	</div>
 </body>
