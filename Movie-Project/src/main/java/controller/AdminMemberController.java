@@ -12,7 +12,7 @@ import dto.UserDto;
 import service.UserService;
 
 @Controller
-@RequestMapping("/adminmember")
+@RequestMapping("/admin")
 public class AdminMemberController {
 
 	@Autowired
@@ -35,12 +35,12 @@ public class AdminMemberController {
 	@RequestMapping("/deletemember")
 	public String memberDelete(@RequestParam("memberId") String id) {
 		userService.setDeleteUser(id);
-		return "redirect:/adminmember/membermanage";
+		return "redirect:/admin/membermanage";
 	}
 	
 	@RequestMapping("/updatemember")
 	public String memberUpdate(UserDto userDto) {
 		userService.setClassUpdate(userDto);
-		return "redirect:/adminmember/membermanage";
+		return "redirect:/admin/membermanage";
 	}
 }

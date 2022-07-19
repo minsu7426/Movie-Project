@@ -96,7 +96,7 @@
 			</c:if>
 			
 			<c:if test="${!empty user}">
-				<li>${user.user_id }님 </li>
+				<li>${user[0] }님 </li>
 				<li><a href="/login/logout">로그아웃</a></li>
 			
 			</c:if>

@@ -136,15 +136,13 @@ a {
 							<li><a href="/user/viewing_detail">관람 내역</a></li>
 							<li><a href="">쿠폰 관리</a></li>
 						</ul></li>
-					<li><a href="">고객센터</a>
+					<li><a href="/ask/one-on-one">고객센터</a>
 						<ul>
-							<<<<<<< HEAD
-							<li><a href="">공지 사항</a></li>
-							<li><a href="/ask/one-on-one">1:1 문의</a></li> =======
+							<li><a href="/ask/one-on-one">1:1 문의</a></li>
 							<li><a href="/notice/list">공지 사항</a></li>
-							<li><a href="">1:1 문의</a></li> >>>>>>> master
 							<li><a href="">혜택 안내</a></li>
-						</ul></li>
+						</ul>
+					</li>
 				</ul>
 			</div>
 		</div>

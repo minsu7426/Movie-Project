@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -136,18 +137,26 @@
 
         <div class="container">
             <table class="table">
+            
                 <tr class="table_header">
                     <th>번호</th>
                     <th>제목</th>
                     <th>작성일자</th>
                     <th>답변여부</th>
                 </tr>
+                <c:forEach var="ask" items="${askList}">
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
+                    <td>${ask.ask_code }</td>
+                    <td><a href="/ask/oneonone-user">${ask.ask_title }</a></td>
+                    <td>${ask.ask_date }</td>
+                    <c:if test="${ask.ask_re_content == null}">
                     <td>미완료</td>
+                    </c:if>
+                    <c:if test="${!empty ask.ask_re_content}">
+                    <td>답변완료</td>
+                    </c:if>
                 </tr>
+                </c:forEach>
             </table>
         </div>
 

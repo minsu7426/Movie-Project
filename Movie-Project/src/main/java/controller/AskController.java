@@ -1,30 +1,56 @@
 package controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import dto.AskDto;
+import service.AskService;
 
 @Controller
 @RequestMapping("/ask")
 public class AskController {
 	
+	@Autowired
+	private AskService askService;
+	
 	@RequestMapping("/one-on-one")
-	public String one_on_one() {
+	public String one_on_one(HttpSession session) {
+		String[] id = (String[])session.getAttribute("user");
+		if(id == null) {
+			return "redirect:/login/login";
+		}
 		return "/one_on_one/one_on_one";
 	}
 	
 	@PostMapping("/one-on-one")
-	public String askInsert(AskDto askDto) {
-		
-		return "/one_on_one/one_on_one_detail";
+	public String askInsert(AskDto askDto, HttpSession session) {
+		String[] id = (String[])session.getAttribute("user");
+		askDto.setAsk_id(id[0]);
+		askService.setInsertAsk(askDto);
+		return "/one_on_one/one_on_one";
 	}
 	
 	@RequestMapping("/one-on-one-detail")
-	public String oneDetail() {
-		return "/one_on_one/one_on_one_detail";
+	public String oneDetail(@RequestParam("askid")String id, Model model) {
+		List<AskDto> askList = askService.getListById(id);
+		if(askList == null) {
+			return "/one_on_one/one_on_one_detail";
+		} else{
+			model.addAttribute("askList", askList);
+			return "/one_on_one/one_on_one_detail";
+		}
 	}
 	
-	
+	@RequestMapping("/oneonone-user")
+	public String oneUser() {
+		return "/one_on_one/one_on_one_user_detail";
+	}
 }

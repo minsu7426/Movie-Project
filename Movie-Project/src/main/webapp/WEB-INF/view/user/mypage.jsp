@@ -93,7 +93,7 @@
 			<div class="signup_id">
 				<label>아이디</label>
 				<div>
-					<input type="text" name="user_Id" value="${userDto.getUser_Id() }" readonly>
+					<input type="text" name="user_Id" value="${userDto.getUser_id() }" readonly>
 				</div>
 			</div>
 			<div class="signup_pw">
@@ -111,13 +111,13 @@
 			<div class="signup_name">
 				<label>이름</label>
 				<div>
-					<input type="text" name="user_Name" value="${userDto.getUser_Name() }" readonly>
+					<input type="text" name="user_Name" value="${userDto.getUser_name() }" readonly>
 				</div>
 			</div>
 			<div class="signup_grade">
 				<label>등급</label>
 				<div>
-					<input type="text" name="user_Class" value="${userDto.getUser_Class() }" readonly>
+					<input type="text" name="user_Class" value="${userDto.getUser_class() }" readonly>
 				</div>
 			</div>
 			<div class="signup_phone">
@@ -136,7 +136,7 @@
 			<div class="signup_email">
 				<label>이메일</label>
 				<div>
-					<input type="email" name="user_Email" placeholder="이메일을 입력해주세요." value="${userDto.getUser_Email()}">
+					<input type="email" name="user_email" placeholder="이메일을 입력해주세요." value="${userDto.getUser_email()}">
 				</div>
 			</div>
 			<div class="signup_submit">

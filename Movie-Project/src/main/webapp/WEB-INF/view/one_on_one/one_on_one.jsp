@@ -106,20 +106,20 @@
 
         <nav class="one_on_one_nav">
             <a class="ing" align="center">문의하기</a>
-            <a href="/ask/one-on-one-detail" class="end" align="center">나의 문의 내역</a>
+            <a href="/ask/one-on-one-detail?askid=${user[0]}" class="end" align="center">나의 문의 내역</a>
        
         </nav>
 
         <div class="asking" >
-            <form class="ask_form" action="" method="post">
+            <form class="ask_form" action="/ask/one-on-one" method="post">
                 <hr>
                 <div class="form-group row">
                     <label class="col-sm-2 input-name">문의 제목</label>
-                    <input class="form-input" type="text" name="title" required placeholder="문의 제목을 입력하세요.">
+                    <input class="form-input" type="text" name="ask_title" required placeholder="문의 제목을 입력하세요.">
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 input-name">문의 내용</label>
-                    <textarea class="form-input" cols="50" rows="5" name="content" required placeholder="문의 내용을 자세하게 작성해 주세요.&#13;&#10;자세한 내용을 함께 보내주시면 더욱 신속히 답변드릴 수 있습니다."></textarea>
+                    <textarea class="form-input" cols="50" rows="5" name="ask_content" required placeholder="문의 내용을 자세하게 작성해 주세요.&#13;&#10;자세한 내용을 함께 보내주시면 더욱 신속히 답변드릴 수 있습니다."></textarea>
                 </div>
                 <hr>
                 <div class="submit">

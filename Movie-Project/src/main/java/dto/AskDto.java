@@ -6,7 +6,7 @@ public class AskDto {
 	private String ask_id;
 	private String ask_title;
 	private String ask_content;
-	private String ask_hit;
+	private int ask_hit;
 	private String ask_date;
 	private String ask_re_content;
 	private String ask_re_date;
@@ -43,11 +43,11 @@ public class AskDto {
 		this.ask_content = ask_content;
 	}
 	
-	public String getAsk_hit() {
+	public int getAsk_hit() {
 		return ask_hit;
 	}
 	
-	public void setAsk_hit(String ask_hit) {
+	public void setAsk_hit(int ask_hit) {
 		this.ask_hit = ask_hit;
 	}
 	public String getAsk_date() {

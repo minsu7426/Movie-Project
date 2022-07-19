@@ -55,7 +55,7 @@
             <hr>
         </div>
         <div class="info">
-            <form class="info_form" action="/adminmember/updatemember" method="post">
+            <form class="info_form" action="/admin/updatemember" method="post">
                 <div class="form-group row">
                     <label class="col-sm-2 input-name">이름</label>
                     <input class="form-input" type="text" value="${member.user_name }" readonly="readonly">
@@ -84,8 +84,8 @@
                 <hr>
                 <div class="submit" align="right">
                     <button class="btn btn-primary" type="submit">등록하기</button>
-                    <a href="/adminmember/membermanage" class="btn btn-primary">되돌아가기</a>
-                     <a href="/adminmember/deletemember?memberId=${member.user_id }" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+                    <a href="/admin/membermanage" class="btn btn-primary">되돌아가기</a>
+                     <a href="/admin/deletemember?memberId=${member.user_id }" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
                 </div>
             </form>
         </div>
