@@ -79,8 +79,15 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void setUpdateUser(UserDto userDto) {
-		// TODO Auto-generated method stub
-		
+		System.out.println(userDto.getUser_id());
+		System.out.println(userDto.getUser_phone());
+		String sql = "update user set user_pw = ?, user_phone = ?, user_email = ? where user_id = ?";
+		jdbcTemplate.update(sql,
+				userDto.getUser_pw(),
+				userDto.getUser_phone(),
+				userDto.getUser_email(),
+				userDto.getUser_id()
+				);
 	}
 
 	@Override
@@ -97,6 +104,7 @@ public class UserDaoImpl implements UserDao {
 						user.setUser_phone(rs.getString("user_phone"));
 						user.setUser_jumin(rs.getString("user_jumin"));
 						user.setUser_email(rs.getString("user_email"));
+						user.setUser_class(rs.getString("user_class"));
 						return user;
 					}
 				}, user_Id, user_Pw);

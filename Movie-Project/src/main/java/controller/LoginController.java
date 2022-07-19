@@ -47,11 +47,14 @@ public class LoginController {
 			return "/login/login";
 		}
 		
+		String[] userChk = new String[2];
 		if(userDto.getUser_id().equals("admin")) {
-			session.setAttribute("user", userDto);
+			userChk[0] = userDto.getUser_id();
+			session.setAttribute("user", userChk);
 			return "admin/admin_main";
 		}
-		session.setAttribute("user", userDto);
+		userChk[0] = userDto.getUser_id();
+		session.setAttribute("user", userChk);
 		return "/home";
 	}
 	

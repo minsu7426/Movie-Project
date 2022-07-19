@@ -1,3 +1,4 @@
+<%@page import="dto.UserDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -92,13 +93,13 @@
 			<div class="signup_id">
 				<label>아이디</label>
 				<div>
-					<input type="text" value="abc123" readonly>
+					<input type="text" name="user_Id" value="${userDto.getUser_Id() }" readonly>
 				</div>
 			</div>
 			<div class="signup_pw">
 				<label>비밀번호</label>
 				<div>
-					<input type="password" placeholder="비밀번호를 입력해주세요.">
+					<input type="password" name="user_Pw" placeholder="비밀번호를 입력해주세요.">
 				</div>
 			</div>
 			<div class="signup_pwcf">
@@ -110,27 +111,32 @@
 			<div class="signup_name">
 				<label>이름</label>
 				<div>
-					<input type="text" value="박승현" readonly>
+					<input type="text" name="user_Name" value="${userDto.getUser_Name() }" readonly>
 				</div>
 			</div>
 			<div class="signup_grade">
 				<label>등급</label>
 				<div>
-					<input type="text" value="일반" readonly>
+					<input type="text" name="user_Class" value="${userDto.getUser_Class() }" readonly>
 				</div>
 			</div>
 			<div class="signup_phone">
 				<label>연락처</label>
 				<div>
-					<input type="text" maxlength="3" placeholder="ex) 010"> - <input
-						type="text" maxlength="4" placeholder="ex) xxxx"> - <input
-						type="text" maxlength="4" placeholder="ex) xxxx">
+				<%
+					String phone = ((UserDto)request.getAttribute("userDto")).getUser_phone();
+					String[] user_phone = phone.split("-");
+					
+				%>
+					<input type="text" maxlength="3" name="phone1" placeholder="ex) 010" value="<%=user_phone[0] %>"> - <input
+						type="text" maxlength="4" name="phone2" placeholder="ex) xxxx" value="<%=user_phone[1]%>"> - <input
+						type="text" maxlength="4" name="phone3" placeholder="ex) xxxx" value="<%=user_phone[2]%>">
 				</div>
 			</div>
 			<div class="signup_email">
 				<label>이메일</label>
 				<div>
-					<input type="email" placeholder="이메일을 입력해주세요.">
+					<input type="email" name="user_Email" placeholder="이메일을 입력해주세요." value="${userDto.getUser_Email()}">
 				</div>
 			</div>
 			<div class="signup_submit">

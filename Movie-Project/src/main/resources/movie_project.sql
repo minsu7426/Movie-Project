@@ -11,11 +11,11 @@ create table coupon(
 );
 
 create table user(
-        user_id varchar(20) not null,
-    user_pw varchar(30) not null,
+	user_id varchar(20) not null,
+	user_pw varchar(30) not null,
     user_name varchar(10) not null,
     user_jumin varchar(15) not null,
-    user_phone varchar(15) not null,
+    user_phone varchar(30) not null,
     user_email varchar(50) not null,
     user_date datetime,
     user_class varchar(10) default 'bronze',

@@ -16,10 +16,10 @@ public interface UserService {
 	
 	// 아이디로 검색해서 회원정보 가져오기
 	public UserDto getSelectById(String user_Id);
-	
+
 	// 회원정보 수정
-	public void setUpdateUser(UserDto userDto);
-	
+	public UserDto setUpdateUser(UserDto userDto, HttpServletRequest request);
+
 	// 아이디, 패스워드 검색해서 회원정보 가져오기(로그인)
 	public UserDto getSelectByIdPw(String user_Id, String user_Pw);
 	
