@@ -19,16 +19,16 @@ public class MovieController {
 
 	@RequestMapping("current_screen")
 	public void current_screen(Model model) {
-		List<MovieDto> currentList = movieService.current_screen();
-		List<MovieDto> shownList = movieService.shown_screen();
+		List<MovieDto> currentList = movieService.getCurrent_screen();
+		List<MovieDto> shownList = movieService.getShown_screen();
 		model.addAttribute("currentList", currentList);
 		model.addAttribute("shownList", shownList);
 	}
 
 	@RequestMapping("shown_screen")
 	public void shown_screen(Model model) {
-		List<MovieDto> shownList = movieService.shown_screen();
-		List<MovieDto> currentList = movieService.current_screen();
+		List<MovieDto> shownList = movieService.getShown_screen();
+		List<MovieDto> currentList = movieService.getCurrent_screen();
 		model.addAttribute("shownList", shownList);
 		model.addAttribute("currentList", currentList);
 	}

@@ -140,8 +140,7 @@ a {
 						<ul>
 							<li><a href="/ask/one-on-one">1:1 문의</a></li>
 							<li><a href="/notice/list">공지 사항</a></li>
-							<li><a href="">1:1 문의</a></li>
-							<li><a href="">혜택 안내</a></li>
+							<li><a href="/benefit/info">혜택 안내</a></li>
 						</ul></li>
 				</ul>
 			</div>

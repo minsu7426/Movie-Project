@@ -31,11 +31,12 @@ public class NoticeController {
 		if(cri.getSearch_item() != null && cri.getText() != null) {
 			list = noticeService.getSearchList(cri);
 			pageDto.setTotalCount(noticeService.getSearchListCount(cri));
+			System.out.println("카운트="+noticeService.getSearchListCount(cri));
 		} else {
 			list = noticeService.getList(cri);
 			pageDto.setTotalCount(noticeService.getListCount());
 		}
-		System.out.println(list.get(0).getNotice_title());
+		System.out.println("리스트"+list.get(0).getNotice_title());
 		model.addAttribute("list", list);
 		model.addAttribute("pageDto", pageDto);
 		return "notice/notice";

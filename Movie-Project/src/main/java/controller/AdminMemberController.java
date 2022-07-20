@@ -12,7 +12,7 @@ import dto.UserDto;
 import service.UserService;
 
 @Controller
-@RequestMapping("/adminmember")
+@RequestMapping("/admin/member")
 public class AdminMemberController {
 
 	@Autowired
