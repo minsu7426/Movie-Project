@@ -126,13 +126,13 @@
 			<div class="signup_name">
 				<label>이름</label>
 				<div>
-					<input type="text" name="user_Name" value="${userDto.getUser_name() }" readonly>
+					<input type="text" name="user_name" value="${userDto.getUser_name() }" readonly>
 				</div>
 			</div>
 			<div class="signup_grade">
 				<label>등급</label>
 				<div>
-					<input type="text" name="user_Class" value="${userDto.getUser_class() }" readonly>
+					<input type="text" name="user_class" value="${userDto.getUser_class() }" readonly>
 				</div>
 			</div>
 			<div class="signup_phone">

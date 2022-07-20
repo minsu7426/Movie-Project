@@ -72,4 +72,5 @@ public class UserServiceImpl implements UserService {
 	public void setClassUpdate(UserDto userdto) {
 		userDao.setClassUpdate(userdto);
 	}
+	
 }

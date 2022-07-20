@@ -4,6 +4,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sfmt" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,17 +92,19 @@
 		<hr>
 
 		<div align="center" class="search_container">
-			<form action="search">
+			<form action="/notice/list">
 				<table>
 					<tr>
-						<td><select class="search_select" name="search_item">
+						<td>
+							<select class="search_select" name="search_item">
 								<option value="title">제목</option>
 								<option value="content">본문 내용</option>
-								<option value="name">글쓴이</option>
-						</select></td>
-						<td class="search"><input class="search_content" type="text"
-							name="text" /> <input type="submit" class="search_btn"
-							value="검색" /></td>
+							</select>
+						</td>
+						<td class="search">
+							<input class="search_content" type="text" name="text" />
+							<input type="submit" class="search_btn" value="검색" />
+						</td>
 					</tr>
 				</table>
 			</form>
@@ -119,7 +122,7 @@
 				<c:forEach var="dto" items="${list}">
 					<tr>
 						<td>${dto.notice_code}</td>
-						<td><a href="/notice/detail?notice_code=${dto.notice_code}&page=${cri.page}">${dto.notice_title }</a></td>
+						<td><a href="/notice/detail?notice_code=${dto.notice_code}&page=${pageDto.cri.page}">${dto.notice_title }</a></td>
 						<fmt:parseDate value="${dto.notice_date }" pattern="yyyy-MM-dd"
 							var="date" />
 						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${date}" /></td>
