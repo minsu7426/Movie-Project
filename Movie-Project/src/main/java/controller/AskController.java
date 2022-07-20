@@ -50,7 +50,10 @@ public class AskController {
 	}
 	
 	@RequestMapping("/oneonone-user")
-	public String oneUser() {
+	public String oneUser(@RequestParam("askcode")String ask_code, Model model) {
+		AskDto askDto = askService.getAskByCode(ask_code);
+		askService.setUpdateHit(ask_code);
+		model.addAttribute("askDto", askDto);
 		return "/one_on_one/one_on_one_user_detail";
 	}
 }

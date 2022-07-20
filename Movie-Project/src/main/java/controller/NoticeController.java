@@ -29,7 +29,6 @@ public class NoticeController {
 		PageDto pageDto = new PageDto();
 		pageDto.setCri(cri);
 		pageDto.setTotalCount(noticeService.getListCount());
-		
 		model.addAttribute("list", list);
 		model.addAttribute("pageDto", pageDto);
 		return "notice/notice";

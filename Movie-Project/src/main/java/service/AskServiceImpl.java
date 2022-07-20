@@ -26,12 +26,29 @@ public class AskServiceImpl implements AskService {
 	}
 
 	@Override
-	public List<AskDto> getAllList() {
-		return askDao.getAllList();
+	public List<AskDto> getAllList(String search_item, String text) {
+		return askDao.getAllList(search_item, text);
 	}
 	
 	@Override
 	public List<AskDto> getListById(String id) {
 		return askDao.getListById(id);
+	}
+	
+	@Override
+	public AskDto getAskByCode(String code) {
+		return askDao.getAskByCode(code);
+	}
+	
+	@Override
+	public void setUpdateHit(String code) {
+		askDao.setUpdateHit(code);
+	}
+	@Override
+	public void setAnswer(AskDto askDto) {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String ask_re_date = formatter.format(new Date());
+		askDto.setAsk_re_date(ask_re_date);
+		askDao.setAnswer(askDto);
 	}
 }

@@ -57,6 +57,7 @@
     }
 
     .menu>.menu-bottom>div>ul>li {
+    z-index: 100;
         position: relative;
         margin-left: 20px;
         padding: 10px 20px;
@@ -97,7 +98,7 @@
 			
 			<c:if test="${!empty user}">
 				<li>${user[0] }님 </li>
-				<li><a href="/login/logout">로그아웃</a></li>
+				<li><a href="/login/logout" onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</a></li>
 			
 			</c:if>
             </ul>
@@ -108,20 +109,20 @@
             </div>
             <div>
                 <ul>
-                    <li><a href="/adminmember/membermanage">회원 관리</a></li>
+                    <li><a href="/admin/member/membermanage">회원 관리</a></li>
                     <li><a href="">영화 관리</a></li>
                     <li><a href="">예매 내역 관리</a></li>
                     <li><a href="">리뷰 관리</a></li>
-                    <li><a href="">고객센터</a>
+                    <li><a href="/admin/ask/askmanage">고객센터</a>
                         <ul>
                             <li><a href="">공지 사항</a></li>
-                            <li><a href="">1:1 문의</a></li>
+                            <li><a href="/admin/ask/askmanage">1:1 문의</a></li>
                         </ul>
                     </li>
                     <li><a href="">이벤트 관리</a>
                         <ul>
                             <li><a href="">이벤트</a></li>
-                            <li><a href="">쿠폰</a></li>
+                            <li><a href="/admin/coupon/couponadmin">쿠폰</a></li>
                         </ul>
                     </li>
                     <li><a href="">수익관리</a>

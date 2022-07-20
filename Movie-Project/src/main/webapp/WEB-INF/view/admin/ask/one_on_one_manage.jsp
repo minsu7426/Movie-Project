@@ -1,11 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style>
@@ -77,8 +77,8 @@
         width: 500px;
     }
 </style>
-
 <body>
+	<%@include file="/WEB-INF/view/include/admin_menu.jsp" %>
     <!-- one_on_one_manage start -->
     <div class="one_on_one_manage container">
 
@@ -91,9 +91,9 @@
                 <table>
                     <tr>
                         <td><select class="search_select" name="search_item">
-                                <option value="title">제목</option>
-                                <option value="content">본문 내용</option>
-                                <option value="name">글쓴이</option>
+                                <option value="ask_title">제목</option>
+                                <option value="ask_content">본문 내용</option>
+                                <option value="ask_id">글쓴이</option>
                             </select></td>
                         <td class="search"><input class="search_content" type="text" name="text" /> <input type="submit"
                                 class="search_btn" value="검색" />
@@ -107,52 +107,26 @@
                 <tr class="table_header">
                     <th>번호</th>
                     <th>회원 아이디</th>
-                    <th class="content">문의 내용</th>
+                    <th class="content">문의 제목</th>
                     <th>등록일</th>
                     <th>답변 여부</th>
                 </tr>
+                <c:forEach var="asklist" items="${askList}">
                 <tr>
-                    <td>1</td>
-                    <td>abc1234</td>
-                    <td class="content">이런 저런 문의로 인해 이런 저런 내용을 이런 저런하게 문의하였다.</td>
-                    <td>2022-08-01 15:11</td>
-                    <td>미완료</td>
+                    <td>${asklist.ask_code}</td>
+                    <td>${asklist.ask_id}</td>
+                    <td class="content">
+                    <a href="/admin/ask/askdetail?askcode=${asklist.ask_code}">${asklist.ask_title}</a>
+                    </td>
+                    <td>${asklist.ask_date}</td>
+                     <c:if test="${asklist.ask_re_content == null}">
+                    <td style="color:red;">미완료</td>
+                    </c:if>
+                    <c:if test="${!empty asklist.ask_re_content}">
+                    <td style="color:green;">답변완료</td>
+                    </c:if>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>abc1234</td>
-                    <td class="content">이런 저런 문의로 인해 이런 저런 내용을 이런 저런하게 문의하였다.</td>
-                    <td>2022-08-01 15:11</td>
-                    <td>미완료</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>abc1234</td>
-                    <td class="content">이런 저런 문의로 인해 이런 저런 내용을 이런 저런하게 문의하였다.</td>
-                    <td>2022-08-01 15:11</td>
-                    <td>미완료</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>abc1234</td>
-                    <td class="content">이런 저런 문의로 인해 이런 저런 내용을 이런 저런하게 문의하였다.</td>
-                    <td>2022-08-01 15:11</td>
-                    <td>미완료</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>abc1234</td>
-                    <td class="content">이런 저런 문의로 인해 이런 저런 내용을 이런 저런하게 문의하였다.</td>
-                    <td>2022-08-01 15:11</td>
-                    <td>미완료</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>abc1234</td>
-                    <td class="content">이런 저런 문의로 인해 이런 저런 내용을 이런 저런하게 문의하였다.</td>
-                    <td>2022-08-01 15:11</td>
-                    <td>미완료</td>
-                </tr>
+                </c:forEach>
             </table>
         </div>
 
@@ -161,5 +135,4 @@
         </div>
     </div>
 </body>
-
 </html>

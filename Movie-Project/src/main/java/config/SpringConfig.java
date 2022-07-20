@@ -10,7 +10,7 @@ import controller.MovieController;
 import controller.NoticeController;
 
 @Configuration
-@ComponentScan(basePackages = {"controller", "dao", "service"})
+@ComponentScan(basePackages = {"controller", "dao", "service", "adminController"})
 public class SpringConfig {
 
 	@Bean

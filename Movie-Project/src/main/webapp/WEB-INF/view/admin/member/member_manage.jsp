@@ -118,7 +118,7 @@
                     <td>${member.user_email }</td>
                     <td>${member.user_jumin }</td>
                     <td>${member.user_class }</td>
-                    <td><a href="/admin/memberdetail?memberId=${member.user_id}">수정</a></td>
+                    <td><a href="/admin/member/memberdetail?memberId=${member.user_id}">수정</a></td>
                 </tr>
                 
 				</c:forEach>

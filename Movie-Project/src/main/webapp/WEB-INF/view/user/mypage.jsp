@@ -81,6 +81,21 @@
 	border: solid 3px black;
 }
 </style>
+<script type="text/javascript">
+	function check_pw() {
+		if (document.getElementById('user_pw1').value != ''
+				&& document.getElementById('user_pw2').value != '') {
+			if (document.getElementById('user_pw1').value == document
+					.getElementById('user_pw2').value) {
+				document.getElementById('check').innerHTML = '비밀번호가 일치합니다.'
+				document.getElementById('check').style.color = 'green';
+			} else {
+				document.getElementById('check').innerHTML = '비밀번호가 일치하지 않습니다.';
+				document.getElementById('check').style.color = 'red';
+			}
+		}
+	}
+</script>
 <body>
 <jsp:include page="../include/menu.jsp"/>
 	<div class="signup container">
@@ -89,23 +104,23 @@
 			<h1>회원정보</h1>
 			<hr>
 		</div>
-		<form class="signup_inner" action="update">
+		<form class="signup_inner" action="update" method="post">
 			<div class="signup_id">
 				<label>아이디</label>
 				<div>
-					<input type="text" name="user_Id" value="${userDto.getUser_id() }" readonly>
+					<input type="text" name="user_id" value="${userDto.getUser_id() }" readonly>
 				</div>
 			</div>
 			<div class="signup_pw">
 				<label>비밀번호</label>
 				<div>
-					<input type="password" name="user_Pw" placeholder="비밀번호를 입력해주세요.">
+					<input type="password" onchange="check_pw()" id="user_pw1" name="user_pw" placeholder="비밀번호를 입력해주세요.">
 				</div>
 			</div>
 			<div class="signup_pwcf">
 				<label>비밀번호 확인</label>
 				<div>
-					<input type="password" placeholder="비밀번호를 입력해주세요.">
+					<input type="password" onchange="check_pw()" id="user_pw2" placeholder="비밀번호를 입력해주세요."><span id="check"></span>
 				</div>
 			</div>
 			<div class="signup_name">

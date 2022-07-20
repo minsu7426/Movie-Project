@@ -7,7 +7,6 @@ public class Criteria {
 
 	//int page : 현재 페이지 번호
 	//int perPageNum : 한 페이지당 보여줄 게시글의 갯수
-	//int getPageStart() : 특정 페이지의 게시글 시작 번호, 게시글 시작 행 번호
 	
 	public Criteria() {
 		this.page = 1;
@@ -26,13 +25,14 @@ public class Criteria {
 		}
 	}
 
-	public void setPerPageNum(int pageCount) {
-		int cnt = this.perPageNum;
-		if(pageCount != cnt) {
-			this.perPageNum = cnt;
-		}
-		this.perPageNum = pageCount;
-	}
+	// 뭔지 모르겠음?
+//	public void setPerPageNum(int pageCount) {
+//		int cnt = this.perPageNum;
+//		if(pageCount != cnt) {
+//			this.perPageNum = cnt;
+//		}
+//		this.perPageNum = pageCount;
+//	}
 
 	public int getPage() {
 		return page;

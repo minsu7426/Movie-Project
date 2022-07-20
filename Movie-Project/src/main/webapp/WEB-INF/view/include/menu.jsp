@@ -60,6 +60,7 @@ a {
 }
 
 .menu>.menu-bottom>div>ul>li {
+	z-index: 100;
 	position: relative;
 	margin-left: 20px;
 	padding: 10px 20px;
@@ -76,6 +77,7 @@ a {
 	position: absolute;
 	background-color: red;
 	width: 100px;
+	z-index: 100;
 }
 
 .menu>.menu-bottom>div>ul>li:hover>ul {
@@ -105,7 +107,7 @@ a {
 
 				<c:if test="${!empty user}">
 					<li>${user[0] }님</li>
-					<li><a href="/login/logout">로그아웃</a></li>
+					<li><a href="/login/logout" onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</a></li>
 
 				</c:if>
 			</ul>
@@ -134,7 +136,7 @@ a {
 						<ul>
 							<li><a href="/user/mypage">회원 정보</a></li>
 							<li><a href="/user/viewing_detail">관람 내역</a></li>
-							<li><a href="">쿠폰 관리</a></li>
+							<li><a href="/coupon/couponlist">쿠폰 관리</a></li>
 						</ul></li>
 					<li><a href="/ask/one-on-one">고객센터</a>
 						<ul>

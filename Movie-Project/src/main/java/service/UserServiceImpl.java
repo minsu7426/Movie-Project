@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 		String phone = request.getParameter("phone1") + "-" + request.getParameter("phone2") + "-"
 				+ request.getParameter("phone3");
 		String jumin = request.getParameter("jumin1") + "-" + request.getParameter("jumin2");
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		String user_date = formatter.format(new Date());
 		userDto.setUser_phone(phone);
 		userDto.setUser_jumin(jumin);

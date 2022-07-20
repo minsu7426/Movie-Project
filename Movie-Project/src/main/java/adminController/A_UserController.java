@@ -1,4 +1,4 @@
-package controller;
+package adminController;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import dto.UserDto;
 import service.UserService;
 
 @Controller
-@RequestMapping("/admin")
-public class AdminMemberController {
+@RequestMapping("/admin/member")
+public class A_UserController {
 
 	@Autowired
 	private UserService userService;
@@ -22,25 +22,25 @@ public class AdminMemberController {
 	public String membermanage(Model model) {
 		List<UserDto> userList = userService.getSelectAll();
 		model.addAttribute("userList", userList);
-		return "/admin/member_manage";
+		return "/admin/member/member_manage";
 	}
 	
 	@RequestMapping("/memberdetail")
 	public String memberDetail(@RequestParam("memberId") String id, Model model) {
 		UserDto userDto = userService.getSelectById(id);
 		model.addAttribute("member", userDto);
-		return "/admin/member_detail";
+		return "/admin/member/member_detail";
 	}
 	
 	@RequestMapping("/deletemember")
 	public String memberDelete(@RequestParam("memberId") String id) {
 		userService.setDeleteUser(id);
-		return "redirect:/admin/membermanage";
+		return "redirect:/admin/member/membermanage";
 	}
 	
 	@RequestMapping("/updatemember")
 	public String memberUpdate(UserDto userDto) {
 		userService.setClassUpdate(userDto);
-		return "redirect:/admin/membermanage";
+		return "redirect:/admin/member/membermanage";
 	}
 }
