@@ -128,7 +128,7 @@
 			<hr>
 			<div class="submit" align="end">
 				<button class="btn btn-primary" type="submit">등록하기</button>
-				<a href="/admin/movie/movie_list" class="btn btn-primary">되돌아가기</a>
+				<a href="/admin/movie/movie_manage" class="btn btn-primary">되돌아가기</a>
 			</div>
 		</form>
 

@@ -1,9 +1,16 @@
 package adminController;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import dto.MovieDto;
+import dto.ScreenDto;
 import service.ScreenService;
 
 @Controller
@@ -14,12 +21,33 @@ public class A_ScreenController {
 	private ScreenService screenService;
 
 	@RequestMapping("screen_manage")
-	public void screen_manage() {
-
+	public void screen_manage(Model model) {
+		List<MovieDto> title = screenService.getMovieList();
+		List<ScreenDto> list = screenService.getScreenList();
+		
+		model.addAttribute("title",title);
+		model.addAttribute("list",list);
 	}
 
 	@RequestMapping("screen_add")
-	public void screen_add() {
+	public void screen_add(Model model) {
+		List<MovieDto> list = screenService.getMovieList();
+		model.addAttribute("list", list);
+	}
+	
+	@PostMapping("screen_postAdd")
+	public String screen_postAdd(ScreenDto dto ,@RequestParam List<String> timeChecked) {
+		screenService.setScreenAdd(dto, timeChecked);
 		
+		return "redirect:/admin/screen/screen_manage";
+	}
+	
+	@RequestMapping("update")
+	public String screen_update(@RequestParam String scr_code, Model model) {
+		System.out.println(scr_code);
+		List<MovieDto> title = screenService.getMovieList();
+		ScreenDto dto = screenService.getUpdate(scr_code);
+		model.addAttribute("dto", dto);
+		return "/admin/screen/screen_update";
 	}
 }

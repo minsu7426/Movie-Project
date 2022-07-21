@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,7 +94,7 @@
 
 </head>
 <body>
-<jsp:include page="../../include/admin_menu.jsp"/>
+	<jsp:include page="../../include/admin_menu.jsp" />
 	<div class="cinema_manage container">
 		<div class="title">
 			<h1>상영관 관리</h1>
@@ -121,65 +123,34 @@
 			<table class="table">
 				<tr class="table_header">
 					<th>순서</th>
-					<th>영화 코드</th>
+					<th>상영 코드</th>
 					<th>영화 제목</th>
-					<th>상영 날짜</th>
 					<th>상영관</th>
+					<th>상영 날짜</th>
 					<th>상영시간</th>
 					<th>잔여 좌석수</th>
 					<th>수정</th>
 				</tr>
-				<tr>
-					<td>1</td>
-					<td>0001</td>
-					<td>토르 : 러브 앤 썬더</td>
-					<td>2022-06-01</td>
-					<td>1관</td>
-					<td>09:00</td>
-					<td>27석 / 30석</td>
-					<td><a href="">수정</a></td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>0001</td>
-					<td>토르 : 러브 앤 썬더</td>
-					<td>2022-06-01</td>
-					<td>1관</td>
-					<td>09:00</td>
-					<td>27석 / 30석</td>
-					<td><a href="">수정</a></td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>0001</td>
-					<td>토르 : 러브 앤 썬더</td>
-					<td>2022-06-01</td>
-					<td>1관</td>
-					<td>09:00</td>
-					<td>27석 / 30석</td>
-					<td><a href="">수정</a></td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>0001</td>
-					<td>토르 : 러브 앤 썬더</td>
-					<td>2022-06-01</td>
-					<td>1관</td>
-					<td>09:00</td>
-					<td>27석 / 30석</td>
-					<td><a href="">수정</a></td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>0001</td>
-					<td>토르 : 러브 앤 썬더</td>
-					<td>2022-06-01</td>
-					<td>1관</td>
-					<td>09:00</td>
-					<td>27석 / 30석</td>
-					<td><a href="">수정</a></td>
-				</tr>
-
+				<%-- varchar="status" --%>
+				<c:forEach items="${list}" var="dto">
+					<tr>
+						<td><%-- ${pageDto.displayCount - status.index} --%></td>
+						<td>${dto.scr_code}</td>
+						<c:forEach items="${title}" var="title">
+							<c:if test="${title.movie_code eq dto.scr_movie}">
+								<td>${title.movie_title}</td>
+							</c:if>
+						</c:forEach>
+						<td>${dto.scr_screen }관</td>
+						<td>${dto.scr_date }</td>
+						<td>${dto.scr_time }</td>
+						<c:set var="set" value="${dto.scr_seat }"/>
+						<c:set var="seat" value="${fn:split(set, ',')}"/>
+						<c:set var="size" value="${fn:length(seat) }"/>
+						<td>${size } / 30석</td>
+						<td><a href="/admin/screen/update?scr_code=${dto.scr_code}">수정</a></td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 

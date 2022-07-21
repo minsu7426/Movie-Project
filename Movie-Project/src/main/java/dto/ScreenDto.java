@@ -6,8 +6,10 @@ public class ScreenDto {
 	private int scr_movie;
 	private String scr_seat;
 	private String scr_screen;
-	private String time;
-	private String date;
+	private String scr_date;
+	private String date_start;
+	private String date_end;
+	private String scr_time;
 	private boolean scr_flag;
 	
 	public int getScr_code() {
@@ -25,6 +27,18 @@ public class ScreenDto {
 	public String getScr_seat() {
 		return scr_seat;
 	}
+	public String getDate_start() {
+		return date_start;
+	}
+	public void setDate_start(String date_start) {
+		this.date_start = date_start;
+	}
+	public String getDate_end() {
+		return date_end;
+	}
+	public void setDate_end(String date_end) {
+		this.date_end = date_end;
+	}
 	public void setScr_seat(String scr_seat) {
 		this.scr_seat = scr_seat;
 	}
@@ -34,17 +48,17 @@ public class ScreenDto {
 	public void setScr_screen(String scr_screen) {
 		this.scr_screen = scr_screen;
 	}
-	public String getTime() {
-		return time;
+	public String getScr_date() {
+		return scr_date;
 	}
-	public void setTime(String time) {
-		this.time = time;
+	public void setScr_date(String scr_date) {
+		this.scr_date = scr_date;
 	}
-	public String getDate() {
-		return date;
+	public String getScr_time() {
+		return scr_time;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setScr_time(String scr_time) {
+		this.scr_time = scr_time;
 	}
 	public boolean isScr_flag() {
 		return scr_flag;

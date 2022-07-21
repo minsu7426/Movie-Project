@@ -135,6 +135,5 @@ a {
 			</div>
 		</div>
 	</nav>
->>>>>>> origin/master
 </body>
 </html>

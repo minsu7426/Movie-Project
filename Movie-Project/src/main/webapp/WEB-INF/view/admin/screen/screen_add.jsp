@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,6 +102,7 @@
 	margin-right: 40px;
 }
 </style>
+
 <body>
 	<jsp:include page="../../include/admin_menu.jsp" />
 	<div class="cinema_add container">
@@ -108,54 +110,52 @@
 			<h1>상영관 등록</h1>
 			<hr>
 		</div>
-		<form class="add_form" action="" method="post">
+		<form class="add_form" action="/admin/screen/screen_postAdd"
+			method="post">
 			<div class="form-group row">
-				<label class="col-sm-2 input-name">영화코드</label> <select
-					class="form-input" name="scr_code" id="scr_code">
-					<option value="0">전체관람가</option>
-					<option value="12">12세</option>
-					<option value="15">15세</option>
-					<option value="19">청소년관람불가</option>
+				<label class="col-sm-2 input-name">영화이름</label> <select
+					class="form-input" name="scr_movie" id="scr_movie">
+					<c:forEach items="${list }" var="dto">
+						<option value="${dto.movie_code }">${dto.movie_title }</option>
+					</c:forEach>
 				</select>
 			</div>
-			<div class="form-group row">
-				<label class="col-sm-2 input-name">관람연령</label> <input type="text"
-					class="form-input" value="" readonly>
-			</div>
+
 			<div class="form-group row">
 				<label class="col-sm-2 input-name">상영기간</label> <input
-					class="cinema_date" name="title" type="date" required> ~ <input
-					class="cinema_date" name="title" type="date" required>
+					class="cinema_date" name="date_start" id='date_start' type="date"
+					required> ~ <input class="cinema_date" name="date_end"
+					id="date_end" type="date" required>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-2 input-name">상영관</label> <select
-					class="form-input" name="" id="">
-					<option value="">1관</option>
-					<option value="">2관</option>
-					<option value="">3관</option>
+					class="form-input" name="scr_screen" id="scr_screen">
+					<option value="1">1관</option>
+					<option value="2">2관</option>
+					<option value="3">3관</option>
 				</select>
 			</div>
 			<div class="form-group row div4">
 				<label class="col-sm-2 input-name">상영시간</label>
 				<div>
 					<div>
-						<input class="cinema_checkbox" name="title" type="checkbox"
+						<input class="cinema_checkbox" name="timeChecked" type="checkbox"
 							value="09:00"> <label>09:00</label>
 					</div>
 					<div>
-						<input class="cinema_checkbox" name="title" type="checkbox"
+						<input class="cinema_checkbox" name="timeChecked" type="checkbox"
 							value="12:00"> <label>12:00</label>
 					</div>
 					<div>
-						<input class="cinema_checkbox" name="title" type="checkbox"
+						<input class="cinema_checkbox" name="timeChecked" type="checkbox"
 							value="15:00"> <label>15:00</label>
 					</div>
 					<div>
-						<input class="cinema_checkbox" name="title" type="checkbox"
+						<input class="cinema_checkbox" name="timeChecked" type="checkbox"
 							value="18:00"> <label>18:00</label>
 					</div>
 					<div>
-						<input class="cinema_checkbox" name="title" type="checkbox"
+						<input class="cinema_checkbox" name="timeChecked" type="checkbox"
 							value="21:00"> <label>21:00</label>
 					</div>
 				</div>
@@ -163,10 +163,15 @@
 			<hr>
 			<div class="submit" align="end">
 				<button class="btn btn-primary" type="submit">등록하기</button>
-				<a href="" class="btn btn-primary">되돌아가기</a>
+				<a href="/admin/screen/screen_manage" class="btn btn-primary">되돌아가기</a>
 			</div>
 		</form>
 
 	</div>
+	<script>
+		document.getElementById('date_start').value = new Date().toISOString()
+				.substring(0, 10);
+		;
+	</script>
 </body>
 </html>

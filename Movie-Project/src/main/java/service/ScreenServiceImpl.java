@@ -1,11 +1,18 @@
 package service;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.ScreenDao;
+import dto.MovieDto;
 import dto.ScreenDto;
 
 @Service
@@ -16,11 +23,31 @@ public class ScreenServiceImpl implements ScreenService{
 	
 	@Override
 	public List<ScreenDto> getScreenList() {
-		return null;
+		return screenDao.getScreenList();
 	}
 	
 	@Override
 	public int getScreenCount() {
 		return 0;
 	}
+	
+	@Override
+	public List<MovieDto> getMovieList() {
+		return screenDao.getMovieList();
+	}
+	
+	@Override
+	public void setScreenAdd(ScreenDto dto, List<String> timeChecked) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate startDate = LocalDate.parse(dto.getDate_start(), formatter);
+		LocalDate endDate = LocalDate.parse(dto.getDate_end(), formatter).plusDays(1);
+
+		List<LocalDate> date = startDate.datesUntil(endDate).collect(Collectors.toList());
+		screenDao.setScreenAdd(dto, timeChecked, date);
+	}
+	@Override
+	public ScreenDto getUpdate(String scr_code) {
+		return screenDao.getUpdate(scr_code);
+	}
+	
 }
