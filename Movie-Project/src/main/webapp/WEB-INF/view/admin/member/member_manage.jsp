@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,12 +85,12 @@
         <hr>
 
         <div align="center" class="search_container">
-            <form method="post" action="#">
+            <form method="post" action="/admin/member/membermanage">
                 <table>
                     <tr>
                         <td><select class="search_select" name="search_item">
-                                <option value="title">ID</option>
-                                <option value="content">등급</option>
+                                <option value="user_id">ID</option>
+                                <option value="user_class">등급</option>
                             </select></td>
                         <td class="search"><input class="search_content" type="text" name="text" /> <input type="submit"
                                 class="search_btn" value="검색" />
@@ -113,7 +112,7 @@
                 </tr>
                 <c:forEach var="member" items="${userList}" varStatus="status">
                 <tr>
-                    <td>${fn:length(userList) - status.index}</td>
+                    <td>${pageDto.displayCount - status.index}</td>
                     <td>${member.user_id }</td>
                     <td>${member.user_email }</td>
                     <td>${member.user_jumin }</td>
@@ -125,9 +124,31 @@
             </table>
         </div>
 
-        <div class="page" align="center">
-            <b>[1]</b> [2] [3] [4] [5]
-        </div>
+        <div aria-label="Contacts Page Navigation" align="center">
+			<ul class="page pagination justify-content-center m-0">
+				<c:if test="${pageDto.prev}">
+					<li class="page-item"><a class="page-link"
+						href="/admin/member/memberdetail?page=${pageDto.startPage - 1}">이전</a></li>
+				</c:if>
+				<c:forEach begin="${pageDto.startPage}" end="${pageDto.endPage}"
+					var="index">
+					<li class="page-item">
+						<c:choose>
+							<c:when test="${pageDto.cri.page == index}">
+								<a class="page-link" style="background-color: #ddd" href="/admin/member/memberdetail?page=${index}&search_item=${search_item}&text=${text}">${index}</a>
+							</c:when>
+							<c:otherwise>
+								<a class="page-link" href="/admin/member/memberdetail?page=${index}&search_item=${search_item}&text=${text}">${index}</a>
+							</c:otherwise>
+						</c:choose>
+					</li>
+				</c:forEach>
+				<c:if test="${pageDto.next && pageDto.endPage > 0}">
+					<li class="page-item"><a class="page-link"
+						href="/admin/member/memberdetail?page=${pageDto.endPage + 1}">다음</a></li>
+				</c:if>
+			</ul>
+		</div>
     </div>
 </body>
 </html>

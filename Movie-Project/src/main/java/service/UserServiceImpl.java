@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.UserDao;
+import dto.Criteria;
 import dto.UserDto;
 
 @Service
@@ -32,8 +33,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<UserDto> getSelectAll() {
-		List<UserDto> userList = userDao.getSelectAll();
+	public List<UserDto> getSelectAll(String search_item, String text, Criteria cri) {
+		List<UserDto> userList = userDao.getSelectAll(search_item, text, cri);
 		return userList;
 	}
 
@@ -71,6 +72,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void setClassUpdate(UserDto userdto) {
 		userDao.setClassUpdate(userdto);
+	}
+	
+	@Override
+	public List<String> getSelectId() {
+		return userDao.getSelectId();
+	}
+	
+	@Override
+	public int getAllCount(String search_item, String text) {
+		return userDao.getAllCount(search_item, text);
 	}
 	
 }

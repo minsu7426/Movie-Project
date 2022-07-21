@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import dto.AskDto;
+import dto.Criteria;
 
 @Repository
 public class AskDaoImpl implements AskDao {
@@ -33,12 +34,14 @@ public class AskDaoImpl implements AskDao {
 	}
 
 	@Override
-	public List<AskDto> getAllList(String search_item, String text) {
+	public List<AskDto> getAllList(String search_item, String text, Criteria cri) {
 		String sql;
 		if(search_item == null && text == null) {
-			sql = "select * from ask order by ask_date desc";
+			sql = "select * from ask order by ask_date desc limit ?, ?";
+		} else if(search_item.equals("") && text.equals("")) {
+			sql = "select * from ask order by ask_date desc limit ?, ?";
 		} else {
-			sql = "select * from ask where "+ search_item + " like '%" + text + "%' order by ask_code desc";
+			sql = "select * from ask where "+ search_item + " like '%" + text + "%' order by ask_code desc limit ?, ?";
 		}
 		List<AskDto> results = jdbcTemplate.query(sql, 
 				new RowMapper<AskDto>() {
@@ -57,13 +60,13 @@ public class AskDaoImpl implements AskDao {
 						return ask;
 					}
 			
-		});
+		}, cri.getPageStart(), cri.getPerPageNum());
 		return results;
 	}
 	
 	@Override
-	public List<AskDto> getListById(String id) {
-		List<AskDto> results = jdbcTemplate.query("select * from ask where ask_id = ? order by ask_date desc", 
+	public List<AskDto> getListById(String id, Criteria cri) {
+		List<AskDto> results = jdbcTemplate.query("select * from ask where ask_id = ? order by ask_date desc limit ?, ?", 
 				new RowMapper<AskDto>() {
 
 					@Override
@@ -80,7 +83,7 @@ public class AskDaoImpl implements AskDao {
 						return ask;
 					}
 			
-		},id);
+		},id, cri.getPageStart(), cri.getPerPageNum());
 		return results;
 	}
 	
@@ -121,6 +124,28 @@ public class AskDaoImpl implements AskDao {
 				askDto.getAsk_re_date(),
 				askDto.getAsk_code()
 				);
+	}
+	
+	@Override
+	public int getSearchListCountById(String ask_id) {
+		String sql = "select count(*) from ask where ask_id = ?";
+		Integer count = jdbcTemplate.queryForObject(sql, Integer.class, ask_id);
+		return count;
+	}
+	
+	@Override
+	public int getAllCount(String search_item, String text) {
+		String sql = "select count(*) from ask";
+		if(search_item == null && text == null) {
+			sql = "select count(*) from ask";
+		} else if(search_item.equals("") && text.equals("")) {
+			sql = "select count(*) from ask";
+		} else {
+			sql = "select count(*) from ask where "+ search_item + " like '%" + text + "%'";
+		}
+		
+		Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
+		return count;
 	}
 	
 }

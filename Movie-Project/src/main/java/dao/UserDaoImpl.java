@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
+import dto.Criteria;
 import dto.UserDto;
 
 
@@ -32,8 +34,17 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public List<UserDto> getSelectAll() {
-		List<UserDto> results = jdbcTemplate.query("select * from user order by user_date desc",
+	public List<UserDto> getSelectAll(String search_item, String text, Criteria cri) {
+		String sql;
+		if(search_item == null && text == null) {
+			sql = "select * from user order by user_date desc limit ?, ?";
+		} else if(search_item.equals("") && text.equals("")) {
+			sql = "select * from user order by user_date desc limit ?, ?";
+		} else {
+			sql = "select * from user where "+ search_item + " like '%" + text + "%' order by user_date desc limit ?, ?";
+		}
+		
+		List<UserDto> results = jdbcTemplate.query(sql,
 				new RowMapper<UserDto>() {
 
 					@Override
@@ -50,7 +61,7 @@ public class UserDaoImpl implements UserDao {
 						return user;
 					}
 			
-		});
+		}, cri.getPageStart(), cri.getPerPageNum());
 		return results;
 	}
 
@@ -128,6 +139,28 @@ public class UserDaoImpl implements UserDao {
 	public void setClassUpdate(UserDto userdto) {
 		String sql="update user set user_class = ? where user_id = ?";
 		jdbcTemplate.update(sql, userdto.getUser_class(), userdto.getUser_id());
+	}
+	
+	@Override
+	public List<String> getSelectId() {
+		String sql = "select user_id from user";
+		List<String> idList = jdbcTemplate.queryForList(sql, String.class);
+		return idList;
+	}
+	
+	@Override
+	public int getAllCount(String search_item, String text) {
+		String sql = "select count(*) from user";
+		if(search_item == null && text == null) {
+			sql = "select count(*) from user";
+		} else if(search_item.equals("") && text.equals("")) {
+			sql = "select count(*) from user";
+		} else {
+			sql = "select count(*) from user where "+ search_item + " like '%" + text + "%'";
+		}
+		
+		Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
+		return count;
 	}
 
 }

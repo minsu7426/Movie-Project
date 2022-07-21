@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import dto.CouponDto;
+import dto.Criteria;
 
 @Repository
 public class CouponDaoImpl implements CouponDao {
@@ -25,12 +26,14 @@ public class CouponDaoImpl implements CouponDao {
 	}
 
 	@Override
-	public List<CouponDto> getAllCoupon(String search_item, String text) {
+	public List<CouponDto> getAllCoupon(String search_item, String text, Criteria cri) {
 		String sql;
 		if (search_item == null && text == null) {
-			sql = "select * from coupon order by coupon_give desc";
+			sql = "select * from coupon order by coupon_give desc limit ?, ?";
+		} else if(search_item.equals("") && text.equals("")) {
+			sql = "select * from coupon order by coupon_give desc limit ?, ?";
 		} else {
-			sql = "select * from coupon where " + search_item + " like '%" + text + "%' order by coupon_give desc";
+			sql = "select * from coupon where " + search_item + " like '%" + text + "%' order by coupon_give desc limit ?, ?";
 		}
 		List<CouponDto> results = jdbcTemplate.query(sql, new RowMapper<CouponDto>() {
 
@@ -42,9 +45,10 @@ public class CouponDaoImpl implements CouponDao {
 				coupon.setCoupon_give(rs.getString("coupon_give"));
 				coupon.setCoupon_end(rs.getString("coupon_end"));
 				coupon.setCoupon_id(rs.getString("coupon_id"));
+				coupon.setCoupon_flag(rs.getBoolean("coupon_flag"));
 				return coupon;
 			}
-		});
+		}, cri.getPageStart(), cri.getPerPageNum());
 		return results;
 	}
 
@@ -67,21 +71,38 @@ public class CouponDaoImpl implements CouponDao {
 				coupon.setCoupon_give(rs.getString("coupon_give"));
 				coupon.setCoupon_end(rs.getString("coupon_end"));
 				coupon.setCoupon_id(rs.getString("coupon_id"));
+				coupon.setCoupon_flag(rs.getBoolean("coupon_flag"));
 				return coupon;
 			}
 		},id);
 		return results;
 	}
+
 	
 	@Override
-	public void setDeleteEndDate(String end_date) {
-		String sql = "delete from coupon where coupon_end = ?";
-		jdbcTemplate.update(sql, end_date);
-	}
-	
-@Override
 	public void setCouponSubmit(String id, String code) {
 		String sql = "update coupon set coupon_id = ? where coupon_code = ?";
 		jdbcTemplate.update(sql, id, code);
+	}
+	
+	@Override
+	public void setCouponComplete(String end_date) {
+		String sql = "update coupon set coupon_flag = ? where coupon_end = ?";
+		jdbcTemplate.update(sql, false, end_date);
+	}
+	
+	@Override
+	public int getAllCouponCount(String search_item, String text) {
+		String sql = "select count(*) from coupon";
+		if(search_item == null && text == null) {
+			sql = "select count(*) from coupon";
+		} else if(search_item.equals("") && text.equals("")) {
+			sql = "select count(*) from coupon";
+		} else {
+			sql = "select count(*) from coupon where "+ search_item + " like '%" + text + "%'";
+		}
+		
+		Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
+		return count;
 	}
 }

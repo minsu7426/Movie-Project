@@ -1,5 +1,7 @@
 package service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,24 @@ public class NoticeServiceImpl implements NoticeService{
 	@Override
 	public int getSearchListCount(Criteria cri) {
 		return noticeDao.getSearchListCount(cri);
+	}
+	
+	@Override
+	public void setInsert(NoticeDto noticeDto) {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String notice_date = formatter.format(new Date());
+		noticeDto.setNotice_date(notice_date);
+		noticeDao.setInsert(noticeDto);
+	}
+	
+	@Override
+	public void setDelete(int notice_code) {
+		noticeDao.setDelete(notice_code);
+	}
+	
+	@Override
+	public void setUpdate(NoticeDto noticeDto) {
+		noticeDao.setUpdate(noticeDto);
 	}
 	
 	

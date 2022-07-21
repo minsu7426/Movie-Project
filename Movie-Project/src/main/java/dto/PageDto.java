@@ -9,11 +9,17 @@ public class PageDto {
 	private int displayPageNum = 5; // 보여지는 페이수
 	private boolean prev; // 앞 버튼
 	private boolean next; // 뒷 버튼
-
+	private int displayCount; // 한 페이지에 보여지는 게시물수
+	
 	public void setCri(Criteria cri) {
 		this.cri = cri;
 	}
-
+	
+	public int getDisplayCount() {
+		return displayCount;
+	}
+	
+	
 	public void calcData() {
 		// 끝 페이지번호 = Math.ceil(현재페이지 / 페이지 번호의 갯수) * 페이지 번호의 갯수
 		endPage = (int) (Math.ceil(cri.getPage() / (double) displayPageNum) * displayPageNum);
@@ -26,9 +32,10 @@ public class PageDto {
 		if (endPage > tempEndPage) {
 			endPage = tempEndPage;
 		}
-
 		prev = startPage == 1 ? false : true;
 		next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
+		
+		displayCount = totalCount - (cri.getPage() * 10 - 10);
 	}
 
 	public boolean isPrev() {

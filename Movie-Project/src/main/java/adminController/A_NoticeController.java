@@ -1,4 +1,4 @@
-package controller;
+package adminController;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,15 +16,14 @@ import dto.PageDto;
 import service.NoticeService;
 
 @Controller
-@RequestMapping("/notice/")
-public class NoticeController {
-
+@RequestMapping("/admin/notice")
+public class A_NoticeController {
 	
 	@Autowired
 	private NoticeService noticeService;
 	
-	@RequestMapping("list")
-	public String list(Criteria cri, Model model) {
+	@RequestMapping("/noticeadmin")
+	public String noticeAdmin(Criteria cri, Model model) {
 		List<NoticeDto> list;
 		PageDto pageDto = new PageDto();
 		pageDto.setCri(cri);
@@ -38,15 +38,37 @@ public class NoticeController {
 		}
 		model.addAttribute("list", list);
 		model.addAttribute("pageDto", pageDto);
-		return "notice/notice";
+
+		return "/admin/notice/notice_admin";
 	}
 	
-	@RequestMapping("detail")
+	@RequestMapping("/noticeadd")
+	public String noticeAdd() {
+		return "/admin/notice/notice_add";
+	}
+	
+	@PostMapping("/noticeadd")
+	public String noticePost(NoticeDto noticeDto) {
+		noticeService.setInsert(noticeDto);
+		return "redirect:/admin/notice/noticeadmin";
+	}
+	
+	@RequestMapping("/detail")
 	public String detail(@RequestParam("notice_code") int notice_code,@ModelAttribute("cri") Criteria cri, Model model) {
 		NoticeDto dto = noticeService.getRead(notice_code);
-		
-		model.addAttribute("dto",dto);
-		return "notice/notice_detail";
+		model.addAttribute("notice",dto);
+		return "/admin/notice/notice_update";
 	}
 	
+	@RequestMapping("/noticedelete")
+	public String delete(@RequestParam("noticecode") int notice_code) {
+		noticeService.setDelete(notice_code);
+		return "redirect:/admin/notice/noticeadmin";
+	}
+	
+	@PostMapping("/noticeupdate")
+	public String update(NoticeDto noticeDto) {
+		noticeService.setUpdate(noticeDto);
+		return "redirect:/admin/notice/detail?notice_code=" + noticeDto.getNotice_code();
+	}
 }

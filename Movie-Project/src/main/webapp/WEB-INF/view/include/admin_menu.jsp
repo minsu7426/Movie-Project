@@ -118,7 +118,7 @@ a {
 					<li><a href="">리뷰 관리</a></li>
 					<li><a href="/admin/ask/askmanage">고객센터</a>
 						<ul>
-							<li><a href="">공지 사항</a></li>
+							<li><a href="/admin/notice/noticeadmin">공지 사항</a></li>
 							<li><a href="/admin/ask/askmanage">1:1 문의</a></li>
 						</ul></li>
 					<li><a href="">이벤트 관리</a>
@@ -135,6 +135,5 @@ a {
 			</div>
 		</div>
 	</nav>
->>>>>>> origin/master
 </body>
 </html>

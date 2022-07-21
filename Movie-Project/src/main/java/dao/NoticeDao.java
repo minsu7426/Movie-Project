@@ -2,8 +2,6 @@ package dao;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import dto.Criteria;
 import dto.NoticeDto;
 
@@ -26,4 +24,13 @@ public interface NoticeDao {
 	
 	//게시글 검색 총 글 개수
 	public int getSearchListCount(Criteria cri);
+	
+	//게시물 등록
+	public void setInsert(NoticeDto noticeDto);
+	
+	//게시물 삭제
+	public void setDelete(int notice_code);
+	
+	//게시물 업데이트
+	public void setUpdate(NoticeDto noticeDto);
 }

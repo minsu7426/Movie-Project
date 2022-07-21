@@ -23,6 +23,9 @@ public class CouponController {
 	@RequestMapping("/couponlist")
 	public String couponList(HttpSession session, Model model) {
 		String[] id = (String[])session.getAttribute("user");
+		if(id == null) {
+			return "/login/login";
+		}
 		List<CouponDto> couponList = couponService.getCouponById(id[0]);
 		model.addAttribute("couponList", couponList);
 		return "/coupon/coupon_manage";

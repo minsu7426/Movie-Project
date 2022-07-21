@@ -1,11 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style>
@@ -20,12 +19,12 @@
 
     /* setting end */
 
-    /* notice_add start */
-    .notice_add .title {
+    /* notice_update start */
+    .notice_update .title {
         margin-bottom: 50px;
     }
 
-    .notice_add .add .add_form input {
+    .notice_update .update .update_form input {
         width: 400px;
         height: 44px;
         border-radius: 5px;
@@ -36,7 +35,7 @@
         color: #2b2929;
     }
 
-    .notice_add .add .add_form textarea {
+    .notice_update .update .update_form textarea {
         width: 600px;
         border-radius: 5px;
         border: solid 1px #dadada;
@@ -47,34 +46,37 @@
         resize: none;
     }
 
-    .notice_add .add .add_form .submit button {
-        margin-right: 40px;
+    .notice_update .update .update_form .submit a {
+        margin-left: 40px;
     }
 
-    /* notice_add end */
+    /* notice_update end */
 </style>
 
 <body>
-    <!-- notice_add start -->
-    <div class="notice_add container">
+	<%@include file="/WEB-INF/view/include/admin_menu.jsp"%>
+    <!-- notice_update start -->
+    <div class="notice_update container">
         <div class="title">
-            <h1>공지사항 등록</h1>
+            <h1>공지사항 수정</h1>
             <hr>
         </div>
-        <div class="add">
-            <form class="add_form" action="" method="post">
+        <div class="update">
+            <form class="update_form" action="/admin/notice/noticeupdate" method="post">
                 <div class="form-group row">
                     <label class="col-sm-2 input-name">제목</label>
-                    <input class="form-input" name="title" type="text" required placeholder="제목을 입력하세요.">
+                    <input class="form-input" name="notice_title" type="text" required value="${notice.notice_title }">
+                    <input type="hidden" name="notice_code" value="${notice.notice_code }">
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 input-name">내용</label>
-                    <textarea name="content" cols="50" rows="8" placeholder="내용을 입력하세요." required></textarea>
+                    <textarea name="notice_content" cols="50" rows="8"  required>${notice.notice_title }</textarea>
                 </div>
                 <hr>
                 <div class="submit" align="end">
-                    <button class="btn btn-primary" type="submit"><b>작성하기</b></button>
-                    <a href="" class="btn btn-primary">되돌아가기</a>
+                    <button class="btn btn-primary" type="submit">수정</button>
+                    <a href="/admin/notice/noticedelete?noticecode=${notice.notice_code}" class="btn btn-primary">삭제</a>
+                    <a href="/admin/notice/noticeadmin?page=${cri.page}" class="btn btn-primary">되돌아가기</a>
                 </div>
             </form>
         </div>
@@ -83,5 +85,4 @@
 
     <!-- notice_add end -->
 </body>
-
 </html>

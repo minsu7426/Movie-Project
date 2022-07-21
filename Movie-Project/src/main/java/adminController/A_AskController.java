@@ -2,7 +2,6 @@ package adminController;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dto.AskDto;
+import dto.Criteria;
+import dto.PageDto;
 import service.AskService;
 
 @Controller
@@ -21,9 +22,16 @@ public class A_AskController {
 	private AskService askService;
 	
 	@RequestMapping("/askmanage")
-	public String askManage(Model model, HttpServletRequest request) {
-		List<AskDto> askList = askService.getAllList(request.getParameter("search_item"), request.getParameter("text"));
+	public String askManage(Model model, Criteria cri) {
+		PageDto pageDto = new PageDto();
+		pageDto.setCri(cri);
+		pageDto.setTotalCount(askService.getAllCount(cri.getSearch_item(), cri.getText()));
+		
+		List<AskDto> askList = askService.getAllList(cri.getSearch_item(), cri.getText(), cri);
 		model.addAttribute("askList", askList);
+		model.addAttribute("pageDto", pageDto);
+		model.addAttribute("search_item", cri.getSearch_item());
+		model.addAttribute("text", cri.getText());
 		return "/admin/ask/one_on_one_manage";
 	}
 	

@@ -87,7 +87,7 @@
         </div>
         <hr>
         <div align="center" class="search_container">
-            <form method="post" action="#">
+            <form method="post" action="/admin/ask/askmanage">
                 <table>
                     <tr>
                         <td><select class="search_select" name="search_item">
@@ -130,9 +130,31 @@
             </table>
         </div>
 
-        <div class="page" align="center">
-            <b>[1]</b> [2] [3] [4] [5]
-        </div>
+       <div aria-label="Contacts Page Navigation" align="center">
+			<ul class="page pagination justify-content-center m-0">
+				<c:if test="${pageDto.prev}">
+					<li class="page-item"><a class="page-link"
+						href="/admin/ask/askmanage?page=${pageDto.startPage - 1}">이전</a></li>
+				</c:if>
+				<c:forEach begin="${pageDto.startPage}" end="${pageDto.endPage}"
+					var="index">
+					<li class="page-item">
+						<c:choose>
+							<c:when test="${pageDto.cri.page == index}">
+								<a class="page-link" style="background-color: #ddd" href="/admin/ask/askmanage?page=${index}&search_item=${search_item}&text=${text}">${index}</a>
+							</c:when>
+							<c:otherwise>
+								<a class="page-link" href="/admin/ask/askmanage?page=${index}&search_item=${search_item}&text=${text}">${index}</a>
+							</c:otherwise>
+						</c:choose>
+					</li>
+				</c:forEach>
+				<c:if test="${pageDto.next && pageDto.endPage > 0}">
+					<li class="page-item"><a class="page-link"
+						href="/admin/ask/askmanage?page=${pageDto.endPage + 1}">다음</a></li>
+				</c:if>
+			</ul>
+		</div>
     </div>
 </body>
 </html>

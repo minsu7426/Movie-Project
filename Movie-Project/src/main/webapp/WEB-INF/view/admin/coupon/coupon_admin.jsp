@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,19 +133,52 @@
 					<th width="30%">쿠폰 이름</th>
 					<th>지급 일시</th>
 					<th>유효 기한</th>
+					<th>사용 여부</th>
 					<th>삭제</th>
 				</tr>
 				<c:forEach var="coupon" items="${couponList}" varStatus="status">
 				<tr>
-					<td>${fn:length(couponList) - status.index}</td>
+					<td>${pageDto.displayCount - status.index}</td>
 					<td>${coupon.coupon_id}</td>
 					<td>${coupon.coupon_form}</td>
 					<td>${coupon.coupon_give}</td>
 					<td>${coupon.coupon_end}</td>
+					<c:if test="${coupon.coupon_flag == true}">
+					<td style="color:green;">사용가능</td>
+					</c:if>
+					<c:if test="${coupon.coupon_flag == false}">
+					<td style="color:red;">사용완료</td>
+					</c:if>
 					<td><a href="/admin/coupon/coupondelete?couponcode=${coupon.coupon_code}">삭제</a></td>
 				</tr>
 				</c:forEach>
 			</table>
+		</div>
+		
+		<div aria-label="Contacts Page Navigation" align="center">
+			<ul class="page pagination justify-content-center m-0">
+				<c:if test="${pageDto.prev}">
+					<li class="page-item"><a class="page-link"
+						href="/admin/coupon/couponadmin?page=${pageDto.startPage - 1}">이전</a></li>
+				</c:if>
+				<c:forEach begin="${pageDto.startPage}" end="${pageDto.endPage}"
+					var="index">
+					<li class="page-item">
+						<c:choose>
+							<c:when test="${pageDto.cri.page == index}">
+								<a class="page-link" style="background-color: #ddd" href="/admin/coupon/couponadmin?page=${index}&search_item=${search_item}&text=${text}">${index}</a>
+							</c:when>
+							<c:otherwise>
+								<a class="page-link" href="/admin/coupon/couponadmin?page=${index}&search_item=${search_item}&text=${text}">${index}</a>
+							</c:otherwise>
+						</c:choose>
+					</li>
+				</c:forEach>
+				<c:if test="${pageDto.next && pageDto.endPage > 0}">
+					<li class="page-item"><a class="page-link"
+						href="/admin/coupon/couponadmin?page=${pageDto.endPage + 1}">다음</a></li>
+				</c:if>
+			</ul>
 		</div>
 	</div>
 </body>

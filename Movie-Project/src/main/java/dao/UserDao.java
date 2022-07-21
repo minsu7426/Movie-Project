@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import dto.Criteria;
 import dto.UserDto;
 
 public interface UserDao {
@@ -10,7 +11,7 @@ public interface UserDao {
 	public void setInsertUser(UserDto userDto);
 	
 	// 모든회원정보 가져오기
-	public List<UserDto> getSelectAll();
+	public List<UserDto> getSelectAll(String search_item, String text, Criteria cri);
 	
 	// 아이디로 검색해서 회원정보 가져오기
 	public UserDto getSelectById(String user_Id);
@@ -29,4 +30,10 @@ public interface UserDao {
 	
 	// 회원 등급 업데이트
 	public void setClassUpdate(UserDto userdto);
+	
+	// 아이디만 가져오기
+	public List<String> getSelectId();
+	
+	// 모든회원 개수
+	public int getAllCount(String search_item, String text);
 }

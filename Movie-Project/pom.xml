@@ -74,11 +74,11 @@
 			<version>05Nov2002</version>
 		</dependency>
 		
-				<!-- FileUpload -->
+		<!-- FileUpload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
-			<version>1.3.1</version>
+			<version>1.4</version>
 		</dependency>
 
 	</dependencies>

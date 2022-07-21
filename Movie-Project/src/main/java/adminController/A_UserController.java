@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import dto.Criteria;
+import dto.PageDto;
 import dto.UserDto;
 import service.UserService;
 
@@ -19,9 +21,16 @@ public class A_UserController {
 	private UserService userService;
 	
 	@RequestMapping("/membermanage")
-	public String membermanage(Model model) {
-		List<UserDto> userList = userService.getSelectAll();
+	public String membermanage(Model model, Criteria cri) {
+		PageDto pageDto = new PageDto();
+		pageDto.setCri(cri);
+		pageDto.setTotalCount(userService.getAllCount(cri.getSearch_item(), cri.getText()));
+		
+		List<UserDto> userList = userService.getSelectAll(cri.getSearch_item(), cri.getText(), cri);
 		model.addAttribute("userList", userList);
+		model.addAttribute("pageDto", pageDto);
+		model.addAttribute("search_item", cri.getSearch_item());
+		model.addAttribute("text", cri.getText());
 		return "/admin/member/member_manage";
 	}
 	

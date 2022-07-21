@@ -6,6 +6,7 @@ public class CouponDto {
 	private String coupon_give;
 	private String coupon_end;
 	private String coupon_id;
+	private boolean coupon_flag;
 	
 	public String getCoupon_code() {
 		return coupon_code;
@@ -36,6 +37,12 @@ public class CouponDto {
 	}
 	public void setCoupon_id(String coupon_id) {
 		this.coupon_id = coupon_id;
+	}
+	public boolean isCoupon_flag() {
+		return coupon_flag;
+	}
+	public void setCoupon_flag(boolean coupon_flag) {
+		this.coupon_flag = coupon_flag;
 	}
 	
 	

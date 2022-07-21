@@ -7,6 +7,7 @@ create table coupon(
         coupon_give date not null,
         coupon_end date not null,
         coupon_id varchar(20) null,
+        coupon_flag boolean default true,
         primary key(coupon_code)
 );
 

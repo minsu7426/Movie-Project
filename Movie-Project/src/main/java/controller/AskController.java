@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dto.AskDto;
+import dto.Criteria;
+import dto.PageDto;
 import service.AskService;
 
 @Controller
@@ -39,12 +41,19 @@ public class AskController {
 	}
 	
 	@RequestMapping("/one-on-one-detail")
-	public String oneDetail(@RequestParam("askid")String id, Model model) {
-		List<AskDto> askList = askService.getListById(id);
+	public String oneDetail(@RequestParam("askid")String id, Model model, Criteria cri) {
+		List<AskDto> askList = askService.getListById(id, cri);
+		PageDto pageDto = new PageDto();
+		
+		pageDto.setCri(cri);
+		pageDto.setTotalCount(askService.getSearchListCountById(id));
+		
+		System.out.println(pageDto.getTotalCount());
 		if(askList == null) {
 			return "/one_on_one/one_on_one_detail";
 		} else{
 			model.addAttribute("askList", askList);
+			model.addAttribute("pageDto", pageDto);
 			return "/one_on_one/one_on_one_detail";
 		}
 	}

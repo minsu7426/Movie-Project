@@ -65,7 +65,7 @@
 				<div class="movie_title">
 					<div class="movie_text">
 						<div class="movie_flex">
-							<img class="age" src="/resources/images/m15.png" width="40px" height="40px"
+							<img style="margin-right: 10px;" class="age" src="/resources/images/m15.png" width="20px" height="20px"
 								alt="">
 							<h3>헤어질 결심</h3>
 						</div>

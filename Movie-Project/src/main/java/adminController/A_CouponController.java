@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dto.CouponDto;
+import dto.Criteria;
+import dto.PageDto;
 import service.CouponService;
+import service.UserService;
 
 @Controller
 @RequestMapping("/admin/coupon")
@@ -21,10 +24,21 @@ public class A_CouponController {
 	@Autowired
 	private CouponService couponService;
 	
+	@Autowired
+	private UserService userService;
+	
 	@RequestMapping("/couponadmin")
-	public String couponAdmin(Model model, HttpServletRequest request) {
-		List<CouponDto> couponList = couponService.getAllCoupon(request.getParameter("search_item"), request.getParameter("text"));
+	public String couponAdmin(Model model, Criteria cri) {
+		PageDto pageDto = new PageDto();
+		pageDto.setCri(cri);
+		pageDto.setTotalCount(couponService.getAllCouponCount(cri.getSearch_item(), cri.getText()));
+		System.out.println(cri.getSearch_item());
+		System.out.println(cri.getText());
+		List<CouponDto> couponList = couponService.getAllCoupon(cri.getSearch_item(), cri.getText(), cri);
 		model.addAttribute("couponList", couponList);
+		model.addAttribute("pageDto", pageDto);
+		model.addAttribute("search_item", cri.getSearch_item());
+		model.addAttribute("text", cri.getText());
 		return "/admin/coupon/coupon_admin";
 	}
 	
@@ -35,7 +49,9 @@ public class A_CouponController {
 	}
 	
 	@RequestMapping("/couponadd")
-	public String couponAdd() {
+	public String couponAdd(Model model) {
+		List<String> idList = userService.getSelectId();
+		model.addAttribute("idList", idList);
 		return "/admin/coupon/coupon_add";
 	}
 	

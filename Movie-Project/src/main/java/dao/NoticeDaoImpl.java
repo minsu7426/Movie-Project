@@ -109,5 +109,29 @@ public class NoticeDaoImpl implements NoticeDao {
 		}, notice_code);
 		return noticeDto.get(0);
 	}
+	
+	@Override
+	public void setInsert(NoticeDto noticeDto) {
+		String sql = "insert into notice(notice_title, notice_content, notice_date, notice_hit) values (?, ?, ?, ?)";
+		jdbcTemplate.update(sql, 
+				noticeDto.getNotice_title(),
+				noticeDto.getNotice_content(),
+				noticeDto.getNotice_date(),
+				0
+				);
+	}
+	
+	@Override
+	public void setDelete(int notice_code) {
+		String sql = "delete from notice where notice_code = ?";
+		jdbcTemplate.update(sql, notice_code);
+		
+	}
+	
+	@Override
+	public void setUpdate(NoticeDto noticeDto) {
+		String sql = "update notice set notice_title = ?, notice_content = ? where notice_code = ?";
+		jdbcTemplate.update(sql, noticeDto.getNotice_title(), noticeDto.getNotice_content(), noticeDto.getNotice_code());
+	}
 
 }

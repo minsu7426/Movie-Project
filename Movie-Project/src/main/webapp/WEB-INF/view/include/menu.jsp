@@ -57,6 +57,7 @@ a {
 .menu>.menu-bottom>div>ul {
 	display: flex;
 	line-height: 100px;
+	text-align: center;
 }
 
 .menu>.menu-bottom>div>ul>li {
@@ -66,6 +67,8 @@ a {
 	padding: 10px 20px;
 	font-size: 22px;
 	font-weight: 700;
+	width: 150px;
+	vertical-align: center;
 }
 
 .menu>.menu-bottom>div>ul>li>ul {
@@ -75,9 +78,11 @@ a {
 	text-align: center;
 	font-size: 14px;
 	position: absolute;
-	background-color: red;
-	width: 100px;
+	background-color: black;
+	opacity: 0.8;
+	width: 150px;
 	z-index: 100;
+	border-radius: 0px 0px 10px 10px;
 }
 
 .menu>.menu-bottom>div>ul>li:hover>ul {
@@ -87,6 +92,7 @@ a {
 .menu>.menu-bottom>div>ul>li>ul>li>a {
 	display: block;
 	width: 100%;
+	color: white;
 }
 
 .title {

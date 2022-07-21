@@ -90,12 +90,19 @@
 					<th>쿠폰이름</th>
 					<th>지급일</th>
 					<th>유효기간</th>
+					<th>사용여부</th>
 				</tr>
 				<c:forEach var="coupon" items="${couponList}">
 				<tr>
 					<td>${coupon.coupon_form }</td>
 					<td>${coupon.coupon_give }</td>
 					<td>${coupon.coupon_end }</td>
+					<c:if test="${coupon.coupon_flag == true}">
+					<td style="color:green;">사용가능</td>
+					</c:if>
+					<c:if test="${coupon.coupon_flag == false}">
+					<td style="color:red;">사용완료</td>
+					</c:if>
 				</tr>
 				</c:forEach>
 			</table>

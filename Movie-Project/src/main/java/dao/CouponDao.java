@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import dto.CouponDto;
+import dto.Criteria;
 
 public interface CouponDao {
 	
@@ -10,7 +11,7 @@ public interface CouponDao {
 	public void setInsertCoupon(CouponDto couponDto);
 	
 	// 모든 쿠폰 가져오기
-	public List<CouponDto> getAllCoupon(String search_item, String text);
+	public List<CouponDto> getAllCoupon(String search_item, String text, Criteria cri);
 	
 	// 쿠폰 삭제
 	public void setDeleteCoupon(String code);
@@ -18,9 +19,12 @@ public interface CouponDao {
 	// 해당 id 쿠폰 가져오기
 	public List<CouponDto> getCouponById(String id);
 	
-	// 기한 만료된 쿠폰 삭제
-	public void setDeleteEndDate(String end_date);
-	
 	// 회원이 쿠폰 등록
 	public void setCouponSubmit(String id, String code);
+	
+	// 기한 지나면 사용완료
+	public void setCouponComplete(String end_date);
+	
+	// 쿠폰 개수 가져오기
+	public int getAllCouponCount(String search_item, String text);
 }

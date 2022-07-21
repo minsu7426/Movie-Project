@@ -1,11 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style>
@@ -80,6 +81,7 @@
 </style>
 
 <body>
+	<%@include file="/WEB-INF/view/include/admin_menu.jsp"%>
     <!-- notice_admin start -->
     <div class="notice_admin container">
 
@@ -89,13 +91,12 @@
         <hr>
 
         <div align="center" class="search_container">
-            <form method="post" action="#">
+            <form method="post" action="/admin/notice/noticeadmin">
                 <table>
                     <tr>
                         <td><select class="search_select" name="search_item">
-                                <option value="title">제목</option>
-                                <option value="content">본문 내용</option>
-                                <option value="name">글쓴이</option>
+                                <option value="notice_title">제목</option>
+                                <option value="notice_content">본문 내용</option>
                             </select></td>
                         <td class="search"><input class="search_content" type="text" name="text" /> <input type="submit"
                                 class="search_btn" value="검색" />
@@ -113,52 +114,46 @@
                     <th>등록일</th>
                     <th>조회수</th>
                 </tr>
+                <c:forEach var="notice" items="${list}">
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
+                    <td>${notice.notice_code }</td>
+                    <td><a href="/admin/notice/detail?notice_code=${notice.notice_code}&page=${pageDto.cri.page}">${notice.notice_title }</a></td>
+                    <fmt:parseDate value="${notice.notice_date }" pattern="yyyy-MM-dd HH:mm:ss" var="date" />
+                    <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${date}" /></td>
+                    <td>${notice.notice_hit }</td>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                </tr>
+                </c:forEach>
             </table>
         </div>
 		<div class="add_btn" align="right">
-			<a href="/notice_add.do?number=<%=sessionNumber%>"
-				class="btn btn-primary">등록</a>
+			<a href="/admin/notice/noticeadd" class="btn btn-primary">등록</a>
 		</div>
-        <div class="page" align="center">
-            <b>[1]</b> [2] [3] [4] [5]
-        </div>
+		
+		<div aria-label="Contacts Page Navigation" align="center">
+			<ul class="page pagination justify-content-center m-0">
+				<c:if test="${pageDto.prev}">
+					<li class="page-item"><a class="page-link"
+						href="/admin/notice/noticeadmin?page=${pageDto.startPage - 1}">이전</a></li>
+				</c:if>
+				<c:forEach begin="${pageDto.startPage}" end="${pageDto.endPage}"
+					var="index">
+					<li class="page-item">
+						<c:choose>
+							<c:when test="${pageDto.cri.page == index}">
+								<a class="page-link" style="background-color: #ddd" href="/admin/notice/noticeadmin?page=${index}&search_item=${search_item}&text=${text}">${index}</a>
+							</c:when>
+							<c:otherwise>
+								<a class="page-link" href="/admin/notice/noticeadmin?page=${index}&search_item=${search_item}&text=${text}">${index}</a>
+							</c:otherwise>
+						</c:choose>
+					</li>
+				</c:forEach>
+				<c:if test="${pageDto.next && pageDto.endPage > 0}">
+					<li class="page-item"><a class="page-link"
+						href="/admin/notice/noticeadmin?page=${pageDto.endPage + 1}">다음</a></li>
+				</c:if>
+			</ul>
+		</div>
     </div>
 </body>
-
 </html>

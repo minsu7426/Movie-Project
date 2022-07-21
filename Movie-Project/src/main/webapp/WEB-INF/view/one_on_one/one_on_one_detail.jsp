@@ -147,7 +147,7 @@
                 </tr>
                 <c:forEach var="ask" items="${askList}" varStatus="status">
                 <tr>
-                    <td>${fn:length(askList) - status.index}</td>
+                    <td>${pageDto.displayCount - status.index}</td>
                     <td><a href="/ask/oneonone-user?askcode=${ask.ask_code }">${ask.ask_title }</a></td>
                     <td>${ask.ask_date }</td>
                     <c:if test="${ask.ask_re_content == null}">
@@ -160,10 +160,33 @@
                 </c:forEach>
             </table>
         </div>
+        
+		<div aria-label="Contacts Page Navigation" align="center">
+			<ul class="page pagination justify-content-center m-0">
+				<c:if test="${pageDto.prev}">
+					<li class="page-item"><a class="page-link"
+						href="/ask/one-on-one-detail?page=${pageDto.startPage - 1}&askid=${user[0]}">이전</a></li>
+				</c:if>
+				<c:forEach begin="${pageDto.startPage}" end="${pageDto.endPage}"
+					var="index">
+					<li class="page-item">
+						<c:choose>
+							<c:when test="${pageDto.cri.page == index}">
+								<a class="page-link" style="background-color: #ddd" href="/ask/one-on-one-detail?page=${index}&askid=${user[0]}">${index}</a>
+							</c:when>
+							<c:otherwise>
+								<a class="page-link" href="/ask/one-on-one-detail?page=${index}&askid=${user[0]}">${index}</a>
+							</c:otherwise>
+						</c:choose>
+					</li>
+				</c:forEach>
+				<c:if test="${pageDto.next && pageDto.endPage > 0}">
+					<li class="page-item"><a class="page-link"
+						href="/ask/one-on-one-detail?page=${pageDto.endPage + 1}&askid=${user[0]}">다음</a></li>
+				</c:if>
+			</ul>
+		</div>
 
-        <div class="page" align="center">
-            <b>[1]</b> [2] [3] [4] [5]
-        </div>
     </div>
 </body>
 </html>

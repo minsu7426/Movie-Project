@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import dao.CouponDao;
 import dto.CouponDto;
+import dto.Criteria;
 
 @Service
 public class CouponServiceImpl implements CouponService {
@@ -50,16 +51,16 @@ public class CouponServiceImpl implements CouponService {
 	}
 	
 	@Override
-	public List<CouponDto> getAllCoupon(String search_item, String text) {
+	public List<CouponDto> getAllCoupon(String search_item, String text, Criteria cri) {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		String end_date = formatter.format(new Date());
 		
-		List<CouponDto> list = couponDao.getAllCoupon(search_item, text);
+		List<CouponDto> list = couponDao.getAllCoupon(search_item, text, cri);
 		
 		for(int i = 0; i < list.size(); i++) {
 			if(list.get(i).getCoupon_end().equals(end_date)) {
-				couponDao.setDeleteEndDate(end_date);
-				list = couponDao.getAllCoupon(search_item, text);
+				couponDao.setCouponComplete(end_date);
+				list = couponDao.getAllCoupon(search_item, text, cri);
 			}
 		}
 		return list;
@@ -81,7 +82,7 @@ public class CouponServiceImpl implements CouponService {
 		List<CouponDto> list = couponDao.getCouponById(id);
 		for(int i = 0; i < list.size(); i++) {
 			if(list.get(i).getCoupon_end().equals(end_date)) {
-				couponDao.setDeleteEndDate(end_date);
+				couponDao.setCouponComplete(end_date);
 				list = couponDao.getCouponById(id);
 			}
 		}
@@ -91,5 +92,10 @@ public class CouponServiceImpl implements CouponService {
 	@Override
 	public void setCouponSubmit(String id, String code) {
 		couponDao.setCouponSubmit(id, code);
+	}
+	
+	@Override
+	public int getAllCouponCount(String search_item, String text) {
+		return couponDao.getAllCouponCount(search_item, text);
 	}
 }
