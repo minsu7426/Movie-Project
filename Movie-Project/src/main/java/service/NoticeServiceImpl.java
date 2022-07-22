@@ -17,19 +17,10 @@ public class NoticeServiceImpl implements NoticeService{
 	@Autowired
 	private NoticeDao noticeDao;
 	
-	@Override
-	public List<NoticeDto> getList(Criteria cri) {
-		return noticeDao.getList(cri);
-	}
 
 	@Override
 	public List<NoticeDto> getSearchList(Criteria cri) {
 		return noticeDao.getSearchList(cri);
-	}
-
-	@Override
-	public int getListCount() {
-		return noticeDao.getListCount();
 	}
 
 	@Override

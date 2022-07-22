@@ -1,11 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style>
@@ -52,9 +51,9 @@
         margin-top: 50px;
     }
 </style>
-
 <body>
-    <!-- sales_total start -->
+<jsp:include page="../../include/admin_menu.jsp"/>
+   <!-- sales_total start -->
     <div class="sales_total container">
 
         <div class="title">
@@ -139,5 +138,4 @@
 
     </div>
 </body>
-
 </html>

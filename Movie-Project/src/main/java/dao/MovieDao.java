@@ -20,4 +20,6 @@ public interface MovieDao {
 	
 	//영화 업로드
 	public void setAdd(MovieDto moviedto);
+	
+	
 }

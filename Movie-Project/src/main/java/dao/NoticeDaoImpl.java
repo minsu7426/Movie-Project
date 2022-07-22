@@ -19,34 +19,16 @@ public class NoticeDaoImpl implements NoticeDao {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public List<NoticeDto> getList(Criteria cri) {
-		String sql = "select * from notice order by notice_code desc limit ?, ?";
-		List<NoticeDto> list = jdbcTemplate.query(sql, new RowMapper<NoticeDto>() {
-
-			@Override
-			public NoticeDto mapRow(ResultSet rs, int rowNum) throws SQLException {
-				NoticeDto noticeDto = new NoticeDto();
-				noticeDto.setNotice_code(rs.getInt("notice_code"));
-				noticeDto.setNotice_title(rs.getString("notice_title"));
-				noticeDto.setNotice_content(rs.getString("notice_content"));
-				noticeDto.setNotice_date(rs.getString("notice_date"));
-				noticeDto.setNotice_hit(rs.getInt("notice_hit"));
-				return noticeDto;
-			}
-		}, cri.getPageStart(), cri.getPerPageNum());
-		return list;
-	}
-
-	@Override
 	public List<NoticeDto> getSearchList(Criteria cri) {
-		String title;
+		String title = cri.getSearch_item();
 		String text = "'%" + cri.getText() + "%'";
-		if (cri.getSearch_item().equals("title")) {
-			title = "notice_title";
+		String sql;
+
+		if (cri.getSearch_item() == null || cri.getSearch_item().equals("")) {
+			sql = "select * from notice order by notice_code desc limit ?, ?";
 		} else {
-			title = "notice_content";
+			sql = "select * from notice where " + title + " like " + text + " order by notice_code desc limit ?, ?";
 		}
-		String sql = "select * from notice where " + title + " like " + text + " order by notice_code desc limit ?, ?";
 		List<NoticeDto> list = jdbcTemplate.query(sql, new RowMapper<NoticeDto>() {
 
 			@Override
@@ -65,31 +47,23 @@ public class NoticeDaoImpl implements NoticeDao {
 
 	@Override
 	public int getSearchListCount(Criteria cri) {
-		String title;
+		String title = cri.getSearch_item();
 		String text = "'%" + cri.getText() + "%'";
-		if (cri.getSearch_item().equals("title")) {
-			title = "notice_title";
+		String sql;
+		if (cri.getSearch_item() == null || cri.getSearch_item().equals("")) {
+			sql = "select count(*) from notice";
 		} else {
-			title = "notice_content";
+			sql = "select count(*) from notice where " + title + " like " + text;
 		}
-		String sql = "select count(*) from notice where " + title + " like " + text;
 		int count = jdbcTemplate.queryForObject(sql, Integer.class);
 		return count;
 	}
-	
+
 	@Override
 	public void setHit(int notice_code) {
 		String sql = "update notice set notice_hit = notice_hit+1 where notice_code = " + notice_code;
 		jdbcTemplate.update(sql);
 	}
-
-	@Override
-	public int getListCount() {
-		String sql = "select count(*) from notice";
-		int count = jdbcTemplate.queryForObject(sql, Integer.class);
-		return count;
-	}
-
 
 	@Override
 	public NoticeDto getRead(int notice_code) {

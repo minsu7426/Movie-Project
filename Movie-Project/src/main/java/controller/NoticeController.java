@@ -24,25 +24,21 @@ public class NoticeController {
 	
 	@RequestMapping("list")
 	public String list(Criteria cri, Model model) {
-		List<NoticeDto> list;
 		PageDto pageDto = new PageDto();
 		pageDto.setCri(cri);
+
+		List<NoticeDto> list = noticeService.getSearchList(cri);
+		pageDto.setTotalCount(noticeService.getSearchListCount(cri));
 		
-		if(cri.getSearch_item() != null && cri.getText() != null) {
-			list = noticeService.getSearchList(cri);
-			pageDto.setTotalCount(noticeService.getSearchListCount(cri));
-			System.out.println("카운트="+noticeService.getSearchListCount(cri));
-		} else {
-			list = noticeService.getList(cri);
-			pageDto.setTotalCount(noticeService.getListCount());
-		}
 		model.addAttribute("list", list);
 		model.addAttribute("pageDto", pageDto);
 		return "notice/notice";
 	}
 	
 	@RequestMapping("detail")
-	public String detail(@RequestParam("notice_code") int notice_code,@ModelAttribute("cri") Criteria cri, Model model) {
+	public String detail(@RequestParam("notice_code") int notice_code, @ModelAttribute("cri") Criteria cri, Model model) {
+		System.out.println("검색:"+cri.getSearch_item());
+		System.out.println("텍스트:"+cri.getText());
 		NoticeDto dto = noticeService.getRead(notice_code);
 		
 		model.addAttribute("dto",dto);

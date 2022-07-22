@@ -24,18 +24,11 @@ public class A_NoticeController {
 	
 	@RequestMapping("/noticeadmin")
 	public String noticeAdmin(Criteria cri, Model model) {
-		List<NoticeDto> list;
 		PageDto pageDto = new PageDto();
 		pageDto.setCri(cri);
 		
-		if(cri.getSearch_item() != null && cri.getText() != null) {
-			list = noticeService.getSearchList(cri);
-			pageDto.setTotalCount(noticeService.getSearchListCount(cri));
-			System.out.println("카운트="+noticeService.getSearchListCount(cri));
-		} else {
-			list = noticeService.getList(cri);
-			pageDto.setTotalCount(noticeService.getListCount());
-		}
+		List<NoticeDto> list = noticeService.getSearchList(cri);
+		pageDto.setTotalCount(noticeService.getSearchListCount(cri));
 		model.addAttribute("list", list);
 		model.addAttribute("pageDto", pageDto);
 
