@@ -16,9 +16,9 @@
 	margin-left: 20px;
 }
 
-.coupon_manage>.coupon_title {
+/* .coupon_manage>.coupon_title {
 	position: relative;
-}
+} */
 
 .coupon_manage>.coupon_title>button {
 	position: absolute;
@@ -81,9 +81,9 @@
 	color: white;
 }
 
-.coupon_manage>.search_container {
+/* .coupon_manage>.search_container {
 	position: relative;
-}
+} */
 
 .coupon_manage>.search_container>a {
 	position: absolute;
@@ -106,8 +106,6 @@
 	<div class="coupon_manage container">
 		<div class="coupon_title">
 			<h1>쿠폰관리</h1>
-			<button class="btn btn-primary" id="modal_open_btn"
-				onclick="couponSubmit();">쿠폰등록</button>
 			<hr>
 		</div>
 		<div align="center" class="search_container">
@@ -124,6 +122,9 @@
 					</tr>
 				</table>
 			</form>
+			<div align="right">
+				<button class="btn btn-primary" id="modal_open_btn" onclick="couponSubmit();">쿠폰등록</button>
+			</div>
 		</div>
 		<div class="container">
 			<table class="table">

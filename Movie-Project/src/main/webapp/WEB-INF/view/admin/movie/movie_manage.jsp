@@ -20,11 +20,21 @@
 	box-sizing: border-box;
 }
 
+.movie_list>.container{
+	text-align: right;
+}
+.movie_list>.container>a{
+	width: 60px;
+	height: 40px;
+	font-size: 16px;
+	line-height: 28px;
+}
+
 .movie_list>.container>.table {
 	border-collapse: collapse;
 	text-align: center;
 	border-top: 3px solid #22499d;
-	margin-top: 50px;
+	margin-top: 20px;
 }
 
 .movie_list>.container>.table th:nth-child(2) {
@@ -78,20 +88,6 @@
 	border: 1px solid #c8d1db
 }
 
-.movie_list>.search_container {
-	position: relative;
-}
-
-.movie_list>.search_container>a {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 60px;
-	height: 40px;
-	font-size: 16px;
-	line-height: 28px;
-}
-
 .movie_list h1 {
 	margin-left: 20px;
 }
@@ -119,10 +115,10 @@
 					</tr>
 				</table>
 			</form>
-			<a href="/admin/movie/movie_add" class="btn btn-primary">등록</a>
 		</div>
 
 		<div class="container">
+			<a href="/admin/movie/movie_add" class="btn btn-primary">등록</a>
 			<table class="table">
 				<tr class="table_header">
 					<th>순서</th>

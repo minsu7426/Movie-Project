@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import dto.Criteria;
 import dto.MovieDto;
+import dto.PageDto;
 import dto.ScreenDto;
 import service.ScreenService;
 
@@ -21,12 +23,17 @@ public class A_ScreenController {
 	private ScreenService screenService;
 
 	@RequestMapping("screen_manage")
-	public void screen_manage(Model model) {
+	public void screen_manage(Criteria cri, Model model) {
+		PageDto pageDto = new PageDto();
+		pageDto.setCri(cri);
+		
 		List<MovieDto> title = screenService.getMovieList();
-		List<ScreenDto> list = screenService.getScreenList();
+		List<ScreenDto> list = screenService.getScreenList(cri);
+		
 		
 		model.addAttribute("title",title);
 		model.addAttribute("list",list);
+		model.addAttribute("pageDto", pageDto);
 	}
 
 	@RequestMapping("screen_add")

@@ -14,10 +14,10 @@ public interface NoticeDao {
 	public NoticeDto getRead(int notice_code);
 	
 	//게시글 검색
-	public List<NoticeDto> getSearchList(Criteria cri);
+	public List<NoticeDto> getList(Criteria cri);
 	
 	//게시글 검색 총 글 개수
-	public int getSearchListCount(Criteria cri);
+	public int getListCount(Criteria cri);
 	
 	//게시물 등록
 	public void setInsert(NoticeDto noticeDto);

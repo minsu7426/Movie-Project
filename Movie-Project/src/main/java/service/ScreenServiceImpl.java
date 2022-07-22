@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.ScreenDao;
+import dto.Criteria;
 import dto.MovieDto;
 import dto.ScreenDto;
 
@@ -22,13 +23,13 @@ public class ScreenServiceImpl implements ScreenService{
 	private ScreenDao screenDao;
 	
 	@Override
-	public List<ScreenDto> getScreenList() {
-		return screenDao.getScreenList();
+	public List<ScreenDto> getScreenList(Criteria cri) {
+		return screenDao.getScreenList(cri);
 	}
 	
 	@Override
-	public int getScreenCount() {
-		return 0;
+	public int getScreenCount(Criteria cri) {
+		return screenDao.getScreenCount(cri);
 	}
 	
 	@Override

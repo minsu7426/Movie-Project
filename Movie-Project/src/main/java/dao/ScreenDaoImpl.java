@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import dto.Criteria;
 import dto.MovieDto;
 import dto.ScreenDto;
 
@@ -24,8 +25,9 @@ public class ScreenDaoImpl implements ScreenDao {
 	JdbcTemplate jdbcTemplate;
 
 	@Override
-	public List<ScreenDto> getScreenList() {
-		String sql = "select * from screen where scr_flag = true order by scr_date asc";
+	public List<ScreenDto> getScreenList(Criteria cri) {
+		String sql = "select * from screen where scr_flag = true order by scr_date asc limit ?, ?";
+
 		List<ScreenDto> list = jdbcTemplate.query(sql, new RowMapper<ScreenDto>() {
 			@Override
 			public ScreenDto mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -34,20 +36,20 @@ public class ScreenDaoImpl implements ScreenDao {
 				dto.setScr_movie(rs.getInt("scr_movie"));
 				dto.setScr_seat(rs.getString("scr_seat"));
 				dto.setScr_screen(rs.getString("scr_screen"));
-				dto.setScr_time(rs.getString("scr_time").substring(0,5));
+				dto.setScr_time(rs.getString("scr_time").substring(0, 5));
 				dto.setScr_date(rs.getString("scr_date"));
 				return dto;
 			}
-		});
-		
+		}, cri.getPageStart(), cri.getPerPageNum());
+
 		return list;
 	}
 
 	@Override
-	public int getScreenCount() {
+	public int getScreenCount(Criteria cri) {
 		return 0;
 	}
-	
+
 	@Override
 	public List<MovieDto> getMovieList() {
 		String sql = "select movie_code, movie_title from movie";
@@ -60,7 +62,7 @@ public class ScreenDaoImpl implements ScreenDao {
 				return dto;
 			}
 		});
-		
+
 		return list;
 	}
 
@@ -73,7 +75,7 @@ public class ScreenDaoImpl implements ScreenDao {
 			}
 		}
 	}
-	
+
 	@Override
 	public ScreenDto getUpdate(String scr_code) {
 		String sql = "select * from screen where scr_code = ?";
@@ -89,23 +91,24 @@ public class ScreenDaoImpl implements ScreenDao {
 				dto.setScr_date(rs.getString("scr_date"));
 				return dto;
 			}
-		},scr_code);
+		}, scr_code);
 		return dto.get(0);
 	}
-	
+
 	@Override
 	public String getMovieTitle(String scr_code) {
-		String sql = "select movie.movie_title from screen inner join movie on screen.scr_movie = movie.movie_code  where scr_code = " + scr_code;
+		String sql = "select movie.movie_title from screen inner join movie on screen.scr_movie = movie.movie_code  where scr_code = "
+				+ scr_code;
 		String title = jdbcTemplate.queryForObject(sql, String.class);
 		return title;
 	}
-	
+
 	@Override
 	public void setDelete(String scr_code) {
-		String sql = "delete from screen where scr_code ="+scr_code;
+		String sql = "delete from screen where scr_code =" + scr_code;
 		jdbcTemplate.update(sql);
 	}
-	
+
 	@Override
 	public void setUpdate(ScreenDto dto) {
 		String sql = "update screen set scr_date = ?, scr_screen= ?, scr_time = ? where scr_code = ?";

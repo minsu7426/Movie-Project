@@ -19,7 +19,7 @@ public class NoticeDaoImpl implements NoticeDao {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public List<NoticeDto> getSearchList(Criteria cri) {
+	public List<NoticeDto> getList(Criteria cri) {
 		String title = cri.getSearch_item();
 		String text = "'%" + cri.getText() + "%'";
 		String sql;
@@ -46,7 +46,7 @@ public class NoticeDaoImpl implements NoticeDao {
 	}
 
 	@Override
-	public int getSearchListCount(Criteria cri) {
+	public int getListCount(Criteria cri) {
 		String title = cri.getSearch_item();
 		String text = "'%" + cri.getText() + "%'";
 		String sql;

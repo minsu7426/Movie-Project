@@ -71,11 +71,10 @@ a {
 .menu>.menu-bottom>div>ul>li {
 	z-index: 100;
 	position: relative;
-	margin-left: 20px;
 	padding: 10px 20px;
-	font-size: 22px;
+	font-size: 18px;
 	font-weight: 700;
-	width: 150px;
+	width: 140px;
 	vertical-align: center;
 }
 

@@ -11,84 +11,81 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style>
 * {
-	margin: 0;
-	padding: 0;
-	text-decoration: none;
-	list-style: none;
-	box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   text-decoration: none;
+   list-style: none;
+   box-sizing: border-box;
+}
+
+.cinema_manage>.container{
+   text-align: right;
 }
 
 .cinema_manage>.container>.table {
-	border-collapse: collapse;
-	text-align: center;
-	border-top: 3px solid #22499d;
-	margin-top: 50px;
+   border-collapse: collapse;
+   text-align: center;
+   border-top: 3px solid #22499d;
+   margin-top: 20px;
 }
 
 .cinema_manage>.container>.table th:nth-child(3) {
-	width: 40%;
+   width: 40%;
 }
 
 .cinema_manage>.container>.table th {
-	font-size: 16px;
-	text-align: center;
-	color: #555555;
-	font-weight: bold;
-	background-color: #f8fafc;
-	color: #091f46;
+   font-size: 16px;
+   text-align: center;
+   color: #555555;
+   font-weight: bold;
+   background-color: #f8fafc;
+   color: #091f46;
 }
 
 .cinema_manage>.container>.table td {
-	font-size: 16px;
-	text-align: center;
-	color: #555555;
+   font-size: 16px;
+   text-align: center;
+   color: #555555;
 }
 
 .cinema_manage>.container>.table tr:hover {
-	background-color: #f7f7f7;
+   background-color: #f7f7f7;
 }
 
 .cinema_manage>.search_container {
-	margin-top: 10px;
-	height: 30px;
+   margin-top: 10px;
+   height: 30px;
 }
 
 .cinema_manage>.search_container .search_content {
-	width: 300px;
-	height: 40px;
+   width: 300px;
+   height: 40px;
 }
 
 .cinema_manage>.search_container .search_select {
-	height: 40px;
+   height: 40px;
 }
 
 .cinema_manage>.search_container .search .search_btn {
-	height: 40px;
-	width: 60px;
-	background-color: #394b61;
-	color: white;
+   height: 40px;
+   width: 60px;
+   background-color: #394b61;
+   color: white;
 }
 
 .board_search td {
-	border: 1px solid #c8d1db
+   border: 1px solid #c8d1db
 }
 
-.cinema_manage>.search_container {
-	position: relative;
-}
-
-.cinema_manage>.search_container>a {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 60px;
-	height: 40px;
-	font-size: 16px;
-	line-height: 28px;
+.cinema_manage>.container>a {
+   width: 60px;
+   height: 40px;
+   font-size: 16px;
+   line-height: 28px;
 }
 
 .cinema_manage h1 {
-	margin-left: 20px;
+   margin-left: 20px;
 }
 </style>
 
@@ -116,10 +113,10 @@
 					</tr>
 				</table>
 			</form>
-			<a href="/admin/screen/screen_add" class="btn btn-primary">등록</a>
 		</div>
 
 		<div class="container">
+			<a href="/admin/screen/screen_add" class="btn btn-primary">등록</a>
 			<table class="table">
 				<tr class="table_header">
 					<th>순서</th>
@@ -154,8 +151,30 @@
 			</table>
 		</div>
 
-		<div class="page" align="center">
-			<b>[1]</b> [2] [3] [4] [5]
+		<div aria-label="Contacts Page Navigation" align="center">
+			<ul class="page pagination justify-content-center m-0">
+				<c:if test="${pageDto.prev}">
+					<li class="page-item"><a class="page-link"
+						href="/admin/notice/noticeadmin?page=${pageDto.startPage - 1}">이전</a></li>
+				</c:if>
+				<c:forEach begin="${pageDto.startPage}" end="${pageDto.endPage}"
+					var="index">
+					<li class="page-item">
+						<c:choose>
+							<c:when test="${pageDto.cri.page == index}">
+								<a class="page-link" style="background-color: #ddd" href="/admin/notice/noticeadmin?page=${index}&search_item=${search_item}&text=${text}">${index}</a>
+							</c:when>
+							<c:otherwise>
+								<a class="page-link" href="/admin/notice/noticeadmin?page=${index}&search_item=${search_item}&text=${text}">${index}</a>
+							</c:otherwise>
+						</c:choose>
+					</li>
+				</c:forEach>
+				<c:if test="${pageDto.next && pageDto.endPage > 0}">
+					<li class="page-item"><a class="page-link"
+						href="/admin/notice/noticeadmin?page=${pageDto.endPage + 1}">다음</a></li>
+				</c:if>
+			</ul>
 		</div>
 	</div>
 </body>

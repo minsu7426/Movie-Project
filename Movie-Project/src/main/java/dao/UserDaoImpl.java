@@ -54,7 +54,7 @@ public class UserDaoImpl implements UserDao {
 						user.setUser_pw(rs.getString("user_pw"));
 						user.setUser_name(rs.getString("user_name"));
 						user.setUser_email(rs.getString("user_email"));
-						user.setUser_jumin(rs.getString("user_jumin").substring(0, 6));
+						user.setUser_jumin(rs.getString("user_jumin"));
 						user.setUser_phone(rs.getString("user_phone"));
 						user.setUser_date(rs.getString("user_date"));
 						user.setUser_class(rs.getString("user_class"));

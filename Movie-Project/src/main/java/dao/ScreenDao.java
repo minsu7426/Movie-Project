@@ -3,17 +3,19 @@ package dao;
 import java.time.LocalDate;
 import java.util.List;
 
+import dto.Criteria;
 import dto.MovieDto;
 import dto.ScreenDto;
 
 public interface ScreenDao {
 
 	//상영관 목록 가져오기
-	public List<ScreenDto> getScreenList();
+	public List<ScreenDto> getScreenList(Criteria cri);
 	
 	//상영관 개수 가져오기
-	public int getScreenCount();
+	public int getScreenCount(Criteria cri);
 	
+	//상영관 추가
 	public void setScreenAdd(ScreenDto dto, List<String> timeChecked, List<LocalDate> date);
 	
 	//영화 리스트 가져오기
