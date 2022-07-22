@@ -85,8 +85,13 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public String getSearchId(String userName, String userJumin) {
+	public List<String> getSearchId(String userName, String userJumin) {
 		return userDao.getSearchId(userName, userJumin);
+	}
+	
+	@Override
+	public List<String> getSearchPw(String userId, String userName) {
+		return userDao.getSearchPw(userId, userName);
 	}
 	
 }

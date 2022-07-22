@@ -166,7 +166,15 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<String> getSearchId(String userName, String userJumin) {
 		String sql = "select user_id from user where user_name = ? and user_jumin = ?";
-		
+		List<String> id = jdbcTemplate.queryForList(sql, String.class, userName, userJumin);
+		return id;
+	}
+	
+	@Override
+	public List<String> getSearchPw(String userId, String userName) {
+		String sql = "select user_pw from user where user_id = ? and user_name = ?";
+		List<String> pw = jdbcTemplate.queryForList(sql, String.class, userId, userName);
+		return pw;
 	}
 
 }

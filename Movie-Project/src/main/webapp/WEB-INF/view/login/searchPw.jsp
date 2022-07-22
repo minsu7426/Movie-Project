@@ -103,26 +103,29 @@
             <img src="../resources/images/logo_transparent.png" alt="" width="200px">
             <h1>PW 찾기</h1>
             <c:if test="${!empty error}">
-            <h4 class="error">PW는 '***' 입니다.</h4>
+            <h4 class="error">해당 정보의 비밀번호가 존재하지 않습니다.</h4>
             </c:if>
-            <form class="login_form" action="/login/login" method="post">
+            <c:if test="${!empty pw}">
+            <h4 class="error">PW는 '${pw}' 입니다.</h4>
+            </c:if>
+            <form class="login_form" action="/login/searchpw" method="post">
                 <div class="login_idpw">
                     <div class="login_id">
                         <h4>ID</h4>
-                        <input type="text" class="form-control" placeholder="ID를 입력하세요." name="user_Id" required
+                        <input type="text" class="form-control" placeholder="ID를 입력하세요." name="user_id" required
                             autofocus>
                     </div>
                     <div class="login_pw">
                         <h4>이름</h4>
-                        <input type="password" class="form-control" placeholder="이름을 입력하세요." name="user_Pw" required
+                        <input type="text" class="form-control" placeholder="이름을 입력하세요." name="user_name" required
                         autofocus>
                     </div>
                 </div>
                 <div class="login_find">
                     <a href="/login/signup">회원가입</a>
-                    <a>로그인</a>
+                    <a href="/login/login">로그인</a>
                     <a href="/home">홈으로</a>
-                    <a href="">ID 찾기</a>
+                    <a href="/login/searchid">ID 찾기</a>
                 </div>
                 <div class="submit">
                     <button class="btn-block" type="submit">찾기</button>

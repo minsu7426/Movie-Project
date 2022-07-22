@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -84,16 +86,32 @@ public class LoginController {
     @PostMapping("/searchid")
     public String postId(UserDto userDto, HttpServletRequest request, Model model) {
     	String jumin = request.getParameter("jumin1") + "-" + request.getParameter("jumin2");
-    	System.out.println(jumin);
-    	String id = userService.getSearchId(userDto.getUser_name(), jumin);
+    	List<String> id = userService.getSearchId(userDto.getUser_name(), jumin);
     	String error = "1";
-    	System.out.println(id + "asds");
-    	if(id == null) {
+    	if(id.isEmpty()) {
     		model.addAttribute("error", error);
     		return "/login/searchId";
     	} else {
-    		model.addAttribute("id", id);
+    		model.addAttribute("id", id.get(0));
     		return "/login/searchId";
+    	}
+    }
+    
+    @RequestMapping("/searchpw")
+    public String searchPw() {
+    	return "/login/searchPw";
+    }
+    
+    @PostMapping("/searchpw")
+    public String searchPost(UserDto userDto, Model model) {
+    	List<String> pw = userService.getSearchPw(userDto.getUser_id(), userDto.getUser_name());
+    	String error = "1";
+    	if(pw.isEmpty()) {
+    		model.addAttribute("error", error);
+    		return "/login/searchPw";
+    	} else {
+    		model.addAttribute("pw", pw.get(0));
+    		return "/login/searchPw";
     	}
     }
     

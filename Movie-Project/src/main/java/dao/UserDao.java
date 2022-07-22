@@ -38,5 +38,8 @@ public interface UserDao {
 	public int getAllCount(String search_item, String text);
 	
 	// 회원 아이디 찾기
-	public String getSearchId(String userName, String userJumin);
+	public List<String> getSearchId(String userName, String userJumin);
+	
+	// 회원 비밀번호 찾기
+	public List<String> getSearchPw(String userId, String userName);
 }

@@ -127,9 +127,9 @@
                 </div>
                 <div class="login_find">
                     <a href="/login/signup">회원가입</a>
-                    <a>로그인</a>
+                    <a href="/login/login">로그인</a>
                     <a href="/home">홈으로</a>
-                    <a href="">PASSWORD 찾기</a>
+                    <a href="/login/searchpw">PASSWORD 찾기</a>
                 </div>
                 <div class="submit">
                     <button class="btn-block" type="submit">찾기</button>
