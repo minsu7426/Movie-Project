@@ -21,4 +21,13 @@ public interface ScreenDao {
 	
 	//상영관 수정 페이지
 	public ScreenDto getUpdate(String scr_code);
+	
+	//영화 제목 가져오기
+	public String getMovieTitle(String scr_code);
+	
+	//영화 삭제
+	public void setDelete(String scr_code);
+	
+	//영화 수정
+	public void setUpdate(ScreenDto dto);
 }

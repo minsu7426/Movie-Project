@@ -50,4 +50,18 @@ public class ScreenServiceImpl implements ScreenService{
 		return screenDao.getUpdate(scr_code);
 	}
 	
+	@Override
+	public String getMovieTitle(String scr_code) {
+		return screenDao.getMovieTitle(scr_code);
+	}
+	
+	@Override
+	public void setDelete(String scr_code) {
+		screenDao.setDelete(scr_code);
+	}
+	
+	@Override
+	public void setUpdate(ScreenDto dto) {
+		screenDao.setUpdate(dto);
+	}
 }

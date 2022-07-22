@@ -44,10 +44,28 @@ public class A_ScreenController {
 	
 	@RequestMapping("update")
 	public String screen_update(@RequestParam String scr_code, Model model) {
-		System.out.println(scr_code);
-		List<MovieDto> title = screenService.getMovieList();
+		String title = screenService.getMovieTitle(scr_code);
 		ScreenDto dto = screenService.getUpdate(scr_code);
+		model.addAttribute("title", title);
 		model.addAttribute("dto", dto);
 		return "/admin/screen/screen_update";
+	}
+	
+	@PostMapping("update")
+	public String screen_updateAction(ScreenDto dto) {
+		System.out.println("scr_code="+dto.getScr_code());
+		System.out.println("scr_date="+dto.getScr_date());
+		System.out.println("scr_screen="+dto.getScr_screen());
+		System.out.println("scr_time="+dto.getScr_time());
+		screenService.setUpdate(dto);
+		
+		return "redirect:/admin/screen/screen_manage";
+	}
+	
+	@RequestMapping("delete")
+	public String screen_delete(@RequestParam String scr_code) {
+		screenService.setDelete(scr_code);
+		
+		return "redirect:/admin/screen/screen_manage";
 	}
 }

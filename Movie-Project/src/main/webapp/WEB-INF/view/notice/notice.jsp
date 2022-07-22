@@ -97,8 +97,8 @@
 					<tr>
 						<td>
 							<select class="search_select" name="search_item">
-								<option value="title">제목</option>
-								<option value="content">본문 내용</option>
+								<option value="notice_title">제목</option>
+								<option value="notice_content">본문 내용</option>
 							</select>
 						</td>
 						<td class="search">
@@ -122,7 +122,7 @@
 				<c:forEach var="dto" items="${list}">
 					<tr>
 						<td>${dto.notice_code}</td>
-						<td><a href="/notice/detail?notice_code=${dto.notice_code}&page=${pageDto.cri.page}">${dto.notice_title }</a></td>
+						<td><a href="/notice/detail?notice_code=${dto.notice_code}&page=${pageDto.cri.page}&search_item=${pageDto.cri.search_item}&text=${pageDto.cri.text}">${dto.notice_title }</a></td>
 						<fmt:parseDate value="${dto.notice_date }" pattern="yyyy-MM-dd"
 							var="date" />
 						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${date}" /></td>
@@ -137,7 +137,7 @@
 			<ul class="page pagination justify-content-center m-0">
 				<c:if test="${pageDto.prev}">
 					<li class="page-item"><a class="page-link"
-						href="/notice/list?page=${pageDto.startPage - 1}">이전</a></li>
+						href="/notice/list?page=${pageDto.startPage - 1}&search_item=${pageDto.cri.search_item}&text=${pageDto.cri.text}">이전</a></li>
 				</c:if>
 				<c:forEach begin="${pageDto.startPage}" end="${pageDto.endPage}"
 					var="index">
@@ -147,14 +147,14 @@
 								<a class="page-link" style="background-color: #ddd" href="/notice/list?page=${index}">${index}</a>
 							</c:when>
 							<c:otherwise>
-								<a class="page-link" href="/notice/list?page=${index}">${index}</a>
+								<a class="page-link" href="/notice/list?page=${index}&search_item=${pageDto.cri.search_item}&text=${pageDto.cri.text}">${index}</a>
 							</c:otherwise>
 						</c:choose>
 					</li>
 				</c:forEach>
 				<c:if test="${pageDto.next && pageDto.endPage > 0}">
 					<li class="page-item"><a class="page-link"
-						href="/notice/list?page=${pageDto.endPage + 1}">다음</a></li>
+						href="/notice/list?page=${pageDto.endPage + 1}&search_item=${pageDto.cri.search_item}&text=${pageDto.cri.text}">다음</a></li>
 				</c:if>
 			</ul>
 		</div>

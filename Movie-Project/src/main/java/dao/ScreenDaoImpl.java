@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -90,5 +91,24 @@ public class ScreenDaoImpl implements ScreenDao {
 			}
 		},scr_code);
 		return dto.get(0);
+	}
+	
+	@Override
+	public String getMovieTitle(String scr_code) {
+		String sql = "select movie.movie_title from screen inner join movie on screen.scr_movie = movie.movie_code  where scr_code = " + scr_code;
+		String title = jdbcTemplate.queryForObject(sql, String.class);
+		return title;
+	}
+	
+	@Override
+	public void setDelete(String scr_code) {
+		String sql = "delete from screen where scr_code ="+scr_code;
+		jdbcTemplate.update(sql);
+	}
+	
+	@Override
+	public void setUpdate(ScreenDto dto) {
+		String sql = "update screen set scr_date = ?, scr_screen= ?, scr_time = ? where scr_code = ?";
+		jdbcTemplate.update(sql, dto.getScr_date(), dto.getScr_screen(), dto.getScr_time(), dto.getScr_code());
 	}
 }

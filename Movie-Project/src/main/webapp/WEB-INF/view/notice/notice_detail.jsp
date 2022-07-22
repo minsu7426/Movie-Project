@@ -86,7 +86,7 @@
 			</div>
 		</div>
 		<div class="button" align="end">
-			<a href="/notice/list?page=${cri.page}" class="btn btn-primary">되돌아가기</a>
+			<a href="/notice/list?page=${cri.page}&search_item=${cri.search_item}&text=${cri.text}" class="btn btn-primary">되돌아가기</a>
 		</div>
 	</div>
 

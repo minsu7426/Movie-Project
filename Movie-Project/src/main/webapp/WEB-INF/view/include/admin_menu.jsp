@@ -128,8 +128,8 @@ a {
 						</ul></li>
 					<li><a href="">수익관리</a>
 						<ul>
-							<li><a href="">영화별 수익</a></li>
-							<li><a href="">월간 수익</a></li>
+							<li><a href="/admin/sales/sales_movie">영화별 수익</a></li>
+							<li><a href="/admin/sales/sales_total">전체 수익</a></li>
 						</ul></li>
 				</ul>
 			</div>

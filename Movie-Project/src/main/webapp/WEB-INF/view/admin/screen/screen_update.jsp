@@ -86,50 +86,91 @@
 .cinema_update .add_form .submit a {
 	margin-left: 20px;
 }
+
+.cinema_update>.add_form>.div4>div {
+	display: flex;
+}
+
+.cinema_update>.add_form>.div4>div>div>input {
+	margin: 0;
+}
+
+.cinema_update>.add_form>.div4>div>div>label {
+	margin: 0;
+	font-size: 16px;
+}
+
+.cinema_update>.add_form>.div4>div>div {
+	margin-right: 40px;
+}
 </style>
 <body>
-<jsp:include page="../../include/admin_menu.jsp"/>
+	<jsp:include page="../../include/admin_menu.jsp" />
 	<div class="cinema_update container">
 		<div class="title">
 			<h1>상영관 수정</h1>
 			<hr>
 		</div>
-		<form class="add_form" action="" method="post">
+		<form class="add_form" action="/admin/screen/update?scr_code=${dto.scr_code }" method="post">
 			<div class="form-group row">
-				<label class="col-sm-2 input-name">영화제목</label>
-					<input type="text" name="scr_title" value="" readonly>
-				<select
-					class="form-input" name="" id="">
-					<option value="">전체관람가</option>
-					<option value="">12세</option>
-					<option value="">15세</option>
-					<option value="">청소년관람불가</option>
-				</select>
+				<label class="col-sm-2 input-name">영화제목</label> <input type="text"
+					name="scr_title" value="${title}" readonly>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2 input-name">영화코드</label> <input
-					class="form-input" name="title" type="text" required>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-2 input-name">상영기간</label>
-				<input class="cinema_date" name="title" type="date" value="${dto.scr_date }" required readonly>
+				<label class="col-sm-2 input-name">상영기간</label> <input
+					class="cinema_date" name="scr_date" type="date"
+					value="${dto.scr_date }" required>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-2 input-name">상영관</label> <select
-					class="form-input" name="" id="">
-					<option value="">1관</option>
-					<option value="">2관</option>
-					<option value="">3관</option>
+					class="form-input" name="scr_screen" id="screen_sel">
+					<option value="1"
+						${dto.scr_screen == '1' ? 'selected="selected"' : "" }>1관</option>
+					<option value="2"
+						${dto.scr_screen == '2' ? 'selected="selected"' : "" }>2관</option>
+					<option value="3"
+						${dto.scr_screen == '3' ? 'selected="selected"' : "" }>3관</option>
 				</select>
 			</div>
 			<div class="form-group row div4">
-				<label class="col-sm-2 input-name">상영시간</label> <input
-					class="form-input" name="title" type="text" required>
+				<label class="col-sm-2 input-name">상영시간</label>
+				<div>
+					<div>
+						<input class="cinema_checkbox" name="scr_time" type="radio"
+							value="09:00"
+							${dto.scr_time == '09:00:00' ? 'checked="checked"' : "" }>
+						<label>09:00</label>
+					</div>
+					<div>
+						<input class="cinema_checkbox" name="scr_time" type="radio"
+							value="12:00"
+							${dto.scr_time == '12:00:00' ? 'checked="checked"' : "" }>
+						<label>12:00</label>
+					</div>
+					<div>
+						<input class="cinema_checkbox" name="scr_time" type="radio"
+							value="15:00"
+							${dto.scr_time == '15:00:00' ? 'checked="checked"' : "" }>
+						<label>15:00</label>
+					</div>
+					<div>
+						<input class="cinema_checkbox" name="scr_time" type="radio"
+							value="18:00"
+							${dto.scr_time == '18:00:00' ? 'checked="checked"' : "" }>
+						<label>18:00</label>
+					</div>
+					<div>
+						<input class="cinema_checkbox" name="scr_time" type="radio"
+							value="21:00"
+							${dto.scr_time == '21:00:00' ? 'checked="checked"' : "" }>
+						<label>21:00</label>
+					</div>
+				</div>
 			</div>
 			<hr>
 			<div class="submit" align="end">
 				<button class="btn btn-primary" type="submit">수정하기</button>
-				<a href="" class="btn btn-primary">되돌아가기</a> <a href=""
+				<a href="/admin/screen/screen_manage" class="btn btn-primary">되돌아가기</a> <a href="/admin/screen/delete?scr_code=${dto.scr_code }"
 					class="btn btn-danger">삭제</a>
 			</div>
 		</form>

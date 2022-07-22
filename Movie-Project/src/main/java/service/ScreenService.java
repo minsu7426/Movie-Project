@@ -23,4 +23,13 @@ public interface ScreenService {
 	
 	//상영관 수정 페이지
 	public ScreenDto getUpdate(String scr_code);
+	
+	//영화 이름 가자오기
+	public String getMovieTitle(String scr_code);
+	
+	//영화 삭제
+	public void setDelete(String scr_code);
+	
+	//영화 업데이트
+	public void setUpdate(ScreenDto dto);
 }

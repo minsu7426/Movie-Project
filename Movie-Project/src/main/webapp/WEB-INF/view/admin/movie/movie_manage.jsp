@@ -139,13 +139,14 @@
 						var="date" />
 					<tr>
 						<td>${dto.movie_code}</td>
-						<td><a href="/admin/movie/movie_update?movie_code=${dto.movie_code}">${dto.movie_title}</a></td>
+						<td><a
+							href="/admin/movie/movie_update?movie_code=${dto.movie_code}">${dto.movie_title}</a></td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${date}" /></td>
 						<td>${dto.movie_genre}</td>
 						<td>${dto.movie_director}</td>
 						<td>${dto.movie_time}분</td>
 						<td>${dto.movie_grade}</td>
-						<td>${dto.movie_flag == true ? "상영중" : "상영종료"}</td>
+						<td ${dto.movie_flag == false ? 'style="color:red"' : 'style="color:blue"'}>${dto.movie_flag == true ? "상영중" : "상영종료"}</td>
 					</tr>
 				</c:forEach>
 			</table>
