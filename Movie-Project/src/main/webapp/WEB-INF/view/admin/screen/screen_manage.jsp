@@ -18,11 +18,15 @@
 	box-sizing: border-box;
 }
 
+.cinema_manage>.container{
+	text-align: right;
+}
+
 .cinema_manage>.container>.table {
 	border-collapse: collapse;
 	text-align: center;
 	border-top: 3px solid #22499d;
-	margin-top: 50px;
+	margin-top: 20px;
 }
 
 .cinema_manage>.container>.table th:nth-child(3) {
@@ -73,14 +77,7 @@
 	border: 1px solid #c8d1db
 }
 
-.cinema_manage>.search_container {
-	position: relative;
-}
-
-.cinema_manage>.search_container>a {
-	position: absolute;
-	top: 0;
-	right: 0;
+.cinema_manage>.container>a {
 	width: 60px;
 	height: 40px;
 	font-size: 16px;
@@ -116,10 +113,10 @@
 					</tr>
 				</table>
 			</form>
-			<a href="/admin/screen/screen_add" class="btn btn-primary">등록</a>
 		</div>
 
 		<div class="container">
+			<a href="/admin/screen/screen_add" class="btn btn-primary">등록</a>
 			<table class="table">
 				<tr class="table_header">
 					<th>순서</th>

@@ -64,7 +64,9 @@
         padding: 10px 14px;
         color: #2b2929;
     }
-
+    .login>.login_inner>.login_form .jumin{
+        width: 194px;
+    }
     .login>.login_inner>.login_form>.login_find {
         display: flex;
         justify-content: space-between;
@@ -101,30 +103,36 @@
     <div class="login">
         <div class="login_inner">
             <img src="../resources/images/logo_transparent.png" alt="" width="200px">
-            <h1>LOGIN</h1>
+            <h1>ID 찾기</h1>
             <c:if test="${!empty error}">
-            <h4 class="error">아이디와 비밀번호를 확인해주세요.</h4>
+            <h4 class="error">해당 정보의 아이디가 존재하지 않습니다.</h4>
             </c:if>
-            <form class="login_form" action="/login/login" method="post">
+            <c:if test="${!empty id}">
+            <h4 class="error">ID는 '${id }' 입니다.</h4>
+            </c:if>
+            <form class="login_form" action="/login/searchid" method="post">
                 <div class="login_idpw">
                     <div class="login_id">
-                        <h4>ID</h4>
-                        <input type="text" class="form-control" placeholder="아이디를 입력하세요." name="user_Id" required
+                        <h4>이름</h4>
+                        <input type="text" class="form-control" placeholder="이름을 입력하세요." name="user_name" required
                             autofocus>
                     </div>
                     <div class="login_pw">
-                        <h4>PASSWORD</h4>
-                        <input type="password" class="form-control" placeholder="비밀번호를 입력하세요." name="user_Pw" required
-                            autofocus>
+                        <h4>주민번호</h4>
+                        <input type="password" class="jumin" maxlength="6" placeholder="주민번호를 앞 6자리" name="jumin1" required
+                        autofocus> - 
+                        <input type="password" class="jumin" maxlength="7" placeholder="주민번호를 뒷 7자리" name="jumin2" required
+                        autofocus>
                     </div>
                 </div>
                 <div class="login_find">
                     <a href="/login/signup">회원가입</a>
+                    <a>로그인</a>
                     <a href="/home">홈으로</a>
-                    <a href="/login/searchid">ID/PASSWORD 찾기</a>
+                    <a href="">PASSWORD 찾기</a>
                 </div>
                 <div class="submit">
-                    <button class="btn-block" type="submit">로그인 하기</button>
+                    <button class="btn-block" type="submit">찾기</button>
                 </div>
             </form>
         </div>

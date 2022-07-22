@@ -84,4 +84,9 @@ public class UserServiceImpl implements UserService {
 		return userDao.getAllCount(search_item, text);
 	}
 	
+	@Override
+	public String getSearchId(String userName, String userJumin) {
+		return userDao.getSearchId(userName, userJumin);
+	}
+	
 }

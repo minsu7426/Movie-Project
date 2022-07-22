@@ -36,4 +36,7 @@ public interface UserDao {
 	
 	// 모든회원 개수
 	public int getAllCount(String search_item, String text);
+	
+	// 회원 아이디 찾기
+	public String getSearchId(String userName, String userJumin);
 }

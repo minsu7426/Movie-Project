@@ -49,7 +49,7 @@ public class LoginController {
 		if(userDto.getUser_id().equals("admin")) {
 			userChk[0] = userDto.getUser_id();
 			session.setAttribute("user", userChk);
-			return "admin/admin_main";
+			return "redirect:/admin/home";
 		}
 		userChk[0] = userDto.getUser_id();
 		session.setAttribute("user", userChk);
@@ -76,6 +76,26 @@ public class LoginController {
     	return "/login/idCheck";
     }
     
+    @RequestMapping("/searchid")
+    public String searchId() {
+    	return "/login/searchId";
+    }
+    
+    @PostMapping("/searchid")
+    public String postId(UserDto userDto, HttpServletRequest request, Model model) {
+    	String jumin = request.getParameter("jumin1") + "-" + request.getParameter("jumin2");
+    	System.out.println(jumin);
+    	String id = userService.getSearchId(userDto.getUser_name(), jumin);
+    	String error = "1";
+    	System.out.println(id + "asds");
+    	if(id == null) {
+    		model.addAttribute("error", error);
+    		return "/login/searchId";
+    	} else {
+    		model.addAttribute("id", id);
+    		return "/login/searchId";
+    	}
+    }
     
 }
 
