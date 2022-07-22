@@ -10,7 +10,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <style>
-/* menu start */
+/* setting start */
 * {
 	margin: 0;
 	padding: 0;
@@ -18,20 +18,27 @@
 	list-style: none;
 	box-sizing: border-box;
 }
+/* setting end */
 
+/* menu start */
 a {
 	color: black;
 }
 
 .menu {
 	height: 160px;
-	background-color: gray;
+	background-color: black;
+	z-index: 100;
+	opacity: 0.8;
+	border-radius: 0 0 25px 25px;
 }
 
 .menu>.menu-top {
 	width: 1200px;
 	margin: 0 auto;
 	height: 40px;
+	color: white;
+	
 }
 
 .menu>.menu-top>ul {
@@ -44,6 +51,10 @@ a {
 	margin-left: 1rem;
 }
 
+.menu>.menu-top>ul>li>a{
+	color: white;
+}
+
 .menu>.menu-bottom {
 	display: flex;
 	width: 1200px;
@@ -54,14 +65,22 @@ a {
 .menu>.menu-bottom>div>ul {
 	display: flex;
 	line-height: 100px;
+	text-align: center;
 }
+
 .menu>.menu-bottom>div>ul>li {
-	z-index:100;
+	z-index: 100;
 	position: relative;
 	margin-left: 20px;
 	padding: 10px 20px;
-	font-size: 20px;
+	font-size: 22px;
 	font-weight: 700;
+	width: 150px;
+	vertical-align: center;
+}
+
+.menu>.menu-bottom>div>ul>li>a{
+	color: white;
 }
 
 .menu>.menu-bottom>div>ul>li>ul {
@@ -71,8 +90,11 @@ a {
 	text-align: center;
 	font-size: 14px;
 	position: absolute;
-	background-color: red;
-	width: 100px;
+	background-color: black;
+	opacity: 0.8;
+	width: 150px;
+	z-index: 100;
+	border-radius: 0px 0px 10px 10px;
 }
 
 .menu>.menu-bottom>div>ul>li:hover>ul {
@@ -82,7 +104,13 @@ a {
 .menu>.menu-bottom>div>ul>li>ul>li>a {
 	display: block;
 	width: 100%;
+	color: white;
 }
+
+.title {
+	margin-left: 20px;
+}
+/* menu end */
 </style>
 	<nav class="menu">
 		<div class="menu-top">
@@ -115,7 +143,7 @@ a {
 						</ul>
 					</li>
 					<li><a href="">예매 관리</a></li>
-					<li><a href="">리뷰 관리</a></li>
+					<li><a href="/admin/review/reviewmanage">리뷰 관리</a></li>
 					<li><a href="/admin/ask/askmanage">고객센터</a>
 						<ul>
 							<li><a href="/admin/notice/noticeadmin">공지 사항</a></li>

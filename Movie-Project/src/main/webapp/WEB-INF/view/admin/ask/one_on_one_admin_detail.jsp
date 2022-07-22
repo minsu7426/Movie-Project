@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,7 +104,8 @@
 			<h1>${askDto.ask_title }</h1>
 			<div class="title_items">
 				<div class="title_item">
-					<span class="title">작성일자</span> <span>${askDto.ask_date }</span>
+					<fmt:parseDate value="${askDto.ask_date }" pattern="yyyy-MM-dd HH:mm:ss" var="date" />
+					<span class="title">작성일자</span> <span><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${date}" /></span>
 				</div>
 				<div class="title_item">
 					<span class="title">조회수</span><span>${askDto.ask_hit }</span>

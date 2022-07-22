@@ -17,24 +17,21 @@
 
 .coupon_manage>.coupon_title {
 	position: relative;
+	z-index: -10;
 }
 
 .coupon_manage>.coupon_title>button {
-	position: absolute;
-	display: inline-block;
-	font-size: 18px;
-	font-weight: 700;
-	height: 50px;
-	line-height: 40px;
-	top: 0;
-	right: 20px;
+	
+	
 }
-
+.coupon_manage>.container{
+	text-align: right;
+}
 .coupon_manage>.container>.table {
 	border-collapse: collapse;
 	text-align: center;
 	border-top: 3px solid #22499d;
-	margin-top: 50px;
+	margin-top: 20px;
 }
 
 .coupon_manage>.container>.table th {
@@ -70,6 +67,15 @@
 	border: 1px solid black;
 }
 
+.btn-info{
+	font-size: 18px;
+	font-weight: 700;
+	height: 50px;
+	line-height: 40px;
+	top: 0;
+	right: 20px;
+}
+
 </style>
 <script type="text/javascript">
 	function couponSubmit(){
@@ -81,10 +87,10 @@
 	<div class="coupon_manage container">
 		<div class="coupon_title">
 			<h1>쿠폰관리</h1>
-			<button class="btn btn-info" id="modal_open_btn" onclick="couponSubmit();">쿠폰등록</button>
 			<hr>
 		</div>
 		<div class="container">
+			<button class="btn btn-info"  id="modal_open_btn" onclick="couponSubmit();">쿠폰등록</button>
 			<table class="table">
 				<tr class="table_header">
 					<th>쿠폰이름</th>

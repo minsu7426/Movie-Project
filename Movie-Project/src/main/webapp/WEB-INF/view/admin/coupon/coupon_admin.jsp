@@ -129,6 +129,7 @@
 			<table class="table">
 				<tr class="table_header">
 					<th>순서</th>
+					<th>쿠폰코드</th>
 					<th>지급 ID</th>
 					<th width="30%">쿠폰 이름</th>
 					<th>지급 일시</th>
@@ -139,6 +140,7 @@
 				<c:forEach var="coupon" items="${couponList}" varStatus="status">
 				<tr>
 					<td>${pageDto.displayCount - status.index}</td>
+					<td>${coupon.coupon_code }</td>
 					<td>${coupon.coupon_id}</td>
 					<td>${coupon.coupon_form}</td>
 					<td>${coupon.coupon_give}</td>
@@ -149,7 +151,7 @@
 					<c:if test="${coupon.coupon_flag == false}">
 					<td style="color:red;">사용완료</td>
 					</c:if>
-					<td><a href="/admin/coupon/coupondelete?couponcode=${coupon.coupon_code}">삭제</a></td>
+					<td><a href="/admin/coupon/coupondelete?couponcode=${coupon.coupon_code}" onclick="return confirm('쿠폰을 삭제 하시겠습니까?');">삭제</a></td>
 				</tr>
 				</c:forEach>
 			</table>

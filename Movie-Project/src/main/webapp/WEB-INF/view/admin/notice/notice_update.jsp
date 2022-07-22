@@ -75,7 +75,7 @@
                 <hr>
                 <div class="submit" align="end">
                     <button class="btn btn-primary" type="submit">수정</button>
-                    <a href="/admin/notice/noticedelete?noticecode=${notice.notice_code}" class="btn btn-primary">삭제</a>
+                    <a href="/admin/notice/noticedelete?noticecode=${notice.notice_code}" class="btn btn-primary" onclick="return confirm('게시물을 삭제 하시겠습니까?');">삭제</a>
                     <a href="/admin/notice/noticeadmin?page=${cri.page}" class="btn btn-primary">되돌아가기</a>
                 </div>
             </form>

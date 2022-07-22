@@ -92,7 +92,7 @@ a {
 				MovieDto dto = currentList.get(i);
 			%>
 			<div class="current_item">
-				<a href=""> <img
+				<a href="/movie/moviedetail?moviecode=<%=dto.getMovie_code()%>"> <img
 					src="../resources/images/movie/<%=dto.getMovie_img()%>.jpg" alt=""
 					width="240px" height="340px">
 				</a>

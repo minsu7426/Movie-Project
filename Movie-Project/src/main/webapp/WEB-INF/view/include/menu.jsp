@@ -27,14 +27,18 @@ a {
 
 .menu {
 	height: 160px;
-	background-color: gray;
+	background-color: black;
 	z-index: 100;
+	opacity: 0.8;
+	border-radius: 0 0 25px 25px;
 }
 
 .menu>.menu-top {
 	width: 1200px;
 	margin: 0 auto;
 	height: 40px;
+	color: white;
+	
 }
 
 .menu>.menu-top>ul {
@@ -45,6 +49,10 @@ a {
 
 .menu>.menu-top>ul>li {
 	margin-left: 1rem;
+}
+
+.menu>.menu-top>ul>li>a{
+	color: white;
 }
 
 .menu>.menu-bottom {
@@ -69,6 +77,10 @@ a {
 	font-weight: 700;
 	width: 150px;
 	vertical-align: center;
+}
+
+.menu>.menu-bottom>div>ul>li>a{
+	color: white;
 }
 
 .menu>.menu-bottom>div>ul>li>ul {
@@ -112,7 +124,7 @@ a {
 				</c:if>
 
 				<c:if test="${!empty user}">
-					<li>${user[0] }님</li>
+					<li><b>${user[0] }님</b></li>
 					<li><a href="/login/logout" onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</a></li>
 
 				</c:if>
@@ -132,13 +144,13 @@ a {
 							<li><a href="">예매 내역</a></li>
 							<li><a href="">상영 시간표</a></li>
 						</ul></li>
-					<li><a href="">영화</a>
+					<li><a href="/movie/current_screen">영화</a>
 						<ul>
 							<li><a href="/movie/current_screen">현재 상영작</a></li>
 							<li><a href="/movie/shown_screen">상영 예정작</a></li>
 						</ul></li>
 					<li><a href="">이벤트</a></li>
-					<li><a href="">마이페이지</a>
+					<li><a href="/user/mypage">마이페이지</a>
 						<ul>
 							<li><a href="/user/mypage">회원 정보</a></li>
 							<li><a href="/user/viewing_detail">관람 내역</a></li>
