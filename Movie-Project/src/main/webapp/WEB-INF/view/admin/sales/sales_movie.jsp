@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,9 +77,13 @@
 .sales_movie .title {
 	margin-left: 20px;
 }
+.btn_title {
+	font-size: 18px;
+	padding: 0 10px;
+}
 </style>
 <body>
-<jsp:include page="../../include/admin_menu.jsp"/>
+	<jsp:include page="../../include/admin_menu.jsp" />
 	<!-- sales_movie start -->
 	<div class="sales_movie container">
 
@@ -90,20 +96,23 @@
 			<form method="post" action="#">
 				<table>
 					<tr>
-						<td><select class="search_select" name="search_item">
+						<td class="search_select">
+							<div class="btn_title">영화 제목</div>
+						<!-- <select class="search_select" name="search_item">
 								<option value="title">제목</option>
 								<option value="content">본문 내용</option>
 								<option value="name">글쓴이</option>
-						</select></td>
+						</select> -->
+						</td>
 						<td class="search"><input class="search_content" type="text"
-							name="text" /> <input type="submit" class="search_btn"
+							name="search_title" value="${movie_title }"/> <input type="submit" class="search_btn"
 							value="검색" /></td>
 					</tr>
 				</table>
 			</form>
 		</div>
 		<div class="title">
-			<h1>전우치</h1>
+			<h1>${movie_title}</h1>
 		</div>
 		<div class="container">
 			<table class="table">
@@ -115,27 +124,30 @@
 					<th>전체 매출</th>
 				</tr>
 				<tr>
-					<td>1000원</td>
-					<td>2000원</td>
-					<td>7000원</td>
-					<td>13000원</td>
-					<td>68000원</td>
+					<td>${dto.sales_today}원</td>
+					<td>${dto.sales_yesday}원</td>
+					<td>${dto.sales_week}원</td>
+					<td>${dto.sales_month}원</td>
+					<td>${dto.sales_total}원</td>
 				</tr>
 			</table>
 			<table class="table">
 				<tr class="table_header">
 					<th>금일 관람율</th>
-					<th>전일 관람율</th>
+					<th>전체 관람율</th>
 					<th>남성 비율</th>
 					<th>여성 비율</th>
 					<th>평균 연령</th>
 				</tr>
 				<tr>
-					<td>57%</td>
-					<td>76%</td>
-					<td>46%</td>
-					<td>54%</td>
-					<td>27.5세</td>
+					<c:set var="viewing_today" value="${dto.sales_viewing_today}" />
+					<td>${fn:substring(viewing_today,0,3)}%</td>
+					<c:set var="viewing_yesday" value="${dto.sales_viewing_today}" />
+					<td>${fn:substring(viewing_yesday,0,3)}%</td>
+					<td>${dto.sales_man}%</td>
+					<td>${dto.sales_woman}%</td>
+					<c:set var="ageAvg" value="${dto.sales_avg}" />
+					<td>${fn:substring(ageAvg,0,5)}세</td>
 				</tr>
 			</table>
 		</div>

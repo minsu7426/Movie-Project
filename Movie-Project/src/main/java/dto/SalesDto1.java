@@ -1,13 +1,20 @@
 package dto;
 
-public class SalesDto {
+public class SalesDto1 {
 	
-	private int sales_movie; //영화 이름 movie.movie_title
+	private String sales_movie; //영화 이름 movie.movie_title
 	private long sales_payment; //금액 ticket.tic_payment
 	private String sales_date; //영화 상영 날짜 screen.scr_date
 	private String sales_paytime; //결제 시간 ticket.tic_paytime
 	private String sales_jumin; //관람객 주민번호 user.user_jumin
+	private String sales_seat; //상영관 좌석
 	
+	public String getSales_seat() {
+		return sales_seat;
+	}
+	public void setSales_seat(String sales_seat) {
+		this.sales_seat = sales_seat;
+	}
 	public String getSales_paytime() {
 		return sales_paytime;
 	}
@@ -20,13 +27,12 @@ public class SalesDto {
 	public void setSales_payment(long sales_payment) {
 		this.sales_payment = sales_payment;
 	}
-	public int getSales_movie() {
+	public String getSales_movie() {
 		return sales_movie;
 	}
-	public void setSales_movie(int sales_movie) {
+	public void setSales_movie(String sales_movie) {
 		this.sales_movie = sales_movie;
 	}
-	
 	public String getSales_date() {
 		return sales_date;
 	}
