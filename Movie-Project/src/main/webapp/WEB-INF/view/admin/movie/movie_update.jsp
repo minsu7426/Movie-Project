@@ -85,11 +85,11 @@
 			<h1>영화 수정</h1>
 			<hr>
 		</div>
-		<form class="add_form" action="" method="post" enctype="multipart/form-data">
+		<form class="add_form" action="/admin/movie/movie_update" method="post">
 			<div class="form-group row">
 				<label class="col-sm-2 input-name">영화코드</label> <input
 					class="form-input" name="movie_code" type="text"
-					value="${dto.movie_code }" required>
+					value="${dto.movie_code }" required readonly="readonly">
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-2 input-name">영화제목</label> <input
@@ -107,7 +107,7 @@
 			<div class="form-group row">
 				<label class="col-sm-2 input-name">장르</label> <input
 					class="form-input" name="movie_genre" type="text"
-					value="${dto.movie_genre }" required>
+					value="${dto.movie_genre}" required>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-2 input-name">등급</label> <select
@@ -128,15 +128,18 @@
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-2 input-name">러닝타임</label> <input
-					class="form-input" name="movie_time" type="text" value="${dto.movie_time}분" required>
+					class="form-input" name="movie_time" type="text" value="${dto.movie_time}" required>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-2 input-name">소개</label>
 				<textarea class="form-input" name="movie_board" required>${dto.movie_board}</textarea>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2 input-name">이미지</label> <input
-					class="form-input" name="movie_img" type="file" required>
+				<label class="col-sm-2 input-name">상영여부</label> <select
+					class="form-input" name="movie_flag" id="movie_grade">
+					<option value="true">상영중</option>
+					<option value="false">상영종료</option>
+				</select>
 			</div>
 			<hr>
 			<div class="submit" align="end">

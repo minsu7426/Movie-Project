@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import dto.Criteria;
 import dto.MovieDto;
 
 @Repository
@@ -70,8 +71,16 @@ public class MovieDaoImpl implements MovieDao {
 	}
 
 	@Override
-	public List<MovieDto> getTotal_Screen() {
-		String sql = "select * from movie";
+	public List<MovieDto> getTotal_Screen(Criteria cri) {
+		String sql;
+		if(cri.getSearch_item() == null && cri.getText() == null) {
+			sql = "select * from movie order by movie_date desc limit ?, ?";
+		} else if(cri.getSearch_item().equals("") && cri.getText().equals("")) {
+			sql = "select * from movie order by movie_date desc limit ?, ?";
+		} else {
+			sql = "select * from movie where "+ cri.getSearch_item() + " like '%" + cri.getText() + "%' order by movie_date desc limit ?, ?";
+		}
+		
 		List<MovieDto> list = jdbcTemplate.query(sql, new RowMapper<MovieDto>() {
 			@Override
 			public MovieDto mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -90,7 +99,7 @@ public class MovieDaoImpl implements MovieDao {
 				dto.setMovie_flag(rs.getBoolean("movie_flag"));
 				return dto;
 			}
-		});
+		},cri.getPageStart(), cri.getPerPageNum());
 		return list;
 	}
 
@@ -128,5 +137,35 @@ public class MovieDaoImpl implements MovieDao {
 				movieDto.getMovie_genre(), movieDto.getMovie_grade(), movieDto.getMovie_director(),
 				movieDto.getMovie_actor(), movieDto.getMovie_time(), movieDto.getMovie_board(),
 				movieDto.getMovie_img());
+	}
+	
+	@Override
+	public void setUpdate(MovieDto moviedto) {
+		String sql = "update movie set movie_date = ?, movie_genre = ?, movie_grade = ?, movie_director = ?, movie_actor = ?, movie_time = ?, movie_board = ?, movie_flag = ? where movie_code = ?";
+		jdbcTemplate.update(sql, moviedto.getMovie_date(),
+				moviedto.getMovie_genre(),
+				moviedto.getMovie_grade(),
+				moviedto.getMovie_director(),
+				moviedto.getMovie_actor(),
+				moviedto.getMovie_time(),
+				moviedto.getMovie_board(),
+				moviedto.isMovie_flag(),
+				moviedto.getMovie_code()
+				);
+	}
+	
+	@Override
+	public Integer getAllCount(String search_item, String text) {
+		String sql;
+		if(search_item == null && text == null) {
+			sql = "select count(*) from movie";
+		} else if(search_item.equals("") && text.equals("")) {
+			sql = "select count(*) from movie";
+		} else {
+			sql = "select count(*) from movie where "+ search_item + " like '%" + text + "%'";
+		}
+		
+		Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
+		return count;
 	}
 }

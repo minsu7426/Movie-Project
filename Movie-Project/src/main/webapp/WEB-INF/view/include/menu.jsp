@@ -138,9 +138,9 @@ a {
 			</div>
 			<div>
 				<ul>
-					<li><a href="">예매</a>
+					<li><a href="/ticketing/reserve">예매</a>
 						<ul>
-							<li><a href="">예매</a></li>
+							<li><a href="/ticketing/reserve">예매</a></li>
 							<li><a href="">예매 내역</a></li>
 							<li><a href="">상영 시간표</a></li>
 						</ul></li>

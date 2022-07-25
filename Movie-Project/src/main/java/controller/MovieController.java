@@ -43,11 +43,16 @@ public class MovieController {
 	public String movieDetail(@RequestParam("moviecode")String movie_code, Model model) {
 		MovieDto movieDto = movieService.getMovie_Detail(movie_code);
 		List<ReviewDto> reviewList = reviewService.getListByMovie(movie_code);
-		float review_star = 0;
+		Double review_star = 0.0;
+		
 		for(int i = 0; i<reviewList.size(); i++) {
 			review_star += reviewList.get(i).getReview_star();
 		}
 		review_star /= reviewList.size();
+		
+		if(review_star.equals(Double.NaN)) {
+			review_star = 0.0;
+		}
 		System.out.println(review_star);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("movieDto", movieDto);

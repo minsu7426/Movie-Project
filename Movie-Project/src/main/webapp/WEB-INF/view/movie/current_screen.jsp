@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,11 +70,7 @@ a {
 }
 </style>
 <body>
-	<%
-	List<MovieDto> currentList = (List<MovieDto>) request.getAttribute("currentList");
-	List<MovieDto> shownList = (List<MovieDto>) request.getAttribute("shownList");
-	%>
-	<jsp:include page="../include/menu.jsp"></jsp:include>
+	<jsp:include page="../include/menu.jsp"/>
 	<div class="shown_screen container">
 		<div class="shown_screen_title">
 			<h1>영화</h1>
@@ -87,34 +84,25 @@ a {
 			<label for="current">현재 상영작</label> <label for="shown">상영 예정작</label>
 		</nav>
 		<div class="current_screen_items">
-			<%
-			for (int i = 0; i < currentList.size(); i++) {
-				MovieDto dto = currentList.get(i);
-			%>
+			<c:forEach var="current" items="${currentList}">
 			<div class="current_item">
-				<a href="/movie/moviedetail?moviecode=<%=dto.getMovie_code()%>"> <img
-					src="../resources/images/movie/<%=dto.getMovie_img()%>.jpg" alt=""
+				<a href="/movie/moviedetail?moviecode=${current.movie_code}">
+				<img src= "<c:url value="/resources/images/movie/${current.movie_img }"/>" alt="영화"
 					width="240px" height="340px">
 				</a>
 			</div>
-			<%
-			}
-			%>
+			</c:forEach>
+
 		</div>
 		<div class="shown_screen_items">
-						<%
-			for (int i = 0; i < shownList.size(); i++) {
-				MovieDto dto = shownList.get(i);
-			%>
+			<c:forEach var="shown" items="${shownList}">
 			<div class="shown_item">
-				<a href=""> <img
-					src="../resources/images/movie/<%=dto.getMovie_img()%>.jpg" alt=""
+				<a href="/movie/moviedetail?moviecode=${shown.movie_code}"> 
+				<img src="<c:url value="/resources/images/movie/${shown.movie_img }"/>" alt=""
 					width="240px" height="340px">
 				</a>
 			</div>
-			<%
-			}
-			%>
+			</c:forEach>
 		</div>
 	</div>
 

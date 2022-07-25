@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.MovieDao;
+import dto.Criteria;
 import dto.MovieDto;
 
 @Service
@@ -27,8 +28,8 @@ public class MovieServiceImpl implements MovieService {
 	}
 	
 	@Override
-	public List<MovieDto> getTotal_Screen() {
-		List<MovieDto> list = movieDao.getTotal_Screen();
+	public List<MovieDto> getTotal_Screen(Criteria cri) {
+		List<MovieDto> list = movieDao.getTotal_Screen(cri);
 		return list;
 	}
 	
@@ -41,5 +42,15 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public void setAdd(MovieDto moviedto) {
 		movieDao.setAdd(moviedto);
+	}
+
+	@Override
+	public void setUpdate(MovieDto moviedto) {
+		movieDao.setUpdate(moviedto);
+	}
+	
+	@Override
+	public Integer getAllCount(String search_item, String text) {
+		return movieDao.getAllCount(search_item, text);
 	}
 }
