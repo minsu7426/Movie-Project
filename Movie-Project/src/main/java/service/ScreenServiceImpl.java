@@ -42,7 +42,7 @@ public class ScreenServiceImpl implements ScreenService{
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate startDate = LocalDate.parse(dto.getDate_start(), formatter);
 		LocalDate endDate = LocalDate.parse(dto.getDate_end(), formatter).plusDays(1);
-
+		
 		List<LocalDate> date = startDate.datesUntil(endDate).collect(Collectors.toList());
 		screenDao.setScreenAdd(dto, timeChecked, date);
 	}

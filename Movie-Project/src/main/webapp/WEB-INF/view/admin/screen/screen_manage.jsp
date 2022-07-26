@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,81 +11,85 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style>
 * {
-   margin: 0;
-   padding: 0;
-   text-decoration: none;
-   list-style: none;
-   box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	box-sizing: border-box;
 }
 
-.cinema_manage>.container{
-   text-align: right;
+.cinema_manage>.container {
+	text-align: right;
+}
+
+.cinema_manage>.container {
+	text-align: right;
 }
 
 .cinema_manage>.container>.table {
-   border-collapse: collapse;
-   text-align: center;
-   border-top: 3px solid #22499d;
-   margin-top: 20px;
+	border-collapse: collapse;
+	text-align: center;
+	border-top: 3px solid #22499d;
+	margin-top: 20px;
 }
 
 .cinema_manage>.container>.table th:nth-child(3) {
-   width: 40%;
+	width: 40%;
 }
 
 .cinema_manage>.container>.table th {
-   font-size: 16px;
-   text-align: center;
-   color: #555555;
-   font-weight: bold;
-   background-color: #f8fafc;
-   color: #091f46;
+	font-size: 16px;
+	text-align: center;
+	color: #555555;
+	font-weight: bold;
+	background-color: #f8fafc;
+	color: #091f46;
 }
 
 .cinema_manage>.container>.table td {
-   font-size: 16px;
-   text-align: center;
-   color: #555555;
+	font-size: 16px;
+	text-align: center;
+	color: #555555;
 }
 
 .cinema_manage>.container>.table tr:hover {
-   background-color: #f7f7f7;
+	background-color: #f7f7f7;
 }
 
 .cinema_manage>.search_container {
-   margin-top: 10px;
-   height: 30px;
+	margin-top: 10px;
+	height: 30px;
 }
 
 .cinema_manage>.search_container .search_content {
-   width: 300px;
-   height: 40px;
+	width: 300px;
+	height: 40px;
 }
 
 .cinema_manage>.search_container .search_select {
-   height: 40px;
+	height: 40px;
 }
 
 .cinema_manage>.search_container .search .search_btn {
-   height: 40px;
-   width: 60px;
-   background-color: #394b61;
-   color: white;
+	height: 40px;
+	width: 60px;
+	background-color: #394b61;
+	color: white;
 }
 
 .board_search td {
-   border: 1px solid #c8d1db
+	border: 1px solid #c8d1db
 }
 
 .cinema_manage>.container>a {
-   width: 60px;
-   height: 40px;
-   font-size: 16px;
-   line-height: 28px;
+	width: 60px;
+	height: 40px;
+	font-size: 16px;
+	line-height: 28px;
 }
 
 .cinema_manage h1 {
-   margin-left: 20px;
+	margin-left: 20px;
 }
 </style>
 
@@ -131,7 +135,9 @@
 				<%-- varchar="status" --%>
 				<c:forEach items="${list}" var="dto">
 					<tr>
-						<td><%-- ${pageDto.displayCount - status.index} --%></td>
+						<td>
+							<%-- ${pageDto.displayCount - status.index} --%>
+						</td>
 						<td>${dto.scr_code}</td>
 						<c:forEach items="${title}" var="title">
 							<c:if test="${title.movie_code eq dto.scr_movie}">
@@ -141,10 +147,10 @@
 						<td>${dto.scr_screen }관</td>
 						<td>${dto.scr_date }</td>
 						<td>${dto.scr_time }</td>
-						<c:set var="set" value="${dto.scr_seat }"/>
-						<c:set var="seat" value="${fn:split(set, ',')}"/>
-						<c:set var="size" value="${fn:length(seat) }"/>
-						<td>${size } / 30석</td>
+						<c:set var="set" value="${dto.scr_seat }" />
+						<c:set var="seat" value="${fn:split(set, ',')}" />
+						<c:set var="size" value="${fn:length(seat) }" />
+						<td>${size }/30석</td>
 						<td><a href="/admin/screen/update?scr_code=${dto.scr_code}">수정</a></td>
 					</tr>
 				</c:forEach>
@@ -159,16 +165,16 @@
 				</c:if>
 				<c:forEach begin="${pageDto.startPage}" end="${pageDto.endPage}"
 					var="index">
-					<li class="page-item">
-						<c:choose>
+					<li class="page-item"><c:choose>
 							<c:when test="${pageDto.cri.page == index}">
-								<a class="page-link" style="background-color: #ddd" href="/admin/notice/noticeadmin?page=${index}&search_item=${search_item}&text=${text}">${index}</a>
+								<a class="page-link" style="background-color: #ddd"
+									href="/admin/notice/noticeadmin?page=${index}&search_item=${search_item}&text=${text}">${index}</a>
 							</c:when>
 							<c:otherwise>
-								<a class="page-link" href="/admin/notice/noticeadmin?page=${index}&search_item=${search_item}&text=${text}">${index}</a>
+								<a class="page-link"
+									href="/admin/notice/noticeadmin?page=${index}&search_item=${search_item}&text=${text}">${index}</a>
 							</c:otherwise>
-						</c:choose>
-					</li>
+						</c:choose></li>
 				</c:forEach>
 				<c:if test="${pageDto.next && pageDto.endPage > 0}">
 					<li class="page-item"><a class="page-link"

@@ -205,7 +205,7 @@
         <div class="movie_detail_inner">
             <div class="movie_content">
                 <div class="movie_poster">
-                    <img src="../resources/images/movie/${movieDto.movie_img}.jpg" alt="영화이미지" width="280px">
+                    <img src="/resources/images/movie/${movieDto.movie_img}" alt="영화이미지" width="280px">
                     <div>
                         <a href="" class="btn btn-primary">예매하기 >></a>
                         <span style="font-size:22px; color:rgba(250, 208, 0, 0.99);">★ <span style="color: black;"><fmt:formatNumber value="${review_star }" pattern="#.#"/> / 5.0</span></span>

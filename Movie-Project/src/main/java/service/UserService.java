@@ -38,4 +38,11 @@ public interface UserService {
 	
 	// 모든회원 개수
 	public int getAllCount(String search_item, String text);
+	
+	// 회원 아이디 찾기
+	public List<String> getSearchId(String userName, String userJumin);
+	
+	// 회원 비밀번호 찾기
+	public List<String> getSearchPw(String userId, String userName);
+
 }

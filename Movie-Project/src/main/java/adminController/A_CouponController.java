@@ -30,8 +30,6 @@ public class A_CouponController {
 		PageDto pageDto = new PageDto();
 		pageDto.setCri(cri);
 		pageDto.setTotalCount(couponService.getAllCouponCount(cri.getSearch_item(), cri.getText()));
-		System.out.println(cri.getSearch_item());
-		System.out.println(cri.getText());
 		List<CouponDto> couponList = couponService.getAllCoupon(cri.getSearch_item(), cri.getText(), cri);
 		model.addAttribute("couponList", couponList);
 		model.addAttribute("pageDto", pageDto);

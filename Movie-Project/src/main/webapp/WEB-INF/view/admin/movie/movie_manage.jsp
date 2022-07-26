@@ -101,13 +101,13 @@
 		<hr>
 
 		<div align="center" class="search_container">
-			<form method="post" action="#">
+			<form method="post" action="/admin/movie/movie_manage">
 				<table>
 					<tr>
 						<td><select class="search_select" name="search_item">
-								<option value="title">제목</option>
-								<option value="content">본문 내용</option>
-								<option value="name">글쓴이</option>
+								<option value="movie_title">영화제목</option>
+								<option value="movie_genre">장르</option>
+								<option value="movie_director">감독</option>
 						</select></td>
 						<td class="search"><input class="search_content" type="text"
 							name="text" /> <input type="submit" class="search_btn"
@@ -130,11 +130,11 @@
 					<th>등급</th>
 					<th>상영여부</th>
 				</tr>
-				<c:forEach var="dto" items="${list}">
+				<c:forEach var="dto" items="${list}" varStatus="status">
 					<fmt:parseDate value="${dto.movie_date}" pattern="yyyy-MM-dd"
 						var="date" />
 					<tr>
-						<td>${dto.movie_code}</td>
+						<td>${pageDto.displayCount - status.index}</td>
 						<td><a
 							href="/admin/movie/movie_update?movie_code=${dto.movie_code}">${dto.movie_title}</a></td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${date}" /></td>
@@ -148,8 +148,30 @@
 			</table>
 		</div>
 
-		<div class="page" align="center">
-			<b>[1]</b> [2] [3] [4] [5]
+		  <div aria-label="Contacts Page Navigation" align="center">
+			<ul class="page pagination justify-content-center m-0">
+				<c:if test="${pageDto.prev}">
+					<li class="page-item"><a class="page-link"
+						href="/admin/movie/movie_manage?page=${pageDto.startPage - 1}">이전</a></li>
+				</c:if>
+				<c:forEach begin="${pageDto.startPage}" end="${pageDto.endPage}"
+					var="index">
+					<li class="page-item">
+						<c:choose>
+							<c:when test="${pageDto.cri.page == index}">
+								<a class="page-link" style="background-color: #ddd" href="/admin/movie/movie_manage?page=${index}&search_item=${search_item}&text=${text}">${index}</a>
+							</c:when>
+							<c:otherwise>
+								<a class="page-link" href="/admin/movie/movie_manage?page=${index}&search_item=${search_item}&text=${text}">${index}</a>
+							</c:otherwise>
+						</c:choose>
+					</li>
+				</c:forEach>
+				<c:if test="${pageDto.next && pageDto.endPage > 0}">
+					<li class="page-item"><a class="page-link"
+						href="/admin/movie/movie_manage?page=${pageDto.endPage + 1}">다음</a></li>
+				</c:if>
+			</ul>
 		</div>
 	</div>
 </body>

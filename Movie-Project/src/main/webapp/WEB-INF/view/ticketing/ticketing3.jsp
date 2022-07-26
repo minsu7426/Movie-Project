@@ -1,13 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
 </head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 <style>
     /* menu start */
     * {
@@ -17,74 +17,6 @@
         list-style: none;
         box-sizing: border-box;
     }
-
-    a {
-        color: black;
-    }
-
-    .menu {
-        height: 160px;
-        background-color: gray;
-    }
-
-    .menu>.menu-top {
-        width: 1200px;
-        margin: 0 auto;
-        height: 40px;
-    }
-
-    .menu>.menu-top>ul {
-        display: flex;
-        justify-content: end;
-        line-height: 40px;
-    }
-
-    .menu>.menu-top>ul>li {
-        margin-left: 1rem;
-    }
-
-    .menu>.menu-bottom {
-        display: flex;
-        width: 1200px;
-        margin: 0 auto;
-        justify-content: space-between;
-    }
-
-    .menu>.menu-bottom>div>ul {
-        display: flex;
-        line-height: 100px;
-    }
-
-    .menu>.menu-bottom>div>ul>li {
-        position: relative;
-        margin-left: 20px;
-        padding: 10px 20px;
-        font-size: 22px;
-        font-weight: 700;
-    }
-
-    .menu>.menu-bottom>div>ul>li>ul {
-        display: none;
-        top: 120px;
-        left: 0px;
-        text-align: center;
-        font-size: 14px;
-        position: absolute;
-        background-color: red;
-        width: 100px;
-        z-index: 10;
-    }
-
-    .menu>.menu-bottom>div>ul>li:hover>ul {
-        display: block;
-    }
-
-    .menu>.menu-bottom>div>ul>li>ul>li>a {
-        display: block;
-        width: 100%;
-    }
-
-    /* menu end */
 
     .ticketing>.ticketing_title>h1 {
         margin-left: 20px;
@@ -250,61 +182,44 @@
         background-color: #444451;
         color: white;
     }
-</style>
 
+    .selecter > select{
+        width: 100px;
+        height: 30px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 16px;
+        border: 2px #aaaaaa solid;
+        border-radius: 10px;
+    }
+</style>
+<script>
+    $(document).ready(function(){
+        $(":checkbox").change(function(){
+            var total = Number($("#adult").val()) + Number($("#teen").val());
+            if(total == $(":checkbox:checked").length){
+                $(":checkbox:not(:checked)").attr("disabled", "disabled");
+            }
+            else{
+                $(":checkbox").removeAttr("disabled");
+            }
+        });
+        $("#adult").change(function(){
+            $(":checkbox").removeAttr("checked");
+            $(":checkbox").removeAttr("disabled");
+        });
+        $("#teen").change(function(){
+            $(":checkbox").removeAttr("checked");
+            $(":checkbox").removeAttr("disabled");
+        });
+    });
+
+    function calc(){
+        var a = (Number($("#adult").val()) * Number($("#adultprice").val())) + (Number($("#teen").val()) * Number($("#teenprice").val()));
+        document.getElementById("price").value = a;
+    }
+</script>
 <body>
-    <!--  menu start -->
-    <nav class="menu">
-        <div class="menu-top">
-            <ul>
-                <li><a href="">로그인</a></li>
-                <li><a href="">회원가입</a></li>
-            </ul>
-        </div>
-        <div class="menu-bottom">
-            <div>
-                <img src="/resources/images/logo_transparent.png" alt="로고" width="100px" />
-            </div>
-            <div>
-                <ul>
-                    <li>
-                        <a href="">예매</a>
-                        <ul>
-                            <li><a href="">예매</a></li>
-                            <li><a href="">예매 내역</a></li>
-                            <li><a href="">상영 시간표</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">영화</a>
-                        <ul>
-                            <li><a href="">현재 상영작</a></li>
-                            <li><a href="">상영 예정작</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="">이벤트</a></li>
-                    <li>
-                        <a href="">마이페이지</a>
-                        <ul>
-                            <li><a href="">회원 정보</a></li>
-                            <li><a href="">관람 내역</a></li>
-                            <li><a href="">쿠폰 관리</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">고객센터</a>
-                        <ul>
-                            <li><a href="">공지 사항</a></li>
-                            <li><a href="">1:1 문의</a></li>
-                            <li><a href="">혜택 안내</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!--  menu start -->
-    <!--  -->
     <div class="ticketing container">
         <div class="ticketing_title">
             <h1>예매</h1>
@@ -321,66 +236,32 @@
                 <div>
                     <div class="selecter">
                         <h3>성인</h3>
-                        <div class="radio-group">
-                            <div>
-                                <input type="radio" name="adult" id="adult0" value="0">
-                                <label for="adult0">0</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="adult" id="adult1" value="1">
-                                <label for="adult1">1</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="adult" id="adult2" value="2">
-                                <label for="adult2">2</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="adult" id="adult3" value="3">
-                                <label for="adult3">3</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="adult" id="adult4" value="4">
-                                <label for="adult4">4</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="adult" id="adult5" value="5">
-                                <label for="adult5">5</label>
-                            </div>
-                        </div>
+                        <input id="adultprice" value="15000" type="hidden">
+                        <select id="adult" class="radio-group" onclick="calc()">
+                            <option value="0">0명</option>
+                            <option value="1">1명</option>
+                            <option value="2">2명</option>
+                            <option value="3">3명</option>
+                            <option value="4">4명</option>
+                            <option value="5">5명</option>
+                        </select>
                     </div>
                     <div class="selecter">
                         <h3>청소년</h3>
-                        <div class="radio-group">
-                            <div>
-                                <input type="radio" name="teen" id="teen0" value="0">
-                                <label for="teen0">0</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="teen" id="teen1" value="1">
-                                <label for="teen1">1</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="teen" id="teen2" value="2">
-                                <label for="teen2">2</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="teen" id="teen3" value="3">
-                                <label for="teen3">3</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="teen" id="teen4" value="4">
-                                <label for="teen4">4</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="teen" id="teen5" value="5">
-                                <label for="teen5">5</label>
-                            </div>
-                        </div>
+                        <input id="teenprice" value="10000"  type="hidden">
+                        <select id="teen" class="radio-group" onclick="calc()">
+                            <option value="0">0명</option>
+                            <option value="1">1명</option>
+                            <option value="2">2명</option>
+                            <option value="3">3명</option>
+                            <option value="4">4명</option>
+                            <option value="5">5명</option>
+                        </select>
                     </div>
                     <div class="price">
                         <h3>결제 금액</h3>
                         <div>
-                            <input type="text" value="30000" readonly>원
+                            <input id="price" type="text" value="0" readonly>원
                         </div>
                     </div>
                 </div>
@@ -524,7 +405,5 @@
             <button type="submit">결제하기 >></button>
         </form>
     </div>
-    </div>
 </body>
-
 </html>

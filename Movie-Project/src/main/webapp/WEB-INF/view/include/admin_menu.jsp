@@ -129,8 +129,8 @@ a {
 		</div>
 		<div class="menu-bottom">
 			<div>
-				<img src="/resources/images/logo_transparent.png" alt="로고"
-					width="100px">
+				<a href="/admin/home"><img src="/resources/images/logo_transparent.png" alt="로고"
+					width="100px"></a>
 			</div>
 			<div>
 				<ul>

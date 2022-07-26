@@ -135,7 +135,7 @@ public class AskDaoImpl implements AskDao {
 	
 	@Override
 	public int getAllCount(String search_item, String text) {
-		String sql = "select count(*) from ask";
+		String sql;
 		if(search_item == null && text == null) {
 			sql = "select count(*) from ask";
 		} else if(search_item.equals("") && text.equals("")) {
