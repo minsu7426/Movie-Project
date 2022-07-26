@@ -23,7 +23,7 @@ public class LoginController {
 	private UserService userService;
 	
 	@RequestMapping("/signup")
-	public String signUp() {
+	public String signUp(UserDto userDto) {
 		return "/login/signup";
 	}
 	

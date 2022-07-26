@@ -129,16 +129,16 @@
 				<p>좌석</p>
 				<p>결제</p>
 			</div>
-			<form class="ticketing_select" method="post" action="/ticketing/secondreserve">
 			<c:forEach items="${movieList }" var="movie">
+			<form class="ticketing_select">
 				<div class="ticketing_item">
-					<input type="radio" name="movie_code" id="${movie.movie_code }" value="${movie.movie_code }"> <label
+					<input type="radio" name="check" id="${movie.movie_code }"> <label
 						for="${movie.movie_code }"><img src="<c:url value="/resources/images/movie/${movie.movie_img }"/>"
 						alt="" width="160px" height="240px"></label>
 				</div>
-			</c:forEach>				
-				<button type="submit">다음단계 >></button>
+			<button type="submit">다음단계 >></button>
 			</form>
+			</c:forEach>				
 		</div>
 	</div>
 </body>

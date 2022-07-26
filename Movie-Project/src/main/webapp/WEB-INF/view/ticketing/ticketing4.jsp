@@ -16,10 +16,7 @@
         list-style: none;
         box-sizing: border-box;
     }
-	.topmenu {
-		position: relative;
-		z-index: 100;
-	}
+
     .ticketing>.ticketing_title>h1 {
         margin-left: 20px;
     }
@@ -99,9 +96,6 @@
 </style>
 
 <body>
-	<div class="topmenu">
-		<%@include file="/WEB-INF/view/include/menu.jsp"%>
-	</div>
     <div class="ticketing container">
         <div class="ticketing_title">
             <h1>예매</h1>
@@ -116,17 +110,17 @@
             </div>
             <div class="ticketing_detail">
                 <div class="ticket_img">
-                    <img src="<c:url value="/resources/images/movie/${rcDto.rc_img}"/>" alt="예매영화" width="300px" height="440px">
+                    <img src="/resources/images/thor.jpg" alt="예매영화" width="300px" height="440px">
                 </div>
                 <div class="ticket_contents">
                     <h2>예매가 완료되었습니다.</h2>
-                    <p><b>예매번호</b> : ${rcDto.rc_num }</p>
-                    <p><b>영화제목</b> : ${rcDto.rc_title }</p>
-                    <p><b>날짜</b> : ${rcDto.rc_date }</p>
-                    <p><b>시간</b> : ${rcDto.rc_time }</p>
-                    <p><b>인원</b> : ${people}</p>
-                    <p><b>관</b> : ${rcDto.rc_screen }관</p>
-                    <p><b>좌석</b> : ${rcDto.rc_seat }</p>
+                    <p><b>예매번호</b> : 07120001</p>
+                    <p><b>영화제목</b> : 토르 : 러브 앤 썬더</p>
+                    <p><b>날짜</b> : 2022월 07월 12일</p>
+                    <p><b>시간</b> : 12:00</p>
+                    <p><b>인원</b> : 성인 3명</p>
+                    <p><b>관</b> : 2관</p>
+                    <p><b>좌석</b> : A01, A02, A03</p>
                 </div>
             </div>
             <a href="">홈으로 >></a>
