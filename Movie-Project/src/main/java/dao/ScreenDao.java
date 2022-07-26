@@ -9,6 +9,9 @@ import dto.ScreenDto;
 
 public interface ScreenDao {
 
+	//상영관 flag 정리
+	public void setFlag();
+	
 	//상영관 목록 가져오기
 	public List<ScreenDto> getScreenList(Criteria cri);
 	
@@ -32,4 +35,7 @@ public interface ScreenDao {
 	
 	//영화 수정
 	public void setUpdate(ScreenDto dto);
+	
+	//영화 목록 개수
+	public int getListCount(Criteria cri);
 }

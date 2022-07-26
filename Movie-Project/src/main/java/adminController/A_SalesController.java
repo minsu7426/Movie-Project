@@ -33,7 +33,7 @@ public class A_SalesController {
 	
 	@RequestMapping("sales_total")
 	public void sales_total(Model model) {
-		List<SalesTotalDto> list = null;
+		List<SalesTotalDto> list = salesService.getSalesMovieList();
 		
 		model.addAttribute("list", list);
 	}

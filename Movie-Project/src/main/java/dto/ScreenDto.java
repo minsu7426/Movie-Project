@@ -10,8 +10,15 @@ public class ScreenDto {
 	private String date_start;
 	private String date_end;
 	private String scr_time;
+	private String movie_title;
 	private boolean scr_flag;
 	
+	public String getMovie_title() {
+		return movie_title;
+	}
+	public void setMovie_title(String movie_title) {
+		this.movie_title = movie_title;
+	}
 	public int getScr_code() {
 		return scr_code;
 	}

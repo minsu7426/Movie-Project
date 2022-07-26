@@ -1,16 +1,12 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -25,9 +21,22 @@ public class ScreenDaoImpl implements ScreenDao {
 	JdbcTemplate jdbcTemplate;
 
 	@Override
+	public void setFlag() {
+		String sql = "update screen set scr_flag = false where date_format(concat(scr_date,' ', scr_time),'%Y-%m-%d %H:%i:%S') < now()";
+		jdbcTemplate.update(sql);
+	}
+	
+	@Override
 	public List<ScreenDto> getScreenList(Criteria cri) {
-		String sql = "select * from screen where scr_flag = true order by scr_date asc limit ?, ?";
-
+		String title = cri.getSearch_item();
+		String text = "'%" + cri.getText() +"%'";
+		String sql;
+		
+		if(cri.getSearch_item() == null || cri.getSearch_item().equals("")) {
+			sql = "select movie.movie_title, screen.scr_code, screen.scr_movie, screen.scr_seat, screen.scr_screen, screen.scr_time, screen.scr_date, screen.scr_flag from screen join movie on movie.movie_code = screen.scr_movie order by scr_flag = true desc, scr_date desc limit ?, ?";
+		} else {
+			sql = "select movie.movie_title, screen.scr_code, screen.scr_movie, screen.scr_seat, screen.scr_screen, screen.scr_time, screen.scr_date, screen.scr_flag from screen join movie on movie.movie_code = screen.scr_movie where "+ title +" like "+ text +" order by scr_flag = true desc, scr_date desc limit ?, ?";
+		}
 		List<ScreenDto> list = jdbcTemplate.query(sql, new RowMapper<ScreenDto>() {
 			@Override
 			public ScreenDto mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -38,6 +47,7 @@ public class ScreenDaoImpl implements ScreenDao {
 				dto.setScr_screen(rs.getString("scr_screen"));
 				dto.setScr_time(rs.getString("scr_time").substring(0, 5));
 				dto.setScr_date(rs.getString("scr_date"));
+				dto.setScr_flag(rs.getBoolean("scr_flag"));
 				return dto;
 			}
 		}, cri.getPageStart(), cri.getPerPageNum());
@@ -89,6 +99,7 @@ public class ScreenDaoImpl implements ScreenDao {
 				dto.setScr_screen(rs.getString("scr_screen"));
 				dto.setScr_time(rs.getString("scr_time"));
 				dto.setScr_date(rs.getString("scr_date"));
+				dto.setScr_flag(rs.getBoolean("scr_flag"));
 				return dto;
 			}
 		}, scr_code);
@@ -111,7 +122,21 @@ public class ScreenDaoImpl implements ScreenDao {
 
 	@Override
 	public void setUpdate(ScreenDto dto) {
-		String sql = "update screen set scr_date = ?, scr_screen= ?, scr_time = ? where scr_code = ?";
-		jdbcTemplate.update(sql, dto.getScr_date(), dto.getScr_screen(), dto.getScr_time(), dto.getScr_code());
+		String sql = "update screen set scr_date = ?, scr_screen= ?, scr_time = ?, scr_flag = ? where scr_code = ?";
+		jdbcTemplate.update(sql, dto.getScr_date(), dto.getScr_screen(), dto.getScr_time(), dto.isScr_flag(), dto.getScr_code());
+	}
+
+	@Override
+	public int getListCount(Criteria cri) {
+		String title = cri.getSearch_item();
+		String text = "'%" + cri.getText() + "%'";
+		String sql;
+		if (cri.getSearch_item() == null || cri.getSearch_item().equals("")) {
+			sql = "select count(*) from screen";
+		} else {
+			sql = "select count(*) from screen join movie on movie.movie_code = screen.scr_movie where " + title + " like " + text;
+		}
+		int count = jdbcTemplate.queryForObject(sql, Integer.class);
+		return count;
 	}
 }

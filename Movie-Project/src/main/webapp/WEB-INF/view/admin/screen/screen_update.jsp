@@ -111,7 +111,8 @@
 			<h1>상영관 수정</h1>
 			<hr>
 		</div>
-		<form class="add_form" action="/admin/screen/update?scr_code=${dto.scr_code }" method="post">
+		<form class="add_form"
+			action="/admin/screen/update?scr_code=${dto.scr_code }" method="post">
 			<div class="form-group row">
 				<label class="col-sm-2 input-name">영화제목</label> <input type="text"
 					name="scr_title" value="${title}" readonly>
@@ -167,10 +168,26 @@
 					</div>
 				</div>
 			</div>
+			<div class="form-group row div4">
+				<label class="col-sm-2 input-name">상영 여부</label>
+				<div>
+					<div>
+						<input class="cinema_checkbox" name="scr_flag" type="radio"
+							value="true" ${dto.scr_flag == true ? 'checked="checked"' : "" }>
+						<label>상영중</label>
+					</div>
+					<div>
+						<input class="cinema_checkbox" name="scr_flag" type="radio"
+							value="false" ${dto.scr_flag == false ? 'checked="checked"' : "" }>
+						<label>상영종료</label>
+					</div>
+				</div>
+			</div>
 			<hr>
 			<div class="submit" align="end">
 				<button class="btn btn-primary" type="submit">수정하기</button>
-				<a href="/admin/screen/screen_manage" class="btn btn-primary">되돌아가기</a> <a href="/admin/screen/delete?scr_code=${dto.scr_code }"
+				<a href="/admin/screen/screen_manage" class="btn btn-primary">되돌아가기</a>
+				<a href="/admin/screen/delete?scr_code=${dto.scr_code }"
 					class="btn btn-danger">삭제</a>
 			</div>
 		</form>

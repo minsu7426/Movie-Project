@@ -141,7 +141,7 @@ a {
 							<li><a href="/admin/movie/movie_manage">영화 관리</a></li>
 						</ul>
 					</li>
-					<li><a href="">예매 관리</a></li>
+					<li><a href="/admin/ticket/ticket_manage">예매 관리</a></li>
 					<li><a href="/admin/review/reviewmanage">리뷰 관리</a></li>
 					<li><a href="/admin/ask/askmanage">고객센터</a>
 						<ul>

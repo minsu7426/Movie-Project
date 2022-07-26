@@ -22,8 +22,8 @@ public interface CouponDao {
 	// 회원이 쿠폰 등록
 	public void setCouponSubmit(String id, String code);
 	
-	// 기한 지나면 사용완료
-	public void setCouponComplete(String end_date);
+	// 기한 지난 쿠폰 전체 사용완료 처리
+	public void setCouponComplete();
 	
 	// 쿠폰 개수 가져오기
 	public int getAllCouponCount(String search_item, String text);

@@ -29,11 +29,11 @@ public class CouponDaoImpl implements CouponDao {
 	public List<CouponDto> getAllCoupon(String search_item, String text, Criteria cri) {
 		String sql;
 		if (search_item == null && text == null) {
-			sql = "select * from coupon order by coupon_give desc limit ?, ?";
+			sql = "select * from coupon order by coupon_flag = true desc, coupon_end desc limit ?, ?";
 		} else if(search_item.equals("") && text.equals("")) {
-			sql = "select * from coupon order by coupon_give desc limit ?, ?";
+			sql = "select * from coupon order by coupon_flag = true desc, coupon_end desc limit ?, ?";
 		} else {
-			sql = "select * from coupon where " + search_item + " like '%" + text + "%' order by coupon_give desc limit ?, ?";
+			sql = "select * from coupon where " + search_item + " like '%" + text + "%' order by coupon_flag = true desc, coupon_end desc limit ?, ?";
 		}
 		List<CouponDto> results = jdbcTemplate.query(sql, new RowMapper<CouponDto>() {
 
@@ -86,9 +86,9 @@ public class CouponDaoImpl implements CouponDao {
 	}
 	
 	@Override
-	public void setCouponComplete(String end_date) {
-		String sql = "update coupon set coupon_flag = ? where coupon_end = ?";
-		jdbcTemplate.update(sql, false, end_date);
+	public void setCouponComplete() {
+		String sql = "update coupon set coupon_flag = false where coupon_end < (now() -interval 1 day)";
+		jdbcTemplate.update(sql);
 	}
 	
 	@Override

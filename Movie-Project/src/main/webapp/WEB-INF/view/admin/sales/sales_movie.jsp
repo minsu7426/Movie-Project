@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -140,14 +141,12 @@
 					<th>평균 연령</th>
 				</tr>
 				<tr>
-					<c:set var="viewing_today" value="${dto.sales_viewing_today}" />
-					<td>${fn:substring(viewing_today,0,3)}%</td>
-					<c:set var="viewing_yesday" value="${dto.sales_viewing_today}" />
-					<td>${fn:substring(viewing_yesday,0,3)}%</td>
-					<td>${dto.sales_man}%</td>
-					<td>${dto.sales_woman}%</td>
-					<c:set var="ageAvg" value="${dto.sales_avg}" />
-					<td>${fn:substring(ageAvg,0,5)}세</td>
+				
+					<td><fmt:formatNumber value="${dto.sales_viewing_today}" pattern="#.#"/>%</td>
+					<td><fmt:formatNumber value="${dto.sales_viewing_total}" pattern="#.#"/>%</td>
+					<td><fmt:formatNumber value="${dto.sales_man}" pattern="#.#"/>%</td>
+					<td><fmt:formatNumber value="${dto.sales_woman}" pattern="#.#"/>%</td>
+					<td><fmt:formatNumber value="${dto.sales_avg}" pattern="#.#"/>세</td>
 				</tr>
 			</table>
 		</div>

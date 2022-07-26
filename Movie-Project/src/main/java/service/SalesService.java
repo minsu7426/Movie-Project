@@ -3,7 +3,6 @@ package service;
 
 import java.util.List;
 
-import dto.SalesDto1;
 import dto.SalesMovieDto;
 import dto.SalesTotalDto;
 

@@ -33,4 +33,6 @@ public interface ScreenService {
 	
 	//영화 업데이트
 	public void setUpdate(ScreenDto dto);
+	
+	public int getListCount(Criteria cri);
 }

@@ -2,14 +2,16 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import dto.SalesDto1;
+import dto.SalesTotalDto;
 
 @Repository
 public class SalesDaoImpl implements SalesDao {
@@ -87,23 +89,84 @@ public class SalesDaoImpl implements SalesDao {
 		return avgAge;
 	}
 	
+//	전체 수익 관리
+	
 	@Override
-	public List<SalesDto1> getSalesMovieList() {
-
-		String sql = "select movie.movie_title as sales_movie, ticket.tic_payment as sales_payment, screen.scr_date as sales_date, ticket.tic_paytime as sales_paytime, user.user_jumin as sales_jumin, screen.scr_seat as sales_seat from ticket join user on user.user_id = ticket.tic_id join screen on ticket.tic_code = screen.scr_code join movie on movie.movie_code = screen.scr_movie where movie.movie_title = '헤어질 결심';";
-
-
-		List<SalesDto1> list = jdbcTemplate.query(sql, new RowMapper<SalesDto1>() {
+	public List<SalesTotalDto> getMovieTitle() {
+		String sql ="select movie_title from movie";
+		List<SalesTotalDto> list = jdbcTemplate.query(sql, new RowMapper<SalesTotalDto>(){
 			@Override
-			public SalesDto1 mapRow(ResultSet rs, int rowNum) throws SQLException {
-				SalesDto1 dto = new SalesDto1();
-				dto.setSales_movie(rs.getString("sales_movie"));
-				dto.setSales_payment(rs.getInt("sales_payment"));
-				dto.setSales_date(rs.getString("sales_date"));
-				dto.setSales_paytime(rs.getString("sales_paytime").substring(0,10));
-				dto.setSales_jumin(rs.getString("sales_jumin"));
-				dto.setSales_seat(rs.getString("sales_seat"));
+			public SalesTotalDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+				SalesTotalDto dto = new SalesTotalDto();
+				dto.setSales_title(rs.getString("movie_title"));
 				return dto;
+			}
+		});
+		return list;
+	}
+	
+	@Override
+	public List<Map<String, Integer>> getTodayList() {
+		String sql = "select movie.movie_title, sum(ticket.tic_payment) as sum from ticket join screen on ticket.tic_code = screen.scr_code join movie on movie.movie_code = screen.scr_movie where ticket.tic_paytime = curdate() group by movie_title";
+		List<Map<String, Integer>> list = jdbcTemplate.query(sql, new RowMapper<Map<String, Integer>>(){
+			@Override
+			public Map<String, Integer> mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Map<String, Integer> map = new HashMap<String, Integer>();
+				map.put(rs.getString("movie_title"), rs.getInt("sum"));
+				return map;
+			}
+		});
+		return list;
+	}
+	
+	@Override
+	public List<Map<String, Integer>> getTotalList() {
+		String sql = "select movie.movie_title, sum(ticket.tic_payment) as sum from ticket join screen on ticket.tic_code = screen.scr_code join movie on movie.movie_code = screen.scr_movie group by movie_title";
+		List<Map<String, Integer>> list = jdbcTemplate.query(sql, new RowMapper<Map<String, Integer>>(){
+			@Override
+			public Map<String, Integer> mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Map<String, Integer> map = new HashMap<String, Integer>();
+				map.put(rs.getString("movie_title"), rs.getInt("sum"));
+				return map;
+			}
+		});
+		return list;
+	}
+	@Override
+	public List<Map<String, Integer>> getViewCount() {
+		String sql ="select movie.movie_title, sum(length(tic_seat) - length(replace(tic_seat, ',', '')) + 1) as seat from ticket join screen on ticket.tic_code = screen.scr_code join movie on movie.movie_code = screen.scr_movie group by movie_title";
+		List<Map<String, Integer>> list = jdbcTemplate.query(sql, new RowMapper<Map<String, Integer>>(){
+			@Override
+			public Map<String, Integer> mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Map<String, Integer> map = new HashMap<String, Integer>();
+				map.put(rs.getString("movie_title"), rs.getInt("seat"));
+				return map;
+			}
+		});
+		return list;
+	}
+	@Override
+	public List<Map<String, Integer>> getJuminCount(int jumin) {
+		String sql = "select movie.movie_title, count(*) as jumin from ticket join user on user.user_id = ticket.tic_id join screen on ticket.tic_code = screen.scr_code join movie on movie.movie_code = screen.scr_movie where substr(user.user_jumin, 8,1) = '"+jumin+"' group by movie_title";
+		List<Map<String, Integer>> list = jdbcTemplate.query(sql, new RowMapper<Map<String, Integer>>(){
+			@Override
+			public Map<String, Integer> mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Map<String, Integer> map = new HashMap<String, Integer>();
+				map.put(rs.getString("movie_title"), rs.getInt("jumin"));
+				return map;
+			}
+		});
+		return list;
+	}
+	@Override
+	public List<Map<String, Integer>> getTotalSeatList() {
+		String sql = "select movie.movie_title, count(*) as total from screen join movie on movie.movie_code = screen.scr_movie group by movie_title";
+		List<Map<String, Integer>> list = jdbcTemplate.query(sql, new RowMapper<Map<String,Integer>>(){
+			@Override
+			public Map<String, Integer> mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Map<String, Integer> map = new HashMap<String, Integer>();
+				map.put(rs.getString("movie_title"), rs.getInt("total"));
+				return map;
 			}
 		});
 		return list;

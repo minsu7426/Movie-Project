@@ -105,7 +105,7 @@
 				<table>
 					<tr>
 						<td><select class="search_select" name="search_item">
-								<option value="movie_title">영화제목</option>
+								<option value="movie_title">영화 제목</option>
 								<option value="movie_genre">장르</option>
 								<option value="movie_director">감독</option>
 						</select></td>

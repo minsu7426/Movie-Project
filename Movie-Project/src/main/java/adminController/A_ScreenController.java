@@ -30,7 +30,7 @@ public class A_ScreenController {
 		List<MovieDto> title = screenService.getMovieList();
 		List<ScreenDto> list = screenService.getScreenList(cri);
 		
-		
+		pageDto.setTotalCount(screenService.getListCount(cri));
 		model.addAttribute("title",title);
 		model.addAttribute("list",list);
 		model.addAttribute("pageDto", pageDto);

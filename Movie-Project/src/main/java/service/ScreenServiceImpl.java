@@ -1,11 +1,8 @@
 package service;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +21,7 @@ public class ScreenServiceImpl implements ScreenService{
 	
 	@Override
 	public List<ScreenDto> getScreenList(Criteria cri) {
+		screenDao.setFlag();
 		return screenDao.getScreenList(cri);
 	}
 	
@@ -64,5 +62,10 @@ public class ScreenServiceImpl implements ScreenService{
 	@Override
 	public void setUpdate(ScreenDto dto) {
 		screenDao.setUpdate(dto);
+	}
+	
+	@Override
+	public int getListCount(Criteria cri) {
+		return screenDao.getListCount(cri);
 	}
 }
