@@ -58,6 +58,7 @@ public class LoginController {
 		return "/home";
 	}
 	
+	//로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
@@ -78,6 +79,7 @@ public class LoginController {
     	return "/login/idCheck";
     }
     
+    //아이디검색
     @RequestMapping("/searchid")
     public String searchId() {
     	return "/login/searchId";
@@ -97,6 +99,7 @@ public class LoginController {
     	}
     }
     
+    //비밀번호 검색
     @RequestMapping("/searchpw")
     public String searchPw() {
     	return "/login/searchPw";

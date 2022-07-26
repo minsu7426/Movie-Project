@@ -18,6 +18,11 @@
 	box-sizing: border-box;
 }
 
+.topmenu{
+	position: relative;
+	z-index: 100;
+}
+
 .ticketing>.ticketing_title>h1 {
 	margin-left: 20px;
 }
@@ -77,7 +82,7 @@
 	margin: 20px 40px;
 }
 
-.ticketing>.ticketing_movie>a {
+.ticketing>.ticketing_movie>form>button {
 	position: absolute;
 	display: inline-block;
 	right: 100px;
@@ -93,7 +98,7 @@
 	transition: all 0.3s;
 }
 
-.ticketing>.ticketing_movie>a:hover {
+.ticketing>.ticketing_movie>form>button:hover {
 	background-color: white;
 	border: 3px solid #393b39;
 	color: black;
@@ -108,7 +113,9 @@
 </style>
 
 <body>
+	<div class="topmenu">
 	<%@include file="/WEB-INF/view/include/menu.jsp"%>
+	</div>	
 	<div class="ticketing container">
 
 		<div class="ticketing_title">
@@ -123,15 +130,15 @@
 				<p>결제</p>
 			</div>
 			<c:forEach items="${movieList }" var="movie">
-			<div class="ticketing_select">
+			<form class="ticketing_select">
 				<div class="ticketing_item">
 					<input type="radio" name="check" id="${movie.movie_code }"> <label
 						for="${movie.movie_code }"><img src="<c:url value="/resources/images/movie/${movie.movie_img }"/>"
 						alt="" width="160px" height="240px"></label>
 				</div>
-			</div>
+			<button type="submit">다음단계 >></button>
+			</form>
 			</c:forEach>				
-			<a href="">다음단계 >></a>
 		</div>
 	</div>
 </body>
