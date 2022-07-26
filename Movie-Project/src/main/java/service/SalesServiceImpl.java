@@ -68,7 +68,7 @@ public class SalesServiceImpl implements SalesService{
 	
 	@Override
 	public List<SalesTotalDto> getSalesMovieList() {		
-		List<SalesTotalDto> list = salesDao.
+		List<SalesTotalDto> list = null;
 		
 				
 		return list;
