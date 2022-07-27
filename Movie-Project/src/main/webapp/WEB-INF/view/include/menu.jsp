@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -140,9 +141,11 @@ a {
 				<ul>
 					<li><a href="/ticketing/reserve">예매</a>
 						<ul>
+						<jsp:useBean id="now" class="java.util.Date" />
+						<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="nowDate" /> 
 							<li><a href="/ticketing/reserve">예매</a></li>
-							<li><a href="">예매 내역</a></li>
-							<li><a href="">상영 시간표</a></li>
+							<li><a href="/ticketing/ticketlist">예매 내역</a></li>
+							<li><a href="/ticketing/movieschedule?date=${nowDate}">상영 시간표</a></li>
 						</ul></li>
 					<li><a href="/movie/current_screen">영화</a>
 						<ul>

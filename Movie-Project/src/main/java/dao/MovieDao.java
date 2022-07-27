@@ -27,4 +27,7 @@ public interface MovieDao {
 	
 	//총 영화 개수
 	public Integer getAllCount(String search_item, String text);
+	
+	// 관람한 영화 리스트
+	public List<MovieDto> getShowedMovie(String id);
 }

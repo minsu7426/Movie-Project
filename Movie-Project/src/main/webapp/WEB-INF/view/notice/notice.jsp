@@ -123,8 +123,7 @@
 					<tr>
 						<td>${dto.notice_code}</td>
 						<td><a href="/notice/detail?notice_code=${dto.notice_code}&page=${pageDto.cri.page}&search_item=${pageDto.cri.search_item}&text=${pageDto.cri.text}">${dto.notice_title }</a></td>
-						<fmt:parseDate value="${dto.notice_date }" pattern="yyyy-MM-dd"
-							var="date" />
+						<fmt:parseDate value="${dto.notice_date }" pattern="yyyy-MM-dd" var="date" />
 						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${date}" /></td>
 						<td>admin</td>
 						<td>${dto.notice_hit}</td>

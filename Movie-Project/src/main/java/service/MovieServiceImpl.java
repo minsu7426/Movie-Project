@@ -53,4 +53,9 @@ public class MovieServiceImpl implements MovieService {
 	public Integer getAllCount(String search_item, String text) {
 		return movieDao.getAllCount(search_item, text);
 	}
+	
+	@Override
+	public List<MovieDto> getShowedMovie(String id) {
+		return movieDao.getShowedMovie(id);
+	}
 }

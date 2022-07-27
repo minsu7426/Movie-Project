@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,7 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import dto.MovieDto;
 import dto.UserDto;
+import service.MovieService;
+import service.TicketService;
 import service.UserService;
 
 @Controller
@@ -17,6 +22,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private MovieService movieService;
 	
 	@RequestMapping("mypage")
 	public void mypage(HttpSession session, Model model) {
@@ -33,7 +41,14 @@ public class UserController {
 	}
 	
 	@RequestMapping("viewing_detail")
-	public void viewing_detail() {
-		
+	public String viewing_detail(HttpSession session, Model model) {
+		String[] user = (String[])session.getAttribute("user");
+		if(user == null) {
+			return "login/login";
+		}
+		String user_id = user[0];
+		List<MovieDto> movie = movieService.getShowedMovie(user_id);
+		model.addAttribute("movielist", movie);
+		return "/user/viewing_detail";
 	}
 }
