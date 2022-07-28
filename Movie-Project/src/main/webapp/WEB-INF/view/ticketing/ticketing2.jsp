@@ -43,6 +43,7 @@
 	min-width: 14%;
 	text-align: center;
 	border-right: 1px solid rgb(233, 224, 224);
+	height: 640px;
 }
 
 .ticketing>.ticketing_movie>.ticketing_menu>p {
@@ -64,6 +65,7 @@
 }
 
 .ticketing>.ticketing_movie>.ticketing_date {
+	border-right: 1px solid rgb(233, 224, 224);
 	overflow-y: scroll;
 	max-height: 640px;
 }

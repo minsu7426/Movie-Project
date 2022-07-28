@@ -55,7 +55,7 @@ public class LoginController {
 		}
 		userChk[0] = userDto.getUser_id();
 		session.setAttribute("user", userChk);
-		return "/home";
+		return "redirect:/home";
 	}
 	
 	//로그아웃

@@ -15,13 +15,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import dto.CouponDto;
 import dto.MovieDto;
 import dto.ReserveCompleteDto;
 import dto.ScheduleDto;
 import dto.ScreenDto;
 import dto.TicketDto;
+import service.CouponService;
 import service.MovieService;
 import service.ScheduleService;
+import service.TicketService;
 import service.TicketingService;
 
 @Controller
@@ -36,6 +39,9 @@ public class TicketingController {
 	
 	@Autowired
 	private ScheduleService scheduleService;
+	
+	@Autowired
+	private CouponService couponService;
 	
 	@RequestMapping("/reserve")
 	public String ticketReserve(Model model) {
@@ -84,7 +90,6 @@ public class TicketingController {
 	
 	@PostMapping("/fourthreserve")
 	public String ticketingpay(HttpServletRequest request, HttpSession session, Model model) {
-		
 		int price = Integer.parseInt(request.getParameter("price"));
 		String code = request.getParameter("scr_code");
 		String[] id = (String[])session.getAttribute("user");
@@ -97,19 +102,38 @@ public class TicketingController {
 		} else {
 			people = "성인 " + adult + "명 " + "청소년 " + teen + "명";			
 		}
-		
 		String[] seat = request.getParameterValues("seat");
 		String s = String.join(",", seat);
 		TicketDto ticket = new TicketDto();
 		ticket.setTic_id(id[0]);
 		ticket.setTic_seat(s);
 		ticket.setTic_payment(price);
-		ticketingService.setTicket(ticket, code);
-		
-		ReserveCompleteDto rcDto = ticketingService.getReserveComplete(code, s, id[0]);
+		List<CouponDto> coupon = couponService.getCouponById(id[0]);
+		model.addAttribute("people", people);
+		model.addAttribute("code", code);
+		model.addAttribute("ticket", ticket);
+		model.addAttribute("coupon", coupon);
+		return "ticketing/ticketing4";
+	}
+	
+	@PostMapping("/fivethreserve")
+	public String ticketComplete(HttpServletRequest request, Model model) {
+		String coupon_code = request.getParameter("coupon");
+		String screen_code = request.getParameter("screen_code");
+		String people = request.getParameter("people");
+		String tic_id = request.getParameter("tic_id");
+		String tic_seat = request.getParameter("tic_seat");
+		int price = Integer.parseInt(request.getParameter("price2"));
+		TicketDto ticket = new TicketDto();
+		ticket.setTic_id(tic_id);
+		ticket.setTic_seat(tic_seat);
+		ticket.setTic_payment(price);
+		ticketingService.setTicket(ticket, screen_code);
+		ReserveCompleteDto rcDto = ticketingService.getReserveComplete(screen_code, tic_seat, tic_id);
+		couponService.setCouponSuccess(coupon_code);
 		model.addAttribute("rcDto", rcDto);
 		model.addAttribute("people", people);
-		return "ticketing/ticketing4";
+		return "ticketing/ticketing5";
 	}
 	
 	@RequestMapping("ticketlist")

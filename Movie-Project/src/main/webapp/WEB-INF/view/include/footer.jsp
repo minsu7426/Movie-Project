@@ -1,28 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/d777ad58b4.js" crossorigin="anonymous"></script>
 </head>
 <style>
-	html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-	}
-	
-	
     footer {
-    	position: relative;
+    	position: fixed;
+    	bottom: 0;
         background-color: #292c2f;
         width: 100%;
-		min-height: 100%;
-    	margin-top: 100px;
-    }
-    
-    footer > div{
-        height: 99999px; /* footer의 높이 */
-    	position: absolute;  
-    	bottom: 0;
-    	left: 0;
     }
 
     .footer-distributed {
@@ -120,10 +107,10 @@
             </div>
             <div class="footer-left">
                 <p class="footer-links">
-                    <a class="link-1" href="#">홈</a>
-                    <a href="#">예매</a>
-                    <a href="#">영화</a>
-                    <a href="#">고객센터</a>
+                    <a class="link-1" href="/home">홈</a>
+                    <a href="/ticketing/reserve">예매</a>
+                    <a href="/movie/current_screen">영화</a>
+                    <a href="/ask/one-on-one">고객센터</a>
                 </p>
                 <p>경상남도 창원시 마산회원구 양덕북12길 113 (양덕동, 경민 인터빌) 4층</p>
                 <p>055-000-000</p>
@@ -133,5 +120,3 @@
         </div>
     </footer>
 </body>
-
-</html>

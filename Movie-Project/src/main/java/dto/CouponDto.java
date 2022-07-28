@@ -7,7 +7,14 @@ public class CouponDto {
 	private String coupon_end;
 	private String coupon_id;
 	private boolean coupon_flag;
+	private int coupon_price;
 	
+	public int getCoupon_price() {
+		return coupon_price;
+	}
+	public void setCoupon_price(int coupon_price) {
+		this.coupon_price = coupon_price;
+	}
 	public String getCoupon_code() {
 		return coupon_code;
 	}

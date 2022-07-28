@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +8,10 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
 </head>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"
+	type="text/javascript"></script>
 <style>
-    /* menu start */
     * {
         margin: 0;
         padding: 0;
@@ -56,7 +59,7 @@
         color: darkslategrey;
     }
 
-    .ticketing>.ticketing_movie>a {
+    .ticketing>.ticketing_movie>button {
         position: absolute;
         display: inline-block;
         right: 100px;
@@ -72,32 +75,99 @@
         transition: all 0.3s;
     }
 
-    .ticketing>.ticketing_movie>a:hover {
+    .ticketing>.ticketing_movie>button:hover {
         background-color: white;
         border: 3px solid #393b39;
         color: black;
     }
 
-    .ticketing>.ticketing_movie > .ticketing_detail{
-        margin: 20px 0 0 60px;
+    .ticket_contents {
+        margin-left: 40px;
+        height: 100%;
+    }
+
+    .ticket_contents .pay_container{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ticket_contents .pay_container .pay_contents{
+        margin-top: 30px;
         display: flex;
     }
 
-    .ticketing>.ticketing_movie > .ticketing_detail > .ticket_contents{
-        margin-left: 20px;
+    .ticket_contents .pay_container .pay_contents div > label{
+        width: 200px;
+        height: 70px;
+        border: 2px solid black;
+        text-align: center;
+        line-height: 70px;
+        font-size: 18px;
+        display: block;
+        margin-right: 20px;
+        border-radius: 20px;
+        transition: all 0.2s;
+        cursor: pointer;
+    }
+    .ticket_contents .pay_container .pay_contents input:checked ~ label{
+        background-color: black;
+        opacity: 0.8;
+        color: white;
+    }
+    .ticket_contents .pay_container .pay_contents input{
+        display: none;
     }
 
-    .ticketing>.ticketing_movie > .ticketing_detail > .ticket_contents > h2{
-        font-size: 32px;
+    .ticket_contents .pay_container > .ticket_coupon{
+        display: flex;
+        align-items: center;
+        margin-top: 50px;
+    }
+
+    .ticket_contents .pay_container > .ticket_coupon > p{
+        font-size: 18px;
         font-weight: 700;
         margin: 0;
+        margin-right: 20px;
     }
-    .ticketing>.ticketing_movie > .ticketing_detail > .ticket_contents > p{
+
+    .ticket_contents .pay_container > .ticket_coupon > select{
+        width: 200px;
+        height: 40px;
+        padding: 10px;
+    }
+
+    .ticket_contents .pay_container > .ticket_money{
+        display: flex;
+        align-items: center;
+        margin-top: 50px;
+    }
+
+    .ticket_contents .pay_container > .ticket_money > p{
         font-size: 18px;
-        margin-top: 24px;
+        font-weight: 700;
+        margin: 0;
+        margin-right: 20px;
+    }
+
+    .ticket_contents .pay_container > .ticket_money > input{
+        width: 200px;
+        height: 40px;
+        padding: 10px;
+        border: 1px solid transparent;
+        color: red;
+        font-size: 18px;
+        font-weight: 700;
     }
 </style>
-
+<script type="text/javascript">
+	function calc(){
+		var val = Number($("#selectcoupon option:selected").attr('value2'));
+		var price = document.getElementById("price").value;
+		document.getElementById("price2").value = price - val;
+	}
+</script>
 <body>
 	<div class="topmenu">
 		<%@include file="/WEB-INF/view/include/menu.jsp"%>
@@ -107,7 +177,7 @@
             <h1>예매</h1>
             <hr />
         </div>
-        <div class="ticketing_movie">
+        <form class="ticketing_movie" action="/ticketing/fivethreserve" method="post">
             <div class="ticketing_menu">
                 <p>영화선택</p>
                 <p>상영시간</p>
@@ -115,23 +185,51 @@
                 <p>결제</p>
             </div>
             <div class="ticketing_detail">
-                <div class="ticket_img">
-                    <img src="<c:url value="/resources/images/movie/${rcDto.rc_img}"/>" alt="예매영화" width="300px" height="440px">
-                </div>
                 <div class="ticket_contents">
-                    <h2>예매가 완료되었습니다.</h2>
-                    <p><b>예매번호</b> : ${rcDto.rc_num }</p>
-                    <p><b>영화제목</b> : ${rcDto.rc_title }</p>
-                    <p><b>날짜</b> : ${rcDto.rc_date }</p>
-                    <p><b>시간</b> : ${rcDto.rc_time }</p>
-                    <p><b>인원</b> : ${people}</p>
-                    <p><b>관</b> : ${rcDto.rc_screen }관</p>
-                    <p><b>좌석</b> : ${rcDto.rc_seat }</p>
-                    <p><b>금액</b> : ${rcDto.rc_pay }원</p>
+                    <h2>결제 방법을 선택해주세요.</h2>
+                    <div class="pay_container">
+                        <div class="pay_contents">
+                            <div>
+                                <input type="radio" name="pay" id="pay1">
+                                <label for="pay1">카카오페이</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="pay" id="pay2">
+                                <label for="pay2">네이버페이</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="pay" id="pay3">
+                                <label for="pay3">카드결제</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="pay" id="pay4">
+                                <label for="pay4">휴대폰결제</label>
+                            </div>
+                        </div>
+                        <div class="ticket_coupon">
+                            <p>쿠폰사용</p>
+                            <select name="coupon" id="selectcoupon" onclick="calc()">
+                                <option value="0" value2="0">--쿠폰을 선택해주세요--</option>
+                                <c:forEach var="coupon" items="${coupon}">
+                                <option value="${coupon.coupon_code}" value2="${coupon.coupon_price}">${coupon.coupon_form}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="ticket_money">
+                            <p>결제금액</p>
+                            <input type="text" id="price" name="price" value="${ticket.tic_payment}" readonly>
+                            <p>쿠폰적용된 금액</p>
+                            <input type="text" id="price2" name="price2" value="${ticket.tic_payment}" readonly>
+                            <input type="hidden" name="people" value="${people}">
+                            <input type="hidden" name="screen_code" value="${code}">
+                            <input type="hidden" name="tic_id" value="${ticket.tic_id }">
+                            <input type="hidden" name="tic_seat" value="${ticket.tic_seat }">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <a href="/home">홈으로 >></a>
-        </div>
+            <button type="submit">결제하기 >></button>
+        </form>
     </div>
 </body>
 </html>

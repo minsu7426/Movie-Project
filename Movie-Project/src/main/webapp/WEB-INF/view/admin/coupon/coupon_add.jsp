@@ -46,21 +46,9 @@
         color: #2b2929;
 	}
 	.modal > form > div > .date{
-		width: 173px;
+		width: 171px;
 	}
 </style>
-<script type="text/javascript">
-function selfCloseSubmit()
-{
-    var f= document.forms.popupForm;
-    document.domain = "127.0.0.1"; //document.domain 값이 팝업과 부모창 동일해야 합니다.
-    opener.name = "parentPage"; //유니크한 이름이어야 합니다.
-    f.target = opener.name;
-    f.submit();
-    self.close();
-}
-출처: https://tnsgud.tistory.com/579 [Soon Gud Story:티스토리]
-</script>
 <body>
 	<div class="modal" id="modal">
 		<div>
@@ -79,6 +67,10 @@ function selfCloseSubmit()
 					<option value="${id}">${id}</option>
 				</c:forEach>
 				</select>
+            </div>
+            <label class="col-sm-3 input-name">쿠폰금액</label>
+			<div class="form-group row">
+                <input class="form-input" name="coupon_price" type="number" required="required">
             </div>
             <label class="col-sm-3 input-name">유효기간</label>
 			<div class="form-group row">

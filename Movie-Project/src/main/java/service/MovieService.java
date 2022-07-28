@@ -4,6 +4,7 @@ import java.util.List;
 
 import dto.Criteria;
 import dto.MovieDto;
+import dto.SlideDto;
 
 public interface MovieService {
 
@@ -30,4 +31,7 @@ public interface MovieService {
 	
 	// 관람한 영화 리스트
 	public List<MovieDto> getShowedMovie(String id);
+	
+	// 메인 페이지 영화 슬라이드
+	public List<SlideDto> getSlideMovie();
 }

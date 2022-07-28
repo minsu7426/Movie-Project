@@ -289,7 +289,7 @@
 						<input id="adultprice" value="15000" type="hidden"> 
 						<select id="adult" name="adult" class="radio-group" onclick="calc()">
 							<option value="0">0명</option>
-							<option value="1">1명</option>
+							<option value="1" selected="selected">1명</option>
 							<option value="2">2명</option>
 							<option value="3">3명</option>
 							<option value="4">4명</option>

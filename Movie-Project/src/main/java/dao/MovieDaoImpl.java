@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import dto.Criteria;
 import dto.MovieDto;
+import dto.SlideDto;
 
 @Repository
 public class MovieDaoImpl implements MovieDao {
@@ -190,6 +191,25 @@ public class MovieDaoImpl implements MovieDao {
 			}
 			
 		}, id);
+		return results;
+	}
+	
+	@Override
+	public List<SlideDto> getSlideMovie() {
+		String sql = "select movie_title, movie_code, movie_img, sum(30 - (length(scr_seat) - length(replace(scr_seat, ',', '')) + 1)) as count from screen join movie on movie.movie_code = screen.scr_movie group by movie_code order by count desc";
+		List<SlideDto> results = jdbcTemplate.query(sql, new RowMapper<SlideDto>() {
+
+			@Override
+			public SlideDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+				SlideDto slide = new SlideDto();
+				slide.setSlide_code(rs.getInt("movie_code"));
+				slide.setSlide_count(rs.getInt("count"));
+				slide.setSlide_img(rs.getString("movie_img"));
+				slide.setSlide_title(rs.getString("movie_title"));
+				return slide;
+			}
+			
+		});
 		return results;
 	}
 }

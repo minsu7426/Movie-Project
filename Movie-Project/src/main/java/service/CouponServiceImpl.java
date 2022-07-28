@@ -101,4 +101,9 @@ public class CouponServiceImpl implements CouponService {
 	public int getAllCouponCount(String search_item, String text) {
 		return couponDao.getAllCouponCount(search_item, text);
 	}
+	
+	@Override
+	public void setCouponSuccess(String code) {
+		couponDao.setCouponSuccess(code);
+	}
 }

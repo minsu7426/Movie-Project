@@ -24,4 +24,7 @@ public interface CouponService {
 	
 	// 쿠폰 개수 가져오기
 	public int getAllCouponCount(String search_item, String text);
+	
+	// 쿠폰 사용
+	public void setCouponSuccess(String code);
 }

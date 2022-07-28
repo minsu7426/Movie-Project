@@ -44,7 +44,7 @@ public class TicketingServiceImpl implements TicketingService{
 	}
 	
 	@Override
-	public void setTicket(TicketDto ticketDto, String code) {
+	public synchronized void setTicket(TicketDto ticketDto, String code) {
 		ScreenDto screen = ticketingDao.getScreenByCode(code);
 		String[] screen_seat = screen.getScr_seat().split(",");
 		System.out.println(Arrays.toString(screen_seat));

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,15 +90,9 @@
 	<div class="container c">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><a href=""><img src="../resources/images/movie/4.jpg" alt="영화"></a></div>
-                <div class="swiper-slide"><a href=""><img src="../resources/images/movie/4.jpg" alt="영화"></a></div>
-                <div class="swiper-slide"><a href=""><img src="../resources/images/movie/4.jpg" alt="영화"></a></div>
-                <div class="swiper-slide"><a href=""><img src="../resources/images/movie/4.jpg" alt="영화"></a></div>
-                <div class="swiper-slide"><a href=""><img src="../resources/images/movie/4.jpg" alt="영화"></a></div>
-                <div class="swiper-slide"><a href=""><img src="../resources/images/movie/4.jpg" alt="영화"></a></div>
-                <div class="swiper-slide"><a href=""><img src="../resources/images/movie/4.jpg" alt="영화"></a></div>
-                <div class="swiper-slide"><a href=""><img src="../resources/images/movie/4.jpg" alt="영화"></a></div>
-                <div class="swiper-slide"><a href=""><img src="../resources/images/movie/4.jpg" alt="영화"></a></div>
+            <c:forEach var="list" items="${list}">
+                <div class="swiper-slide"><a href="/movie/moviedetail?moviecode=${list.slide_code}"><img src="<c:url value="/resources/images/movie/${list.slide_img}"/>" alt="영화"></a></div>
+            </c:forEach>
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
@@ -126,6 +121,9 @@
                 },
             });
         </script>
+	</div>
+	<div class="topmenu">
+	<jsp:include page="include/footer.jsp"/>
 	</div>
 </body>
 </html>

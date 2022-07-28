@@ -20,9 +20,9 @@ public class CouponDaoImpl implements CouponDao {
 
 	@Override
 	public void setInsertCoupon(CouponDto couponDto) {
-		String sql = "insert into coupon(coupon_code, coupon_form, coupon_give, coupon_end, coupon_id) value (?,?,?,?,?)";
+		String sql = "insert into coupon(coupon_code, coupon_form, coupon_give, coupon_end, coupon_id, coupon_price) value (?,?,?,?,?,?)";
 		jdbcTemplate.update(sql, couponDto.getCoupon_code(), couponDto.getCoupon_form(), couponDto.getCoupon_give(),
-				couponDto.getCoupon_end(), couponDto.getCoupon_id());
+				couponDto.getCoupon_end(), couponDto.getCoupon_id(), couponDto.getCoupon_price());
 	}
 
 	@Override
@@ -46,6 +46,7 @@ public class CouponDaoImpl implements CouponDao {
 				coupon.setCoupon_end(rs.getString("coupon_end"));
 				coupon.setCoupon_id(rs.getString("coupon_id"));
 				coupon.setCoupon_flag(rs.getBoolean("coupon_flag"));
+				coupon.setCoupon_price(rs.getInt("coupon_price"));
 				return coupon;
 			}
 		}, cri.getPageStart(), cri.getPerPageNum());
@@ -60,7 +61,7 @@ public class CouponDaoImpl implements CouponDao {
 
 	@Override
 	public List<CouponDto> getCouponById(String id) {
-		String sql = "select * from coupon where coupon_id = ?";
+		String sql = "select * from coupon where coupon_id = ? and coupon_flag = true";
 		List<CouponDto> results = jdbcTemplate.query(sql, new RowMapper<CouponDto>() {
 
 			@Override
@@ -72,6 +73,7 @@ public class CouponDaoImpl implements CouponDao {
 				coupon.setCoupon_end(rs.getString("coupon_end"));
 				coupon.setCoupon_id(rs.getString("coupon_id"));
 				coupon.setCoupon_flag(rs.getBoolean("coupon_flag"));
+				coupon.setCoupon_price(rs.getInt("coupon_price"));
 				return coupon;
 			}
 		},id);
@@ -104,5 +106,11 @@ public class CouponDaoImpl implements CouponDao {
 		
 		Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
 		return count;
+	}
+	
+	@Override
+	public void setCouponSuccess(String code) {
+		String sql = "update coupon set coupon_flag = false where coupon_code = ?";
+		jdbcTemplate.update(sql, code);
 	}
 }

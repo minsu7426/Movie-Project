@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import dao.MovieDao;
 import dto.Criteria;
 import dto.MovieDto;
+import dto.SlideDto;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -57,5 +58,10 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public List<MovieDto> getShowedMovie(String id) {
 		return movieDao.getShowedMovie(id);
+	}
+	
+	@Override
+	public List<SlideDto> getSlideMovie() {
+		return movieDao.getSlideMovie();
 	}
 }
