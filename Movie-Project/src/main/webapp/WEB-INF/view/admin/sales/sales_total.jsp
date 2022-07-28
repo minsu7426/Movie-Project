@@ -90,7 +90,6 @@
 						<td><fmt:formatNumber value="${dto.sales_viewing}" pattern="#.#"/>%</td>
 					</tr>
 				</c:forEach>
-<!-- ${dto.sales_man}% -->
 			</table>
 		</div>
 
