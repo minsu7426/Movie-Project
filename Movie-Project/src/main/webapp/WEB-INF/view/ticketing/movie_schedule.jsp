@@ -34,7 +34,8 @@
 
 
     .movie_schedule .check_day .check_item {
-        margin: 10px;
+        margin: 20px;
+        font-size: 18px;
     }
 
     .movie_schedule .movie_list .movie_title {
@@ -88,7 +89,7 @@
     }
     .check_day > a{
     	display: block;
-    	width: 80px;
+    	width: 100px;
     	height: 50px;
     	line-height: 50px;
     	font-weight: 700;
@@ -167,7 +168,7 @@
 		                    <h3>&raquo; ${screen.sch_screen}관</h3>
 							<c:forEach var="seat" items="${scheduleSeat }">
 							<c:if test="${movie.sch_code == seat.sch_code && screen.sch_screen == seat.sch_screen }">
-		                    <a href="#" class="movie_room" align="center">
+		                    <a href="/ticketing/secondreserve?moviecode=${seat.sch_code}&date=${seat.sch_screendate}" class="movie_room" align="center">
 		                        <h4>${seat.sch_screentime }</h4>
 		                        <c:set var="set" value="${seat.sch_seat}" />
 								<c:set var="seat" value="${fn:split(set, ',')}" />
