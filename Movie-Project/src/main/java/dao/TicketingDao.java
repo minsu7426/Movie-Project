@@ -2,9 +2,11 @@ package dao;
 
 import java.util.List;
 
+import dto.Criteria;
 import dto.ReserveCompleteDto;
 import dto.ScreenDto;
 import dto.TicketDto;
+import dto.TicketingDto;
 
 public interface TicketingDao {
 	
@@ -28,4 +30,10 @@ public interface TicketingDao {
 	
 	// 티켓성공페이지
 	public ReserveCompleteDto getReserveComplete(String code, String seat, String id);
+	
+	//티켓 리스트 가져오기
+	public List<TicketingDto> getTicketingList(Criteria cri, String id);
+	
+	//예매내역 리스트 카운트
+	public int getTicketingListCount(Criteria cri, String id);
 }

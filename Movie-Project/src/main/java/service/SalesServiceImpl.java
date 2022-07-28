@@ -23,7 +23,15 @@ public class SalesServiceImpl implements SalesService {
 	@Override
 	public SalesMovieDto getSalesMovie(String movie_title) {
 		SalesMovieDto salesDto = new SalesMovieDto();
-
+		
+//		Integer getToday = salesDao.getToday(movie_title);
+//		Integer getYesday = salesDao.getYesday(movie_title);
+//		if(getToday == null) {
+//			getToday = 0;
+//		}
+//		if(getYesday == null) {
+//			getYesday = 0;
+//		}
 		salesDto.setSales_today(salesDao.getToday(movie_title));
 		salesDto.setSales_yesday(salesDao.getYesday(movie_title));
 		salesDto.setSales_week(salesDao.getWeek(movie_title));

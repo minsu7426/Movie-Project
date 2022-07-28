@@ -1,22 +1,15 @@
 package config;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.multipart.MultipartException;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-
-import controller.MovieController;
-import controller.NoticeController;
 
 @Configuration
-@ComponentScan(basePackages = {"controller", "dao", "service", "adminController"})
+@ComponentScan(basePackages = {"controller", "dao", "service", "adminController", "aop"})
+@EnableAspectJAutoProxy
 public class SpringConfig {
 
 	@Bean
@@ -34,11 +27,5 @@ public class SpringConfig {
 		return ds;
 	}
 	
-//	@Bean
-//	public MultipartResolver multipartResolver() {
-//		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-//		multipartResolver.setMaxUploadSize(10*1024*1024);
-//		multipartResolver.setDefaultEncoding("UTF-8");
-//		return multipartResolver;
-//	}
+	
 }

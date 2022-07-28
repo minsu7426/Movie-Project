@@ -10,9 +10,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import dto.Criteria;
 import dto.ReserveCompleteDto;
 import dto.ScreenDto;
 import dto.TicketDto;
+import dto.TicketingDto;
 
 @Repository
 public class TicketingDaoImpl implements TicketingDao {
@@ -116,5 +118,43 @@ public class TicketingDaoImpl implements TicketingDao {
 			
 		},code, seat, id);
 		return results.isEmpty() ? null : results.get(0);
+	}
+	
+	@Override
+	public int getTicketingListCount(Criteria cri, String id) {
+		String sql;
+		if(cri.getText() == null || cri.getText().equals("")) {
+			sql = "select count(*) from ticket where tic_id = '"+id+"'";
+		} else {
+			sql = "select count(*) from ticket where tic_id = '"+id+"' and date_format((tic_paytime),'%Y-%m-%d') > now() - interval "+cri.getText()+" day";
+		}
+		Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
+		System.out.println(count);
+		return count;
+	}
+	
+	@Override
+	public List<TicketingDto> getTicketingList(Criteria cri, String id) {
+		String sql;
+		if(cri.getText() == null || cri.getText().equals("")) {
+			sql = "select ticket.tic_paytime, ticket.tic_num, movie.movie_title, concat(screen.scr_date,' ', screen.scr_time) as scr_datetime, screen.scr_screen, ticket.tic_seat, ticket.tic_payment from ticket join screen on ticket.tic_code = screen.scr_code join movie on screen.scr_movie = movie.movie_code where tic_id = '"+id+"' order by tic_paytime asc limit ?, ?";
+		} else {
+			sql = "select ticket.tic_paytime, ticket.tic_num, movie.movie_title, concat(screen.scr_date,' ', screen.scr_time) as scr_datetime, screen.scr_screen, ticket.tic_seat, ticket.tic_payment from ticket join screen on ticket.tic_code = screen.scr_code join movie on screen.scr_movie = movie.movie_code where tic_id = '"+id+"' and date_format((tic_paytime),'%Y-%m-%d') > now() - interval "+cri.getText()+" day order by tic_paytime asc limit ?, ?";
+		}
+		List<TicketingDto> list = jdbcTemplate.query(sql, new RowMapper<TicketingDto>() {
+			@Override
+			public TicketingDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+				TicketingDto dto = new TicketingDto();
+				dto.setTic_paytime(rs.getString("tic_paytime"));
+				dto.setTic_num(rs.getString("tic_num"));
+				dto.setMovie_title(rs.getString("movie_title"));
+				dto.setScr_datetime(rs.getString("scr_datetime"));
+				dto.setScr_screen(rs.getInt("scr_screen"));
+				dto.setTic_seat(rs.getString("tic_seat"));
+				dto.setTic_payment(rs.getInt("tic_payment"));
+				return dto;
+			}
+		}, cri.getPageStart(), cri.getPerPageNum());
+		return list;
 	}
 }
