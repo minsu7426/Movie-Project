@@ -264,6 +264,7 @@
             <hr>
             <div class="movie_review">
                 <h3>리뷰 ${fn:length(reviewList)}</h3>
+                <c:if test="${!empty user}">
                 <form method="post" action="/review/reviewsubmit">
                     <div class="mb-3" name="myform" id="myform" >
                         <fieldset>
@@ -287,6 +288,7 @@
                         <input type="submit" class="btn btn-success" value="추가">
                     </div>
                 </form>
+                </c:if>
                 <div class="review_detail">
                     <c:forEach var="review" items="${reviewList}">                    
                     <hr>

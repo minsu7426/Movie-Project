@@ -1,11 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style>
@@ -18,7 +17,10 @@
         box-sizing: border-box;
     }
     /* setting end */
-
+	.topmenu{
+		position: relative;
+		z-index: 100;
+	}
     /* ticket_detail start */
     .ticket_detail>.container>.table {
         border-collapse: collapse;
@@ -115,7 +117,9 @@
 </style>
 
 <body>
-
+	<div class="topmenu">
+	<%@include file="/WEB-INF/view/include/menu.jsp"%>
+	</div>	
     <!-- ticket_detail start -->
     <div class="ticket_detail container">
 
@@ -226,6 +230,4 @@
     </div>
 
     <!-- ticket_detail end -->
-</body>
-
 </html>

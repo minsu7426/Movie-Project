@@ -168,4 +168,28 @@ public class MovieDaoImpl implements MovieDao {
 		Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
 		return count;
 	}
+	
+	@Override
+	public List<MovieDto> getShowedMovie(String id) {
+		String sql = "select movie.movie_code, movie.movie_grade, ticket.tic_num, movie.movie_title, movie.movie_date, movie.movie_genre, movie.movie_director, movie.movie_actor, movie.movie_time, movie.movie_img from ticket join screen on ticket.tic_code = screen.scr_code join movie on movie.movie_code = screen.scr_movie where tic_id = ? group by movie.movie_title";
+		List<MovieDto> results = jdbcTemplate.query(sql, new RowMapper<MovieDto>() {
+
+			@Override
+			public MovieDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+				MovieDto movie = new MovieDto();
+				movie.setMovie_code(rs.getInt("movie_code"));
+				movie.setMovie_grade(rs.getInt("movie_grade"));
+				movie.setMovie_title(rs.getString("movie_title"));
+				movie.setMovie_date(rs.getString("movie_date"));
+				movie.setMovie_genre(rs.getString("movie_genre"));
+				movie.setMovie_director(rs.getString("movie_director"));
+				movie.setMovie_actor(rs.getString("movie_actor"));
+				movie.setMovie_time(rs.getInt("movie_time"));
+				movie.setMovie_img(rs.getString("movie_img"));
+				return movie;
+			}
+			
+		}, id);
+		return results;
+	}
 }

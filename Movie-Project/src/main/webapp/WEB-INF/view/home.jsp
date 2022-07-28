@@ -86,9 +86,6 @@
 	<div class="topmenu">
 	<jsp:include page="include/menu.jsp"/>
 	</div>
-	<p>
-	${pageContext.request.contextPath}
-	</p>
 	<div class="container c">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
