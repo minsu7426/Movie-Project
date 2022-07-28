@@ -2,13 +2,13 @@ package dto;
 
 public class TicketDto {
 
-	private int tic_num;
-	private int tic_code;
-	private String tic_id;
-	private String tic_seat;
-	private int tic_payment;
-	private String tic_paytime;
-	private String movie_title;
+	private int tic_num; //티켓 번호
+	private int tic_code; 
+	private String tic_id; //예매 아이디
+	private String tic_seat; //예매 좌석
+	private int tic_payment; //결제 금액
+	private String tic_paytime; //결제 일자
+	private String movie_title; //영화 제목
 	
 	public String getMovie_title() {
 		return movie_title;

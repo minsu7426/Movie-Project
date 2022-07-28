@@ -44,7 +44,7 @@ public class CouponServiceImpl implements CouponService {
 		for(String s : list) {
 			sb.append(s);
 		}
-		String code = sb.toString();
+		String code = sb.toString().toUpperCase();
 		
 		couponDto.setCoupon_code(code);
 		couponDao.setInsertCoupon(couponDto);

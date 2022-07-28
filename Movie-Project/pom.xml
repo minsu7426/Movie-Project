@@ -59,6 +59,18 @@
 			<version>1.2.3</version>
 		</dependency>
 
+		<!-- AOP -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.8.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.6</version>
+		</dependency>
+
 		<!-- jstl라이브러리 사용 의존 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -73,7 +85,7 @@
 			<artifactId>cos</artifactId>
 			<version>05Nov2002</version>
 		</dependency>
-		
+
 		<!-- FileUpload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>

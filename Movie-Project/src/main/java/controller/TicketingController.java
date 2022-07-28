@@ -15,11 +15,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import dto.Criteria;
 import dto.MovieDto;
+import dto.PageDto;
 import dto.ReserveCompleteDto;
 import dto.ScheduleDto;
 import dto.ScreenDto;
 import dto.TicketDto;
+import dto.TicketingDto;
 import service.MovieService;
 import service.ScheduleService;
 import service.TicketingService;
@@ -113,7 +116,15 @@ public class TicketingController {
 	}
 	
 	@RequestMapping("ticketlist")
-	public String ticketList() {
+	public String ticketList(Criteria cri, HttpSession session, Model model) {
+		String[] id = (String[])session.getAttribute("user");
+		PageDto pageDto = new PageDto();
+		pageDto.setCri(cri);
+		pageDto.setTotalCount(ticketingService.getTicketingListCount(cri, id[0]));
+		List<TicketingDto> list = ticketingService.getTicketingList(cri, id[0]);
+		
+		model.addAttribute("pageDto", pageDto);
+		model.addAttribute("list", list);
 		return "ticketing/ticket_detail";
 	}
 	

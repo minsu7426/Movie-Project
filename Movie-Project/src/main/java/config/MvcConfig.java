@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import util.AdminInterceptor;
-import util.TicketingInterceptor;
+import util.UserInterceptor;
 
 @Configuration
 @EnableWebMvc
@@ -35,7 +35,9 @@ public class MvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(adminInterceptor()).addPathPatterns("/admin/**");
-		registry.addInterceptor(ticketingInterceptor()).addPathPatterns("/ticketing/secondreserve");
+		registry.addInterceptor(userInterceptor()).addPathPatterns("/ticketing/secondreserve");
+		registry.addInterceptor(userInterceptor()).addPathPatterns("/ticketing/ticketlist");
+		registry.addInterceptor(userInterceptor()).addPathPatterns("/user/mypage");
 	}
 	
 	@Override
@@ -49,8 +51,8 @@ public class MvcConfig implements WebMvcConfigurer {
 	}
 	
 	@Bean
-	public TicketingInterceptor ticketingInterceptor() {
-		return new TicketingInterceptor();
+	public UserInterceptor userInterceptor() {
+		return new UserInterceptor();
 	}
 	
 }

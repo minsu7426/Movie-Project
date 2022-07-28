@@ -21,35 +21,35 @@ public class SalesDaoImpl implements SalesDao {
 
 	@Override
 	public int getToday(String movie_title) {
-		String sql = "select sum(ticket.tic_payment) from ticket join screen on ticket.tic_code = screen.scr_code join movie on movie.movie_code = screen.scr_movie where movie.movie_title = '"+movie_title+"' and ticket.tic_paytime = curdate()";
+		String sql = "select ifnull(sum(ticket.tic_payment),0) from ticket join screen on ticket.tic_code = screen.scr_code join movie on movie.movie_code = screen.scr_movie where movie.movie_title = '"+movie_title+"' and ticket.tic_paytime = curdate()";
 		Integer today = jdbcTemplate.queryForObject(sql, Integer.class);
 		return today;
 	}
 	
 	@Override
 	public int getYesday(String movie_title) {
-		String sql = "select sum(ticket.tic_payment) from ticket join screen on ticket.tic_code = screen.scr_code join movie on movie.movie_code = screen.scr_movie where movie.movie_title = '"+movie_title+"' and date_format(tic_paytime,'%Y-%m-%d') = curdate() - interval 1 day";
+		String sql = "select ifnull(sum(ticket.tic_payment),0) from ticket join screen on ticket.tic_code = screen.scr_code join movie on movie.movie_code = screen.scr_movie where movie.movie_title = '"+movie_title+"' and date_format(tic_paytime,'%Y-%m-%d') = curdate() - interval 1 day";
 		Integer yesday = jdbcTemplate.queryForObject(sql, Integer.class);
 		return yesday;
 	}
 	
 	@Override
 	public int getWeek(String movie_title) {
-		String sql = "select sum(ticket.tic_payment) from ticket join screen on ticket.tic_code = screen.scr_code join movie on movie.movie_code = screen.scr_movie where movie.movie_title = '"+movie_title+"' and date_format(tic_paytime,'%Y-%m-%d') between DATE_ADD(now(), interval -1 week ) and now()";
+		String sql = "select ifnull(sum(ticket.tic_payment),0) from ticket join screen on ticket.tic_code = screen.scr_code join movie on movie.movie_code = screen.scr_movie where movie.movie_title = '"+movie_title+"' and date_format(tic_paytime,'%Y-%m-%d') between DATE_ADD(now(), interval -1 week ) and now()";
 		Integer week = jdbcTemplate.queryForObject(sql, Integer.class);
 		return week;
 	}
 	
 	@Override
 	public int getMonth(String movie_title) {
-		String sql = "select sum(ticket.tic_payment) from ticket join screen on ticket.tic_code = screen.scr_code join movie on movie.movie_code = screen.scr_movie where movie.movie_title = '"+movie_title+"' and date_format(tic_paytime,'%Y-%m-%d') between DATE_ADD(now(), interval -1 month ) and now()";
+		String sql = "select ifnull(sum(ticket.tic_payment),0) from ticket join screen on ticket.tic_code = screen.scr_code join movie on movie.movie_code = screen.scr_movie where movie.movie_title = '"+movie_title+"' and date_format(tic_paytime,'%Y-%m-%d') between DATE_ADD(now(), interval -1 month ) and now()";
 		Integer month = jdbcTemplate.queryForObject(sql, Integer.class);
 		return month;
 	}
 	
 	@Override
 	public int getTotal(String movie_title) {
-		String sql = "select sum(ticket.tic_payment) from ticket join screen on ticket.tic_code = screen.scr_code join movie on movie.movie_code = screen.scr_movie where movie.movie_title = '"+movie_title+"'";
+		String sql = "select ifnull(sum(ticket.tic_payment),0) from ticket join screen on ticket.tic_code = screen.scr_code join movie on movie.movie_code = screen.scr_movie where movie.movie_title = '"+movie_title+"'";
 		Integer total = jdbcTemplate.queryForObject(sql, Integer.class);
 		return total;
 	}
