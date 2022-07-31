@@ -93,6 +93,12 @@
 			<version>1.4</version>
 		</dependency>
 
+		<!-- 지도 api json-->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20180813</version>
+		</dependency>
 	</dependencies>
 
 	<build>
