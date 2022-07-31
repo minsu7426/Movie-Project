@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import util.Map;
+
 @Configuration
 @ComponentScan(basePackages = {"controller", "dao", "service", "adminController", "aop"})
 @EnableAspectJAutoProxy
@@ -26,6 +28,5 @@ public class SpringConfig {
 		ds.setPassword("1234");
 		return ds;
 	}
-	
 	
 }

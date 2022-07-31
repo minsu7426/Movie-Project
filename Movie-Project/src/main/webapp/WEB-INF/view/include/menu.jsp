@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +39,6 @@ a {
 	margin: 0 auto;
 	height: 40px;
 	color: white;
-	
 }
 
 .menu>.menu-top>ul {
@@ -52,7 +51,7 @@ a {
 	margin-left: 1rem;
 }
 
-.menu>.menu-top>ul>li>a{
+.menu>.menu-top>ul>li>a {
 	color: white;
 }
 
@@ -80,7 +79,7 @@ a {
 	vertical-align: center;
 }
 
-.menu>.menu-bottom>div>ul>li>a{
+.menu>.menu-bottom>div>ul>li>a {
 	color: white;
 }
 
@@ -126,7 +125,8 @@ a {
 
 				<c:if test="${!empty user}">
 					<li><b>${user[0] }님</b></li>
-					<li><a href="/login/logout" onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</a></li>
+					<li><a href="/login/logout"
+						onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</a></li>
 
 				</c:if>
 			</ul>
@@ -141,11 +141,12 @@ a {
 				<ul>
 					<li><a href="/ticketing/reserve">예매</a>
 						<ul>
-						<jsp:useBean id="now" class="java.util.Date" />
-						<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="nowDate" /> 
+							<jsp:useBean id="now" class="java.util.Date" />
+							<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="nowDate" />
 							<li><a href="/ticketing/reserve">예매</a></li>
 							<li><a href="/ticketing/ticketlist">예매 내역</a></li>
-							<li><a href="/ticketing/movieschedule?date=${nowDate}">상영 시간표</a></li>
+							<li><a href="/ticketing/movieschedule?date=${nowDate}">상영
+									시간표</a></li>
 						</ul></li>
 					<li><a href="/movie/current_screen">영화</a>
 						<ul>
@@ -166,6 +167,8 @@ a {
 
 							<li><a href="/benefit/info">혜택 안내</a></li>
 						</ul></li>
+						<li><a href="/map/view">찾아오는길</a></li>
+						
 
 				</ul>
 			</div>
