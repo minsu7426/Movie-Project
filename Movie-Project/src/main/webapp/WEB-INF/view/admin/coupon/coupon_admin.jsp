@@ -9,8 +9,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
-<script src="https://kit.fontawesome.com/d777ad58b4.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/d777ad58b4.js" crossorigin="anonymous"></script>
 <style>
 .coupon_manage>.coupon_title>h1 {
 	margin-left: 20px;

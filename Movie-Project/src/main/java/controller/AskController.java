@@ -23,7 +23,7 @@ public class AskController {
 	@Autowired
 	private AskService askService;
 	
-	@RequestMapping("/one-on-one")
+	@RequestMapping
 	public String one_on_one(HttpSession session) {
 		String[] id = (String[])session.getAttribute("user");
 		if(id == null) {

@@ -132,7 +132,7 @@
         </div>
 
         <nav class="one_on_one_nav">
-            <a href="/ask/one-on-one" class="ing" align="center">문의하기</a>
+            <a href="/ask" class="ing" align="center">문의하기</a>
             <a class="end" align="center">나의 문의 내역</a>
         </nav>
 

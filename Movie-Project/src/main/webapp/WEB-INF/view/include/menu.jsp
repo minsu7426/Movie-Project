@@ -118,7 +118,7 @@ a {
 		<div class="menu-top">
 			<ul>
 				<c:if test="${empty user}">
-					<li><a href="/login/login">로그인</a></li>
+					<li><a href="/login">로그인</a></li>
 					<li><a href="/login/signup">회원가입</a></li>
 
 				</c:if>
@@ -157,14 +157,14 @@ a {
 						<ul>
 							<li><a href="/user/mypage">회원 정보</a></li>
 							<li><a href="/user/viewing_detail">관람 내역</a></li>
-							<li><a href="/coupon/couponlist">쿠폰 관리</a></li>
+							<li><a href="/coupon">쿠폰 관리</a></li>
 						</ul></li>
-					<li><a href="/ask/one-on-one">고객센터</a>
+					<li><a href="/ask">고객센터</a>
 						<ul>
-							<li><a href="/ask/one-on-one">1:1 문의</a></li>
+							<li><a href="/ask">1:1 문의</a></li>
 							<li><a href="/notice/list">공지 사항</a></li>
 
-							<li><a href="/benefit/info">혜택 안내</a></li>
+							<li><a href="/benefit">혜택 안내</a></li>
 						</ul></li>
 						<li><a href="/map/view">찾아오는길</a></li>
 						

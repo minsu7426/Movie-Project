@@ -20,7 +20,7 @@ public class CouponController {
 	@Autowired
 	private CouponService couponService;
 	
-	@RequestMapping("/couponlist")
+	@RequestMapping
 	public String couponList(HttpSession session, Model model) {
 		String[] id = (String[])session.getAttribute("user");
 		if(id == null) {

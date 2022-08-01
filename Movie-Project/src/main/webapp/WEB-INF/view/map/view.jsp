@@ -13,11 +13,18 @@
 	display: flex;
 }
 
+.a {
+	position: relative;
+	z-index: 100;
+}
+
 .map .map_content .map {
 	width: 600px;
 	height: 500px;
+	z-index: 0;
 }
-.map .map_content .map:hover{
+
+.map .map_content .map:hover {
 	box-shadow: 1px 3px 4px 0px;
 	transform: scale(1.02);
 	transition: all 0.3s;
@@ -30,6 +37,7 @@
 .map .map_content .area .title_area {
 	margin-bottom: 10px;
 }
+
 .map .map_content .area .title_area>span {
 	margin-left: 16px;
 	font-size: 20px;
@@ -41,8 +49,9 @@
 	font-size: 18px;
 	width: 80px;
 }
-.map .map_content .area .bus ul>li:nth-child(2),
-.map .map_content .area .bus ul>li:nth-child(3){
+
+.map .map_content .area .bus ul>li:nth-child(2), .map .map_content .area .bus ul>li:nth-child(3)
+	{
 	margin-bottom: 30px;
 }
 
@@ -53,19 +62,17 @@
 	width: 200px;
 	margin-bottom: 5px;
 }
-.map .map_content .area .bus ul li ul li span{
-	display:inline-block;
+
+.map .map_content .area .bus ul li ul li span {
+	display: inline-block;
 	font-size: 18px;
 	width: 200px;
 }
 </style>
 <body>
-	<%
-	String juso = (String) request.getAttribute("juso");
-	double x = (Double) request.getAttribute("x");
-	double y = (Double) request.getAttribute("y");
-	%>
-	<jsp:include page="../include/menu.jsp" />
+	<div class="a">
+		<jsp:include page="../include/menu.jsp" />
+	</div>
 	<script type="text/javascript"
 		src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=n7yw3r4itk&callback=initMap"></script>
 	<script type="text/javascript">
@@ -106,51 +113,28 @@
 					</div>
 					<div class="content_area bus">
 						<ul>
-							<li>
-								<span class="content_title">창원역</span>
+							<li><span class="content_title">창원역</span>
 								<ul>
-									<li>
-										<span>양덕 주민센터</span>
-										71, 80
-									</li>
-									<li>
-										<span>한일 타운</span>
-										42, 109, 703 
-									</li>
-								</ul>
-							</li>
-							<li>
-								<span class="content_title">마산 터미널</span>
+									<li><span>양덕 주민센터</span> 71, 80</li>
+									<li><span>한일 타운</span> 42, 109, 703</li>
+								</ul></li>
+							<li><span class="content_title">마산 터미널</span>
 								<ul>
-									<li>
-										<span>양덕 주민센터</span>
-										102, 109, 108, 162
-									</li>
-									<li>
-										<span>한일 타운</span>
-										23, 102, 21, 65, 45, 20, 44, 42, 63, 41, 40
-									</li>
-								</ul>
-							</li>
-							<li>
-								<span class="content_title">창원 터미널</span>
+									<li><span>양덕 주민센터</span> 102, 109, 108, 162</li>
+									<li><span>한일 타운</span> 23, 102, 21, 65, 45, 20, 44, 42,
+										63, 41, 40</li>
+								</ul></li>
+							<li><span class="content_title">창원 터미널</span>
 								<ul>
-									<li>
-										<span>양덕 주민센터</span>
-										106, 801
-									</li>
-									<li>
-										<span>한일 타운</span>
-										108
-									</li>
-								</ul>
-							</li>
+									<li><span>양덕 주민센터</span> 106, 801</li>
+									<li><span>한일 타운</span> 108</li>
+								</ul></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<jsp:include page="../include/footer.jsp"/>
+	<jsp:include page="../include/footer.jsp" />
 </body>
 </html>

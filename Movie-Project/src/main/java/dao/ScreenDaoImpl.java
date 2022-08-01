@@ -78,7 +78,8 @@ public class ScreenDaoImpl implements ScreenDao {
 
 	@Override
 	public void setScreenAdd(ScreenDto dto, List<String> timeChecked, List<LocalDate> date) {
-		String sql = "insert into screen(scr_movie, scr_screen, scr_date, scr_time) values (?, ?, ?, ?)";
+		String seat = "A1,A2,A3,A4,A5,A6,B1,B2,B3,B4,B5,B6,C1,C2,C3,C4,C5,C6,D1,D2,D3,D4,D5,D6,E1,E2,E3,E4,E5,E6";
+		String sql = "insert into screen(scr_movie, scr_screen, scr_date, scr_time, SCR_SEAT) values (?, ?, ?, ?, '"+seat+"')";
 		for (int i = 0; i < timeChecked.size(); i++) {
 			for (int j = 0; j < date.size(); j++) {
 				jdbcTemplate.update(sql, dto.getScr_movie(), dto.getScr_screen(), date.get(j), timeChecked.get(i));

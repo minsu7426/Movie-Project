@@ -52,18 +52,9 @@ public class CouponServiceImpl implements CouponService {
 	
 	@Override
 	public List<CouponDto> getAllCoupon(String search_item, String text, Criteria cri) {
-//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-//		String end_date = formatter.format(new Date());
-		
 		List<CouponDto> list = couponDao.getAllCoupon(search_item, text, cri);
 		couponDao.setCouponComplete();
 		
-//		for(int i = 0; i < list.size(); i++) {
-//			if(list.get(i).getCoupon_end().equals(end_date)) {
-//				couponDao.setCouponComplete(end_date);
-//				list = couponDao.getAllCoupon(search_item, text, cri);
-//			}
-//		}
 		return list;
 	}
 	
@@ -74,27 +65,18 @@ public class CouponServiceImpl implements CouponService {
 	
 	@Override
 	public List<CouponDto> getCouponById(String id) {
-//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-//		String end_date = formatter.format(new Date());
-		
 		if(id == null) {
 			id = "";
 		}
 		List<CouponDto> list = couponDao.getCouponById(id);
 		couponDao.setCouponComplete();
 		
-//		for(int i = 0; i < list.size(); i++) {
-//			if(list.get(i).getCoupon_end().equals(end_date)) {
-//				couponDao.setCouponComplete(end_date);
-//				list = couponDao.getCouponById(id);
-//			}
-//		}
 		return list;
 	}
 	
 	@Override
 	public void setCouponSubmit(String id, String code) {
-		couponDao.setCouponSubmit(id, code);
+		couponDao.setCouponSubmit(id, code.toUpperCase());
 	}
 	
 	@Override
