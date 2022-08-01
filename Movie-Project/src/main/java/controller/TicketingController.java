@@ -24,10 +24,12 @@ import dto.ScheduleDto;
 import dto.ScreenDto;
 import dto.TicketDto;
 import dto.TicketingDto;
+import dto.UserDto;
 import service.CouponService;
 import service.MovieService;
 import service.ScheduleService;
 import service.TicketingService;
+import service.UserService;
 
 @Controller
 @RequestMapping("/ticketing")
@@ -44,6 +46,9 @@ public class TicketingController {
 	
 	@Autowired
 	private CouponService couponService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping("/reserve")
 	public String ticketReserve(Model model) {
@@ -99,11 +104,22 @@ public class TicketingController {
 		String teen = request.getParameter("teen");
 		String people;
 		
+		UserDto user = userService.getSelectById(id[0]);
+		
+		if(user.getUser_class().equals("bronze")) {
+			price = (int)(price - (price * 0.01));
+		} else if(user.getUser_class().equals("silver")) {
+			price = (int)(price - (price * 0.03));
+		} else {
+			price = (int)(price - (price * 0.07));
+		}
+		
 		if(teen == null) {
 			people = "성인 " + adult + "명 ";
 		} else {
 			people = "성인 " + adult + "명 " + "청소년 " + teen + "명";			
 		}
+		
 		String[] seat = request.getParameterValues("seat");
 		String s = String.join(",", seat);
 		TicketDto ticket = new TicketDto();

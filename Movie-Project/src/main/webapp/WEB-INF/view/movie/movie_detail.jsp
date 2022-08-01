@@ -207,7 +207,7 @@
                 <div class="movie_poster">
                     <img src="/resources/images/movie/${movieDto.movie_img}" alt="영화이미지" width="280px">
                     <div>
-                        <a href="/ticketing/secondreserve" class="btn btn-primary">예매하기 >></a>
+                        <a href="/ticketing/reserve" class="btn btn-primary">예매하기 >></a>
                         <span style="font-size:22px; color:rgba(250, 208, 0, 0.99);">★ <span style="color: black;"><fmt:formatNumber value="${review_star }" pattern="#.#"/> / 5.0</span></span>
                         <input type="checkbox" id="heart">
                         <label for="heart"><i class="fa-solid fa-heart"></i></label>

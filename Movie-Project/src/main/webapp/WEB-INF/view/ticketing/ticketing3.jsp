@@ -235,14 +235,18 @@
 			var total;
 			
 			if(document.getElementById('teen')){
-				total = Number($("#adult").val()) + Number($("#teen").val());
+				total = Number($("#adult option:selected").val()) + Number($("#teen option:selected").val());
 			} else{
 				total = Number($("#adult").val());
 			}
-			
-			if (total == $(":checkbox:checked").length) {
+
+			if(total == 0){
+				$('#seat').attr('disabled', 'disabled');
+			}
+			else if (total == $(":checkbox:checked").length) {
 				$(":checkbox:not(:checked)").attr("disabled", "disabled");
-			} else {
+			} 
+			else {
 				$(":checkbox").not(".seatdis").removeAttr("disabled");
 			}
 		});
@@ -257,10 +261,10 @@
 	function calc() {
 		var a;
 		if(document.getElementById('teen')){
-			a = (Number($("#adult").val()) * Number($("#adultprice").val()))
-					+ (Number($("#teen").val()) * Number($("#teenprice").val()));
+			a = (Number($("#adult option:selected").val()) * Number($("#adultprice").val()))
+					+ (Number($("#teen option:selected").val()) * Number($("#teenprice").val()));
 		} else{
-			a = Number($("#adult").val()) * Number($("#adultprice").val());
+			a = Number($("#adult option:selected").val()) * Number($("#adultprice").val());
 		}
 		document.getElementById("price").value = a;
 	}
@@ -288,8 +292,8 @@
 						<h3>성인</h3>
 						<input id="adultprice" value="15000" type="hidden"> 
 						<select id="adult" name="adult" class="radio-group" onclick="calc()">
-							<option value="0">0명</option>
-							<option value="1" selected="selected">1명</option>
+							<option value="0"  selected="selected">0명</option>
+							<option value="1">1명</option>
 							<option value="2">2명</option>
 							<option value="3">3명</option>
 							<option value="4">4명</option>
@@ -301,7 +305,7 @@
 						<h3>청소년</h3>
 						<input id="teenprice" value="10000" type="hidden"> 
 						<select id="teen" name="teen" class="radio-group" onclick="calc()">
-							<option value="0">0명</option>
+							<option value="0" selected="selected">0명</option>
 							<option value="1">1명</option>
 							<option value="2">2명</option>
 							<option value="3">3명</option>
@@ -317,9 +321,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="seat">
+				<div class="seat" id="seat">
 					<h4>screen</h4>
-					<div class="seat_container">
+					<div class="seat_container" >
 						<div class="seat_row">
 						<c:set var="str" value="${screen.scr_seat }"/>
 							<div>

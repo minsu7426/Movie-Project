@@ -153,7 +153,6 @@ a {
 							<li><a href="/movie/current_screen">현재 상영작</a></li>
 							<li><a href="/movie/shown_screen">상영 예정작</a></li>
 						</ul></li>
-					<li><a href="">이벤트</a></li>
 					<li><a href="/user/mypage">마이페이지</a>
 						<ul>
 							<li><a href="/user/mypage">회원 정보</a></li>
