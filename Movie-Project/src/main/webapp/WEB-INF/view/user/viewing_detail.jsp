@@ -18,6 +18,11 @@
 	box-sizing: border-box;
 }
 
+.topmenu{
+	position: relative;
+	z-index: 100;
+}
+
 .viewing_detail .viewing_detail_title {
 	margin-left: 20px;
 }
@@ -52,7 +57,9 @@
 }
 </style>
 <body>
-	<jsp:include page="/WEB-INF/view/include/menu.jsp" />
+	<div class="topmenu">
+		<jsp:include page="/WEB-INF/view/include/menu.jsp" />
+	</div>
 	<div class="viewing_detail container">
 		<div class="viewing_detail_title">
 			<h1>관람 내역</h1>
