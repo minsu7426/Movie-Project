@@ -134,24 +134,24 @@ a {
 			</div>
 			<div>
 				<ul>
-					<li><a href="/admin/member/membermanage">회원 관리</a></li>
-					<li><a href="">극장 관리</a>
+					<li><a href="/admin/member">회원 관리</a></li>
+					<li><a href="/admin/screen">극장 관리</a>
 						<ul>
-							<li><a href="/admin/screen/screen_manage">상영관 관리</a></li>
-							<li><a href="/admin/movie/movie_manage">영화 관리</a></li>
+							<li><a href="/admin/screen">상영관 관리</a></li>
+							<li><a href="/admin/movie">영화 관리</a></li>
 						</ul>
 					</li>
-					<li><a href="/admin/ticket/ticket_manage">예매 관리</a></li>
-					<li><a href="/admin/review/reviewmanage">리뷰 관리</a></li>
-					<li><a href="/admin/ask/askmanage">고객센터</a>
+					<li><a href="/admin/ticket">예매 관리</a></li>
+					<li><a href="/admin/review">리뷰 관리</a></li>
+					<li><a href="/admin/ask">고객센터</a>
 						<ul>
-							<li><a href="/admin/notice/noticeadmin">공지 사항</a></li>
-							<li><a href="/admin/ask/askmanage">1:1 문의</a></li>
+							<li><a href="/admin/notice">공지 사항</a></li>
+							<li><a href="/admin/ask">1:1 문의</a></li>
 						</ul></li>
-					<li><a href="/admin/coupon/couponadmin">쿠폰 관리</a></li>
+					<li><a href="/admin/coupon">쿠폰 관리</a></li>
 					<li><a href="">수익관리</a>
 						<ul>
-							<li><a href="/admin/sales/sales_movie?movie_title=헤어질 결심">영화별 수익</a></li>
+							<li><a href="/admin/sales/sales_movie">영화별 수익</a></li>
 							<li><a href="/admin/sales/sales_total">전체 수익</a></li>
 						</ul>
 					</li>

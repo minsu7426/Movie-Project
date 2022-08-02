@@ -34,4 +34,7 @@ public interface MovieDao {
 	
 	// 메인 페이지 영화 슬라이드
 	public List<SlideDto> getSlideMovie();
+	
+	//영화 삭제
+	public void setDelete(String code);
 }

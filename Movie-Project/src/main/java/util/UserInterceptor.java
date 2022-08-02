@@ -18,7 +18,7 @@ public class UserInterceptor implements HandlerInterceptor {
 				return true;
 			}
 		}
-		response.sendRedirect("/login/login");
+		response.sendRedirect("/login");
 		return false;
 	}
 }

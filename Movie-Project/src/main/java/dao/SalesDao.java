@@ -7,6 +7,9 @@ import dto.SalesTotalDto;
 
 public interface SalesDao {
 	
+	//영화 타이틀
+	public String getTitleMovie();
+	
 	//금일 매출
 	public int getToday(String movie_title);
 	

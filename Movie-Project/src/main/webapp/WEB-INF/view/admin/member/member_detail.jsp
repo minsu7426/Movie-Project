@@ -100,7 +100,7 @@
 				<hr>
 				<div class="submit" align="right">
 					<button class="btn btn-primary" type="submit">등록하기</button>
-					<a href="/admin/member/membermanage" class="btn btn-primary">되돌아가기</a>
+					<a href="/admin/member" class="btn btn-primary">되돌아가기</a>
 					<a href="/admin/member/deletemember?memberId=${member.user_id }"
 						class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
 				</div>

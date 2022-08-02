@@ -64,4 +64,9 @@ public class MovieServiceImpl implements MovieService {
 	public List<SlideDto> getSlideMovie() {
 		return movieDao.getSlideMovie();
 	}
+	
+	@Override
+	public void setDelete(String code) {
+		movieDao.setDelete(code);
+	}
 }

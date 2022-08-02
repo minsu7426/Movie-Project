@@ -70,7 +70,7 @@ a {
 }
 </style>
 <body>
-	<jsp:include page="../include/menu.jsp"/>
+	<jsp:include page="/WEB-INF/view/include/menu.jsp"/>
 	<div class="shown_screen container">
 		<div class="shown_screen_title">
 			<h1>영화</h1>

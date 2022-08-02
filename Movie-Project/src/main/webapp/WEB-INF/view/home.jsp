@@ -85,7 +85,7 @@
 </style>
 <body>
 	<div class="topmenu">
-	<jsp:include page="include/menu.jsp"/>
+	<jsp:include page="/WEB-INF/view/include/menu.jsp"/>
 	</div>
 	<div class="container c">
         <div class="swiper mySwiper">
@@ -123,7 +123,7 @@
         </script>
 	</div>
 	<div class="topmenu">
-	<jsp:include page="include/footer.jsp"/>
+	<jsp:include page="/WEB-INF/view/include/footer.jsp"/>
 	</div>
 </body>
 </html>

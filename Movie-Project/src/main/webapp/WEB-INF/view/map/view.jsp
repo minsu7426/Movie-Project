@@ -71,7 +71,7 @@
 </style>
 <body>
 	<div class="a">
-		<jsp:include page="../include/menu.jsp" />
+		<jsp:include page="/WEB-INF/view/include/menu.jsp" />
 	</div>
 	<script type="text/javascript"
 		src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=n7yw3r4itk&callback=initMap"></script>
@@ -135,6 +135,6 @@
 			</div>
 		</div>
 	</div>
-	<jsp:include page="../include/footer.jsp" />
+	<jsp:include page="/WEB-INF/view/include/footer.jsp" />
 </body>
 </html>

@@ -74,7 +74,7 @@
                 <hr>
                 <div class="submit" align="end">
                     <button class="btn btn-primary" type="submit">작성하기</button>
-                    <a href="/admin/notice/noticeadmin" class="btn btn-primary">되돌아가기</a>
+                    <a href="/admin/notice" class="btn btn-primary">되돌아가기</a>
                 </div>
             </form>
         </div>

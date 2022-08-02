@@ -83,7 +83,7 @@
 }
 </style>
 <body>
-	<jsp:include page="../include/menu.jsp" />
+	<jsp:include page="/WEB-INF/view/include/menu.jsp" />
 	<div class="notice_user container">
 
 		<div class="title">
@@ -136,24 +136,24 @@
 			<ul class="page pagination justify-content-center m-0">
 				<c:if test="${pageDto.prev}">
 					<li class="page-item"><a class="page-link"
-						href="/notice/list?page=${pageDto.startPage - 1}&search_item=${pageDto.cri.search_item}&text=${pageDto.cri.text}">이전</a></li>
+						href="/notice/list?page=${pageDto.startPage - 1}&search_item=${search_item}&text=${text}">이전</a></li>
 				</c:if>
 				<c:forEach begin="${pageDto.startPage}" end="${pageDto.endPage}"
 					var="index">
 					<li class="page-item">
 						<c:choose>
 							<c:when test="${pageDto.cri.page == index}">
-								<a class="page-link" style="background-color: #ddd" href="/notice/list?page=${index}">${index}</a>
+								<a class="page-link" style="background-color: #ddd" href="/notice/list?page=${index}&search_item=${search_item}&text=${text}">${index}</a>
 							</c:when>
 							<c:otherwise>
-								<a class="page-link" href="/notice/list?page=${index}&search_item=${pageDto.cri.search_item}&text=${pageDto.cri.text}">${index}</a>
+								<a class="page-link" href="/notice/list?page=${index}&search_item=${search_item}&text=${text}">${index}</a>
 							</c:otherwise>
 						</c:choose>
 					</li>
 				</c:forEach>
 				<c:if test="${pageDto.next && pageDto.endPage > 0}">
 					<li class="page-item"><a class="page-link"
-						href="/notice/list?page=${pageDto.endPage + 1}&search_item=${pageDto.cri.search_item}&text=${pageDto.cri.text}">다음</a></li>
+						href="/notice/list?page=${pageDto.endPage + 1}&search_item=${search_item}&text=${text}">다음</a></li>
 				</c:if>
 			</ul>
 		</div>

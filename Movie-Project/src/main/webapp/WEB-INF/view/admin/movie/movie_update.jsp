@@ -79,7 +79,7 @@
 }
 </style>
 <body>
-	<jsp:include page="../../include/admin_menu.jsp" />
+	<jsp:include page="/WEB-INF/view/include/admin_menu.jsp" />
 	<div class="movie_update container">
 		<div class="title">
 			<h1>영화 수정</h1>
@@ -144,7 +144,7 @@
 			<hr>
 			<div class="submit" align="end">
 				<button class="btn btn-primary" type="submit">등록하기</button>
-				<a href="" class="btn btn-primary">되돌아가기</a> <a href=""
+				<a href="" class="btn btn-primary">되돌아가기</a> <a href="/admin/movie/movie_delete?code=${dto.movie_code}"
 					class="btn btn-danger">삭제</a>
 			</div>
 		</form>

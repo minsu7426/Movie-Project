@@ -97,7 +97,7 @@
 	}
 </script>
 <body>
-<jsp:include page="../include/menu.jsp"/>
+<jsp:include page="/WEB-INF/view/include/menu.jsp"/>
 	<div class="signup container">
 
 		<div class="signup_title">

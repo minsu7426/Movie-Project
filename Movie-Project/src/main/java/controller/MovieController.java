@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dto.MovieDto;
@@ -14,7 +15,7 @@ import service.MovieService;
 import service.ReviewService;
 
 @Controller
-@RequestMapping("/movie/")
+@RequestMapping("/movie")
 public class MovieController {
 
 	@Autowired
@@ -23,7 +24,7 @@ public class MovieController {
 	@Autowired
 	private ReviewService reviewService;
 	
-	@RequestMapping("current_screen")
+	@RequestMapping(value = "/current_screen", method = RequestMethod.GET)
 	public void current_screen(Model model) {
 		List<MovieDto> currentList = movieService.getCurrent_screen();
 		List<MovieDto> shownList = movieService.getShown_screen();
@@ -31,7 +32,7 @@ public class MovieController {
 		model.addAttribute("shownList", shownList);
 	}
 
-	@RequestMapping("shown_screen")
+	@RequestMapping(value = "/shown_screen", method = RequestMethod.GET)
 	public void shown_screen(Model model) {
 		List<MovieDto> shownList = movieService.getShown_screen();
 		List<MovieDto> currentList = movieService.getCurrent_screen();
@@ -39,7 +40,7 @@ public class MovieController {
 		model.addAttribute("currentList", currentList);
 	}
 	
-	@RequestMapping("moviedetail")
+	@RequestMapping(value = "/moviedetail", method = RequestMethod.GET)
 	public String movieDetail(@RequestParam("moviecode")String movie_code, Model model) {
 		MovieDto movieDto = movieService.getMovie_Detail(movie_code);
 		List<ReviewDto> reviewList = reviewService.getListByMovie(movie_code);
@@ -53,7 +54,6 @@ public class MovieController {
 		if(review_star.equals(Double.NaN)) {
 			review_star = 0.0;
 		}
-		System.out.println(review_star);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("movieDto", movieDto);
 		model.addAttribute("review_star", review_star);

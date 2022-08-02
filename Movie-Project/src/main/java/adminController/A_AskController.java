@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dto.AskDto;
@@ -21,7 +23,7 @@ public class A_AskController {
 	@Autowired
 	private AskService askService;
 	
-	@RequestMapping("/askmanage")
+	@RequestMapping
 	public String askManage(Model model, Criteria cri) {
 		PageDto pageDto = new PageDto();
 		pageDto.setCri(cri);
@@ -35,7 +37,7 @@ public class A_AskController {
 		return "/admin/ask/one_on_one_manage";
 	}
 	
-	@RequestMapping("/askdetail")
+	@RequestMapping(value = "/askdetail", method = RequestMethod.GET)
 	public String askDetail(@RequestParam("askcode")String ask_code, Model model) {
 		askService.setUpdateHit(ask_code);
 		AskDto askDto = askService.getAskByCode(ask_code);
@@ -43,7 +45,7 @@ public class A_AskController {
 		return "/admin/ask/one_on_one_admin_detail";
 	}
 	
-	@RequestMapping("/askanswer")
+	@PostMapping("/askanswer")
 	public String askAnswer(AskDto askDto) {
 		askService.setAnswer(askDto);
 		return "redirect:/admin/ask/askdetail?askcode="+ askDto.getAsk_code();

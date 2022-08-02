@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dto.CouponDto;
@@ -50,13 +51,25 @@ public class TicketingController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping("/reserve")
+	@RequestMapping(value = "/reserve", method = RequestMethod.GET)
 	public String ticketReserve(Model model) {
 		List<MovieDto> movieList = movieService.getCurrent_screen();
 		model.addAttribute("movieList", movieList);
 		return "ticketing/ticketing1";
 	}
 	
+	@RequestMapping(value = "/secondreserve", method = RequestMethod.GET)
+	public String ticketingDate(@RequestParam Map<String, String> param, Model model) {
+		List<String> screenCnt = ticketingService.getScreenByMovieDate(param.get("moviecode"), param.get("date"));
+		List<String> dateList = ticketingService.getDateByMovie(param.get("moviecode"));
+		List<ScreenDto> screenList = ticketingService.getSelectByMovie(param.get("moviecode"), param.get("date"));
+		model.addAttribute("screencnt", screenCnt); // 상영관 개수
+		model.addAttribute("movie_code", param.get("moviecode")); // 영화번호
+		model.addAttribute("screenList", screenList); // 상영관 리스트
+		model.addAttribute("dateList", dateList); // 날짜
+		return "/ticketing/ticketing2";
+	}
+
 	@PostMapping("/secondreserve")
 	public String ticketReserve(HttpServletRequest request, Model model) {
 		String movie_code = request.getParameter("movie_code");
@@ -72,19 +85,8 @@ public class TicketingController {
 		return "ticketing/ticketing2";
 	}
 	
-	@RequestMapping("/secondreserve")
-	public String ticketingDate(@RequestParam Map<String, String> param, Model model) {
-		List<String> screenCnt = ticketingService.getScreenByMovieDate(param.get("moviecode"), param.get("date"));
-		List<String> dateList = ticketingService.getDateByMovie(param.get("moviecode"));
-		List<ScreenDto> screenList = ticketingService.getSelectByMovie(param.get("moviecode"), param.get("date"));
-		model.addAttribute("screencnt", screenCnt); // 상영관 개수
-		model.addAttribute("movie_code", param.get("moviecode")); // 영화번호
-		model.addAttribute("screenList", screenList); // 상영관 리스트
-		model.addAttribute("dateList", dateList); // 날짜
-		return "ticketing/ticketing2";
-	}
 	
-	@RequestMapping("/thirdreserve")
+	@PostMapping("/thirdreserve")
 	public String ticketingSeat(HttpServletRequest request, Model model) {
 		String movie_code = request.getParameter("movie_code");
 		String scr_code = request.getParameter("scr_code");
@@ -131,7 +133,7 @@ public class TicketingController {
 		model.addAttribute("code", code);
 		model.addAttribute("ticket", ticket);
 		model.addAttribute("coupon", coupon);
-		return "ticketing/ticketing4";
+		return "/ticketing/ticketing4";
 	}
 	
 	@PostMapping("/fivethreserve")
@@ -154,7 +156,7 @@ public class TicketingController {
 		return "ticketing/ticketing5";
 	}
 	
-	@RequestMapping("ticketlist")
+	@RequestMapping("/ticketlist")
 	public String ticketList(Criteria cri, HttpSession session, Model model) {
 		String[] id = (String[])session.getAttribute("user");
 		PageDto pageDto = new PageDto();

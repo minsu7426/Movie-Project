@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dto.AskDto;
@@ -23,11 +24,11 @@ public class AskController {
 	@Autowired
 	private AskService askService;
 	
-	@RequestMapping
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String one_on_one(HttpSession session) {
 		String[] id = (String[])session.getAttribute("user");
 		if(id == null) {
-			return "redirect:/login/login";
+			return "redirect:/login";
 		}
 		return "/one_on_one/one_on_one";
 	}
@@ -40,7 +41,7 @@ public class AskController {
 		return "/one_on_one/one_on_one";
 	}
 	
-	@RequestMapping("/one-on-one-detail")
+	@RequestMapping(method = {RequestMethod.GET}, value = "/one-on-one-detail")
 	public String oneDetail(@RequestParam("askid")String id, Model model, Criteria cri) {
 		List<AskDto> askList = askService.getListById(id, cri);
 		PageDto pageDto = new PageDto();
@@ -48,7 +49,6 @@ public class AskController {
 		pageDto.setCri(cri);
 		pageDto.setTotalCount(askService.getSearchListCountById(id));
 		
-		System.out.println(pageDto.getTotalCount());
 		if(askList == null) {
 			return "/one_on_one/one_on_one_detail";
 		} else{
@@ -58,7 +58,7 @@ public class AskController {
 		}
 	}
 	
-	@RequestMapping("/oneonone-user")
+	@RequestMapping(value = "/oneonone-user", method = {RequestMethod.GET})
 	public String oneUser(@RequestParam("askcode")String ask_code, Model model) {
 		AskDto askDto = askService.getAskByCode(ask_code);
 		askService.setUpdateHit(ask_code);

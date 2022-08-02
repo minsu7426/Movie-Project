@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dto.CouponDto;
@@ -25,7 +26,7 @@ public class A_CouponController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping("/couponadmin")
+	@RequestMapping
 	public String couponAdmin(Model model, Criteria cri) {
 		PageDto pageDto = new PageDto();
 		pageDto.setCri(cri);
@@ -38,22 +39,22 @@ public class A_CouponController {
 		return "/admin/coupon/coupon_admin";
 	}
 	
+	@RequestMapping(value = "/couponadd", method = RequestMethod.GET)
+	public String couponAdd(Model model) {
+		List<String> idList = userService.getSelectId();
+		model.addAttribute("idList", idList);
+		return "/admin/coupon/coupon_add";
+	}
+
 	@PostMapping("/couponpostadd")
 	public String couponPostAdd(CouponDto couponDto) {
 		couponService.setInsertCoupon(couponDto);
 		return "/admin/coupon/coupon_add";
 	}
 	
-	@RequestMapping("/couponadd")
-	public String couponAdd(Model model) {
-		List<String> idList = userService.getSelectId();
-		model.addAttribute("idList", idList);
-		return "/admin/coupon/coupon_add";
-	}
-	
 	@RequestMapping("/coupondelete")
 	public String couponDelete(@RequestParam("couponcode")String code) {
 		couponService.setDeleteCoupon(code);
-		return "redirect:/admin/coupon/couponadmin";
+		return "redirect:/admin/coupon";
 	}
 }

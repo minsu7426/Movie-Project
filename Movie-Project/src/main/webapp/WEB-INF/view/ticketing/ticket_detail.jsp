@@ -174,7 +174,7 @@
                     <td>${dto.movie_title}</td>
                     <fmt:parseDate value="${dto.scr_datetime}" pattern="yyyy-MM-dd HH:mm" var="date2"/>
                     <td><fmt:formatDate value="${date2}" pattern="yyyy-MM-dd HH:mm"/></td>
-                    <td>${dto.tic_code}관</td>
+                    <td>${dto.scr_screen}관</td>
                     <td>${dto.tic_seat}</td>
                     <td>${dto.tic_payment}원</td>
                 </tr>

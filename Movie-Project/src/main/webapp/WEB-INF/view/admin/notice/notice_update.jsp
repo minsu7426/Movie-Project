@@ -70,13 +70,13 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 input-name">내용</label>
-                    <textarea name="notice_content" cols="50" rows="8"  required>${notice.notice_title }</textarea>
+                    <textarea name="notice_content" cols="50" rows="8"  required>${notice.notice_content }</textarea>
                 </div>
                 <hr>
                 <div class="submit" align="end">
                     <button class="btn btn-primary" type="submit">수정</button>
                     <a href="/admin/notice/noticedelete?noticecode=${notice.notice_code}" class="btn btn-primary" onclick="return confirm('게시물을 삭제 하시겠습니까?');">삭제</a>
-                    <a href="/admin/notice/noticeadmin?page=${cri.page}" class="btn btn-primary">되돌아가기</a>
+                    <a href="/admin/notice?page=${cri.page}" class="btn btn-primary">되돌아가기</a>
                 </div>
             </form>
         </div>

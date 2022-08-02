@@ -90,8 +90,6 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void setUpdateUser(UserDto userDto) {
-		System.out.println(userDto.getUser_id());
-		System.out.println(userDto.getUser_phone());
 		String sql = "update user set user_pw = ?, user_phone = ?, user_email = ? where user_id = ?";
 		jdbcTemplate.update(sql,
 				userDto.getUser_pw(),

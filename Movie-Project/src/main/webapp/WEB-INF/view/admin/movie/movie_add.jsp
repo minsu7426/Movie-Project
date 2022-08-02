@@ -76,7 +76,7 @@
 }
 </style>
 <body>
-<jsp:include page="../../include/admin_menu.jsp"/>
+<jsp:include page="/WEB-INF/view/include/admin_menu.jsp"/>
 	<div class="movie_add container">
 		<div class="title">
 			<h1>영화 등록</h1>
@@ -128,7 +128,7 @@
 			<hr>
 			<div class="submit" align="end">
 				<button class="btn btn-primary" type="submit">등록하기</button>
-				<a href="/admin/movie/movie_manage" class="btn btn-primary">되돌아가기</a>
+				<a href="/admin/movie" class="btn btn-primary">되돌아가기</a>
 			</div>
 		</form>
 

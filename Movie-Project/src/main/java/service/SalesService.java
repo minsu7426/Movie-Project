@@ -8,6 +8,9 @@ import dto.SalesTotalDto;
 
 public interface SalesService {
 
+	//영화 타이틀 가져오기
+	public String getMovieTitle();
+	
 	//영화 매출 가져오기
 	public SalesMovieDto getSalesMovie(String movie_title);
 	

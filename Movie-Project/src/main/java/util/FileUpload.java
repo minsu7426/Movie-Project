@@ -15,7 +15,7 @@ public class FileUpload {
 	public static MovieDto upload(HttpServletRequest request) throws IOException {
 		String filename = "";
 		String realPath = request.getSession().getServletContext().getRealPath("resources/images/movie/");
-		Integer maxSize = 5 * 1024 * 1024;
+		Integer maxSize = 10 * 1024 * 1024;
 		String encType = "utf8";
 		MovieDto movie = new MovieDto();
 		

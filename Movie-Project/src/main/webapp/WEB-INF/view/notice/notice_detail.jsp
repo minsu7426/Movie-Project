@@ -61,7 +61,7 @@
 /* notice_detail end */
 </style>
 <body>
-<jsp:include page="../include/menu.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/include/menu.jsp"/>
 	<!-- notice_detail start -->
 	<div class="notice_detail container">
 		<div class="title">

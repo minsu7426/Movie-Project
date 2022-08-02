@@ -110,7 +110,7 @@
                     <a class="link-1" href="/home">홈</a>
                     <a href="/ticketing/reserve">예매</a>
                     <a href="/movie/current_screen">영화</a>
-                    <a href="/ask/one-on-one">고객센터</a>
+                    <a href="/ask">고객센터</a>
                 </p>
                 <p>경상남도 창원시 마산회원구 양덕북12길 113 (양덕동, 경민 인터빌) 4층</p>
                 <p>055-000-000</p>

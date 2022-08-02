@@ -78,7 +78,7 @@
 }
 </style>
 <body>
-	<jsp:include page="../../include/admin_menu.jsp" />
+	<jsp:include page="/WEB-INF/view/include/admin_menu.jsp" />
 	<!-- ticket_manage start -->
 	<div class="ticket_manage container">
 
@@ -88,7 +88,7 @@
 		<hr>
 
 		<div align="center" class="search_container">
-			<form method="post" action="/admin/ticket/ticket_manage">
+			<form method="post" action="/admin/ticket">
 				<table>
 					<tr>
 						<td><select class="search_select" name="search_item">
@@ -134,24 +134,24 @@
 			<ul class="page pagination justify-content-center m-0">
 				<c:if test="${pageDto.prev}">
 					<li class="page-item"><a class="page-link"
-						href="/admin/screen/screen_manage?page=${pageDto.startPage - 1}">이전</a></li>
+						href="/admin/ticket?page=${pageDto.startPage - 1}">이전</a></li>
 				</c:if>
 				<c:forEach begin="${pageDto.startPage}" end="${pageDto.endPage}"
 					var="index">
 					<li class="page-item"><c:choose>
 							<c:when test="${pageDto.cri.page == index}">
 								<a class="page-link" style="background-color: #ddd"
-									href="/admin/ticket/ticket_manage?page=${index}&search_item=${pageDto.cri.search_item}&text=${pageDto.cri.text}">${index}</a>
+									href="/admin/ticket?page=${index}&search_item=${pageDto.cri.search_item}&text=${pageDto.cri.text}">${index}</a>
 							</c:when>
 							<c:otherwise>
 								<a class="page-link"
-									href="/admin/ticket/ticket_manage?page=${index}&search_item=${pageDto.cri.search_item}&text=${pageDto.cri.text}">${index}</a>
+									href="/admin/ticket?page=${index}&search_item=${pageDto.cri.search_item}&text=${pageDto.cri.text}">${index}</a>
 							</c:otherwise>
 						</c:choose></li>
 				</c:forEach>
 				<c:if test="${pageDto.next && pageDto.endPage > 0}">
 					<li class="page-item"><a class="page-link"
-						href="/admin/screen/screen_manage?page=${pageDto.endPage + 1}">다음</a></li>
+						href="/admin/ticket?page=${pageDto.endPage + 1}">다음</a></li>
 				</c:if>
 			</ul>
 		</div>

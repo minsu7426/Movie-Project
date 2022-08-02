@@ -62,7 +62,7 @@
 }
 </style>
 <body>
-<jsp:include page="../include/menu.jsp"/>
+<jsp:include page="/WEB-INF/view/include/menu.jsp"/>
 	<div class="benefit container">
 		<div class="benefit_title">
 			<h1>등급별 혜택</h1>
@@ -79,7 +79,6 @@
 						<h4>회원가입시 적용되는 회원</h4>
 						<p>생일 무료관람 쿠폰 1장 지급</p>
 						<p>결제시 1% 할인</p>
-						<p>로그인시 "뽑기 이벤트" 쿠폰 1장 지급</p>
 					</div>
 				</td>
 				<td>
@@ -91,7 +90,6 @@
 						<h4>연간 예매 횟수 7회 이상</h4>
 						<p>생일 무료관람 쿠폰 2장 지급</p>
 						<p>결제시 3% 할인</p>
-						<p>로그인시 "뽑기 이벤트" 쿠폰 3장 지급</p>
 					</div>
 				</td>
 				<td>
@@ -103,7 +101,6 @@
 						<h4>연간 예매 횟수 15회 이상</h4>
 						<p>생일 무료관람 쿠폰 3장 지금</p>
 						<p>결제시 7% 할인</p>
-						<p>로그인시 "뽑기 이벤트" 쿠폰 5장 지급</p>
 					</div>
 				</td>
 			</table>

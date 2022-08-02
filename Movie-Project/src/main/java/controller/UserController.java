@@ -8,7 +8,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import dto.MovieDto;
 import dto.UserDto;
@@ -17,7 +19,7 @@ import service.TicketService;
 import service.UserService;
 
 @Controller
-@RequestMapping("/user/")
+@RequestMapping("/user")
 public class UserController {
 	
 	@Autowired
@@ -26,7 +28,7 @@ public class UserController {
 	@Autowired
 	private MovieService movieService;
 	
-	@RequestMapping("mypage")
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public void mypage(HttpSession session, Model model) {
 		String[] user = (String[])session.getAttribute("user");
 		String user_id = user[0];
@@ -34,13 +36,13 @@ public class UserController {
 		model.addAttribute("userDto", dto);
 	}
 	
-	@RequestMapping("update")
+	@PostMapping("/update")
 	public String update(UserDto userDto, HttpServletRequest request) {
 		userService.setUpdateUser(userDto, request);
 		return "/home";
 	}
 	
-	@RequestMapping("viewing_detail")
+	@RequestMapping(value = "viewing_detail", method = RequestMethod.GET)
 	public String viewing_detail(HttpSession session, Model model) {
 		String[] user = (String[])session.getAttribute("user");
 		if(user == null) {

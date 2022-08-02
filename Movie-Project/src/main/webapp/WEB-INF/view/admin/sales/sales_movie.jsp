@@ -84,7 +84,7 @@
 }
 </style>
 <body>
-	<jsp:include page="../../include/admin_menu.jsp" />
+	<jsp:include page="/WEB-INF/view/include/admin_menu.jsp" />
 	<!-- sales_movie start -->
 	<div class="sales_movie container">
 

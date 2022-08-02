@@ -20,7 +20,6 @@ public class CouponDaoImpl implements CouponDao {
 
 	@Override
 	public void setInsertCoupon(CouponDto couponDto) {
-		System.out.println("id="+couponDto.getCoupon_id());
 		String sql;
 		if (couponDto.getCoupon_id() == null || couponDto.getCoupon_id().equals("")) {
 			sql = "insert into coupon(coupon_code, coupon_form, coupon_give, coupon_end, coupon_price) value (?,?,?,?,?)";

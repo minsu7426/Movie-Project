@@ -18,6 +18,13 @@ public class SalesDaoImpl implements SalesDao {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
+	
+	@Override
+	public String getTitleMovie() {
+		String sql = "select movie_title from movie limit 1";
+		String title = jdbcTemplate.queryForObject(sql, String.class);
+		return title;
+	}
 
 	@Override
 	public int getToday(String movie_title) {

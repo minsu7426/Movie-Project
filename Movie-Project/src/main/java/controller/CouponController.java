@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import dto.CouponDto;
 import service.CouponService;
@@ -31,7 +32,7 @@ public class CouponController {
 		return "/coupon/coupon_manage";
 	}
 	
-	@RequestMapping("/couponsubmit")
+	@RequestMapping(value = "/couponsubmit", method = {RequestMethod.GET})
 	public String couponSubmit(){
 		return "/coupon/couponSubmit";
 	}
@@ -39,6 +40,6 @@ public class CouponController {
 	@PostMapping("/couponpostsub")
 	public String couponPostSub(CouponDto couponDto) {
 		couponService.setCouponSubmit(couponDto.getCoupon_id(), couponDto.getCoupon_code());
-		return "redirect:/coupon/couponlist";
+		return "redirect:/coupon";
 	}
 }

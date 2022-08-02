@@ -9,7 +9,7 @@ public class TicketingDto {
 	private int scr_screen; //상영관
 	private String tic_seat; //좌석 번호
 	private int tic_payment; //결제 금액
-
+	
 	public String getTic_paytime() {
 		return tic_paytime;
 	}
@@ -52,6 +52,6 @@ public class TicketingDto {
 	public void setTic_payment(int tic_payment) {
 		this.tic_payment = tic_payment;
 	}
-	
+
 	
 }

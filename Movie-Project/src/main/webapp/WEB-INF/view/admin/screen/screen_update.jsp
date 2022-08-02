@@ -105,7 +105,7 @@
 }
 </style>
 <body>
-	<jsp:include page="../../include/admin_menu.jsp" />
+	<jsp:include page="/WEB-INF/view/include/admin_menu.jsp" />
 	<div class="cinema_update container">
 		<div class="title">
 			<h1>상영관 수정</h1>
@@ -186,7 +186,7 @@
 			<hr>
 			<div class="submit" align="end">
 				<button class="btn btn-primary" type="submit">수정하기</button>
-				<a href="/admin/screen/screen_manage" class="btn btn-primary">되돌아가기</a>
+				<a href="/admin/screen" class="btn btn-primary">되돌아가기</a>
 				<a href="/admin/screen/delete?scr_code=${dto.scr_code }"
 					class="btn btn-danger">삭제</a>
 			</div>

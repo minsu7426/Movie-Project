@@ -212,4 +212,10 @@ public class MovieDaoImpl implements MovieDao {
 		});
 		return results;
 	}
+	
+	@Override
+	public void setDelete(String code) {
+		String sql = "delete from movie where movie_code = "+code;
+		jdbcTemplate.update(sql);
+	}
 }

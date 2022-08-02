@@ -49,9 +49,7 @@ public class TicketingServiceImpl implements TicketingService {
 	public synchronized void setTicket(TicketDto ticketDto, String code) {
 		ScreenDto screen = ticketingDao.getScreenByCode(code);
 		String[] screen_seat = screen.getScr_seat().split(",");
-		System.out.println(Arrays.toString(screen_seat));
 		String[] ticket_seat = ticketDto.getTic_seat().split(",");
-		System.out.println(Arrays.toString(ticket_seat));
 
 		List<String> list1 = new ArrayList<String>();
 		Collections.addAll(list1, screen_seat);

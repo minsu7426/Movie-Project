@@ -19,7 +19,6 @@ public class HomeController {
 	@RequestMapping("/home")
 	public String home(Model model) {
 		List<SlideDto> list = movieService.getSlideMovie();
-		System.out.println(list.get(0).getSlide_code());
 		model.addAttribute("list", list);
 		return "home";
 	}

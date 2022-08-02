@@ -216,9 +216,9 @@
                             </select>
                         </div>
                         <div class="ticket_money">
-                            <p>결제금액</p>
+                            <p>결제 금액</p>
                             <input type="text" id="price" name="price" value="${ticket.tic_payment}" readonly>
-                            <p>쿠폰적용된 금액</p>
+                            <p>최종 금액</p>
                             <input type="text" id="price2" name="price2" value="${ticket.tic_payment}" readonly>
                             <input type="hidden" name="people" value="${people}">
                             <input type="hidden" name="screen_code" value="${code}">

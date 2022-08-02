@@ -123,7 +123,7 @@
 		</div>
 		<div class="add">
 			<c:if test="${askDto.ask_re_content == null}">
-				<form class="add_form" action="/admin/ask/askanswer">
+				<form class="add_form" action="/admin/ask/askanswer" method="post">
 					<input name="ask_code" value="${askDto.ask_code}" type="hidden">
 					<div class="form-group row">
 						<label class="col-sm-2 input-name">내용</label>
@@ -132,7 +132,7 @@
 					</div>
 					<div class="submit" align="end">
 						<button class="btn btn-primary" type="submit">작성하기</button>
-						<a href="/admin/ask/askmanage" class="btn btn-primary">되돌아가기</a>
+						<a href="/admin/ask" class="btn btn-primary">되돌아가기</a>
 					</div>
 				</form>
 			</c:if>
@@ -143,7 +143,7 @@
 					<p>${askDto.ask_re_content}</p>
 				</div>
 				<div class="submit" align="end">
-					<a href="/admin/ask/askmanage"
+					<a href="/admin/ask"
 						class="btn btn-primary">되돌아가기</a>
 				</div>
 			</c:if>

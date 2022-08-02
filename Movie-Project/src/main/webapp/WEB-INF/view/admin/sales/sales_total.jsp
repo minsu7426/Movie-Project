@@ -56,7 +56,7 @@
 }
 </style>
 <body>
-	<jsp:include page="../../include/admin_menu.jsp" />
+	<jsp:include page="/WEB-INF/view/include/admin_menu.jsp" />
 	<!-- sales_total start -->
 	<div class="sales_total container">
 

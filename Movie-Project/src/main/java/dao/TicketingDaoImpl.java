@@ -129,7 +129,6 @@ public class TicketingDaoImpl implements TicketingDao {
 			sql = "select count(*) from ticket where tic_id = '"+id+"' and date_format((tic_paytime),'%Y-%m-%d') > now() - interval "+cri.getText()+" day";
 		}
 		Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
-		System.out.println(count);
 		return count;
 	}
 	

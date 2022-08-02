@@ -52,7 +52,7 @@
 }
 </style>
 <body>
-	<jsp:include page="../include/menu.jsp" />
+	<jsp:include page="/WEB-INF/view/include/menu.jsp" />
 	<div class="viewing_detail container">
 		<div class="viewing_detail_title">
 			<h1>관람 내역</h1>
