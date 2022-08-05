@@ -209,8 +209,8 @@
                     <div>
                         <a href="/ticketing/reserve" class="btn btn-primary">예매하기 >></a>
                         <span style="font-size:22px; color:rgba(250, 208, 0, 0.99);">★ <span style="color: black;"><fmt:formatNumber value="${review_star }" pattern="#.#"/> / 5.0</span></span>
-                        <input type="checkbox" id="heart">
-                        <label for="heart"><i class="fa-solid fa-heart"></i></label>
+                        <!-- <input type="checkbox" id="heart">
+                        <label for="heart"><i class="fa-solid fa-heart"></i></label> -->
                     </div>
                 </div>
                 <div class="movie_detail_content">

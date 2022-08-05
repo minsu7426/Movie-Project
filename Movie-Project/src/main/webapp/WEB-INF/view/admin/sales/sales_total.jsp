@@ -68,7 +68,7 @@
 		<div class="container">
 			<table class="table">
 				<tr class="table_header">
-					<th>예매 순위</th>
+					<th>예매율 순위</th>
 					<th>영화 이름</th>
 					<th>금일 매출</th>
 					<th>누적 매출</th>
@@ -79,7 +79,6 @@
 				</tr>
 				<c:forEach items="${list}" var="dto">
 					<tr>
-					
 						<td>${dto.rank }</td>
 						<td>${dto.sales_title}</td>
 						<td>${dto.sales_today}원</td>

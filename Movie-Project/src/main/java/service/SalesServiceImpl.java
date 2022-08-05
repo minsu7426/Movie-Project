@@ -3,6 +3,9 @@ package service;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -38,24 +41,38 @@ public class SalesServiceImpl implements SalesService {
 		List<Integer> todaySeatList = salesDao.getTodaySeat(movie_title);
 		float todaySeat = 0;
 		for (int i = 0; i < todaySeatList.size(); i++) {
-			todaySeat += ((-(todaySeatList.get(i) - 30) * 100) / 30.0);
+			todaySeat += todaySeatList.get(i);
 		}
-		todaySeat /= todaySeatList.size();
+		
+		if(todaySeat != 0) {
+			todaySeat = (((todaySeatList.size()*30) - todaySeat) / (todaySeatList.size()*30)) * 100;
+		}
+		
 		salesDto.setSales_viewing_today(todaySeat);
 
 		List<Integer> totalSeatList = salesDao.getTotalSeat(movie_title);
 		float totalSeat = 0;
 		for (int i = 0; i < totalSeatList.size(); i++) {
-			totalSeat += ((-(totalSeatList.get(i) - 30) * 100) / 30.0);
+			totalSeat += totalSeatList.get(i);
 		}
-		totalSeat /= totalSeatList.size();
+		
+		if(totalSeat != 0) {
+			totalSeat = (((totalSeatList.size()*30) - totalSeat) / (totalSeatList.size()*30)) * 100;
+		}
+		
 		salesDto.setSales_viewing_total(totalSeat);
 
-		int viewCount = salesDao.getViewCount(movie_title);
-		int manCount = salesDao.getManCount(movie_title);
-		salesDto.setSales_man((float) manCount / viewCount);
-		salesDto.setSales_woman(-((float) manCount - 100));
+		Integer viewCount = salesDao.getViewCount(movie_title);
+		Integer manCount = salesDao.getManCount(movie_title);
 
+		if(viewCount != 0) {
+			salesDto.setSales_man(((float)manCount / viewCount)*100);
+			salesDto.setSales_woman((float)salesDto.getSales_man() - 100);
+		} else {
+			salesDto.setSales_man(0);
+			salesDto.setSales_woman(0);
+		}
+		
 		salesDto.setSales_avg(salesDao.getAvgAge(movie_title));
 
 		return salesDto;
@@ -92,12 +109,13 @@ public class SalesServiceImpl implements SalesService {
 			}
 		}
 
+		
 		List<Map<String, Integer>> manCount = salesDao.getJuminCount(1);
 		for (int i = 0; i < list.size(); i++) {
 			for (int j = 0; j < manCount.size(); j++) {
 				if (manCount.get(j).containsKey(list.get(i).getSales_title())) {
 					float man = manCount.get(j).get(list.get(i).getSales_title());
-					float manResult = ((man) * 100) / list.get(i).getSales_viewCount();
+					float manResult = man / list.get(i).getSales_viewCount() * 100;
 					list.get(i).setSales_man(manResult);
 				}
 			}
@@ -108,7 +126,7 @@ public class SalesServiceImpl implements SalesService {
 			for (int j = 0; j < womanCount.size(); j++) {
 				if (womanCount.get(j).containsKey(list.get(i).getSales_title())) {
 					float woman = womanCount.get(j).get(list.get(i).getSales_title());
-					float womanResult = ((woman) * 100) / list.get(i).getSales_viewCount();
+					float womanResult = woman / list.get(i).getSales_viewCount() * 100;
 					list.get(i).setSales_woman(womanResult);
 				}
 			}
@@ -120,23 +138,38 @@ public class SalesServiceImpl implements SalesService {
 				if (totalSeat.get(j).containsKey(list.get(i).getSales_title())) {
 					float seatSum = (totalSeat.get(j).get(list.get(i).getSales_title())) * 30;
 					float seat = list.get(i).getSales_viewCount();
-					float result = (((seat / seatSum) * 100));
+					float result = 0;
+					if(seat != 0) {
+						result = ((seat / seatSum) * 100);
+					}
 					list.get(i).setSales_viewing(result);
 				}
 			}
 		}
-
-		for (int i = 0; i < list.size(); i++) {
-			list.get(i).setRank(i+1);
-			for (int j = 1; j < list.size(); j++) {
-				if (list.get(i).getSales_viewing() < list.get(j).getSales_viewing()) {
-					list.get(i).setRank(i+1);
-				}
-
-			}
-
+		
+		for(int i = 0; i < list.size(); i++) {
+			list.get(i).setRank(1);
 		}
-
+		for (int i = 0; i < list.size() - 1; i++) {
+			for (int j = 1; j < list.size(); j++) {
+				if (list.get(i).getSales_viewing() > list.get(j).getSales_viewing()) {
+					list.get(j).setRank(list.get(j).getRank()+1);
+				} else if(list.get(i).getSales_viewing() < list.get(j).getSales_viewing()) {
+					list.get(i).setRank(list.get(i).getRank()+1);
+				}
+			}
+		}
+		
+		Comparator<SalesTotalDto> cp = new Comparator<SalesTotalDto>() {
+			@Override
+			public int compare(SalesTotalDto o1, SalesTotalDto o2) {
+				if(o1.getRank() > o2.getRank()) return 1;
+				if(o1.getRank() < o2.getRank()) return -1;
+				return 0;
+			}
+		};
+		Collections.sort(list, cp);
+		
 		return list;
 	}
 }

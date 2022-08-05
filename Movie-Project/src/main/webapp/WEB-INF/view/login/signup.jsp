@@ -117,12 +117,12 @@
 			}
 		}
 	}
+</script>
 	
 	function idCheck(){
 		window.open("/login/idCheck","_blank","width=300px height=100px");
 	}
 
-</script>
 <body>
 	<jsp:include page="/WEB-INF/view/include/menu.jsp"/>
 	<div class="signup container">

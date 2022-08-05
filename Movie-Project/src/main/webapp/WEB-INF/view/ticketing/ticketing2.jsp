@@ -221,7 +221,7 @@
 			<fmt:formatDate value="${now1}" pattern="yyyy-MM-dd" var="nowDate" /> 
 			<c:forEach var="date" items="${dateList}">
 				<c:if test="${nowDate <= date}">
-				<li><a href="/ticketing/secondreserve?moviecode=${movie_code}&date=${date}">${date}</a></li>
+				<li><a href="/ticketing/secondreserve?moviecode=${movie_code}&date=${date}" >${date}</a></li>
 				</c:if>
 			</c:forEach>
 			</ul>
