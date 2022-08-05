@@ -67,7 +67,7 @@ public class SalesServiceImpl implements SalesService {
 
 		if(viewCount != 0) {
 			salesDto.setSales_man(((float)manCount / viewCount)*100);
-			salesDto.setSales_woman((float)salesDto.getSales_man() - 100);
+			salesDto.setSales_woman(100-(float)salesDto.getSales_man());
 		} else {
 			salesDto.setSales_man(0);
 			salesDto.setSales_woman(0);
